@@ -1,0 +1,749 @@
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+@mixin transition-all($m:"all", $t:"300ms") {
+  -webkit-transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
+  -moz-transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
+  -o-transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
+  transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
+}
+
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  font-family: 'Fira Sans', sans-serif !important;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background: #989898;
+  opacity: 0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  position: absolute;
+  width: 100%;
+  padding-left: 40px!important;
+
+  #text-1{
+    position: absolute;
+    top: 40px;
+  };
+
+  #text-2{
+    opacity: 0;
+    position: absolute;
+    top: 40px;
+  };
+}
+
+/* TV Screen */
+#tv {
+  width: 1920px;
+  height: 1080px;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/wallpaper_tv.jpg") center center no-repeat;
+  background-size: cover;
+  margin: auto;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 2px #989898 solid;
+  overflow: hidden;
+}
+
+/* Navigation */
+#weather {
+  border-left: 2px #FFF solid;
+  padding-left: 24px;
+  background-image: none, url('../images/icon_weather.png');
+  margin-top: 10px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+ p {
+    font-size: 28pt;
+    font-weight: 300;
+    color: #FFF;
+    line-height: 1.2;
+    margin-bottom: 0;
+    margin-top: 22px;
+ }
+}
+
+#time{
+  font-family: 'fira_sanshair';
+  font-size: 72pt;
+  color: #FFF;
+  line-height: 1.2;
+  margin-bottom: 0;
+  text-align: right;
+  margin-top: 0px;
+  margin-right: 10px;
+}
+
+.navbutton{
+  background: rgba(0,0,0,.7);
+  display: inline-block;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin: 30px 10px;
+
+  &#filter{
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    width: 80px;
+    height: 80px;
+    background-image: none, url('../images/filter-white.svg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    &.navbutton.selected{
+      background-image: none, url('../images/filter.svg');
+      &.pressed{
+        background-color: #5eabd9;
+        background-image: none, url('../images/filter-white.svg');
+      }
+    }
+  }
+
+  &#search{
+    margin-left: 30px;
+    background-image: none, url('../images/search-white.svg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    &.navbutton.selected{
+      background-image: none, url('../images/search.svg');
+      &.pressed{
+        background-color: #5eabd9;
+        background-image: none, url('../images/search-white.svg');
+      }
+    }
+  }
+
+  &#setting{
+    background-image: none, url('../images/setting-white.svg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    &.navbutton.selected{
+      background-image: none, url('../images/setting.svg');
+      &.pressed{
+        background-color: #5eabd9;
+        background-image: none, url('../images/setting-white.svg');
+      }
+    }
+  }
+
+  &#folder{
+    background-image: none, url('../images/folder-white.svg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    &.navbutton.selected{
+      background-image: none, url('../images/folder.svg');
+      &.pressed{
+        background-color: #5eabd9;
+        background-image: none, url('../images/folder-white.svg');
+      }
+    }
+  }
+}
+
+#app{
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  position: absolute;
+  overflow: hidden;
+
+}
+
+.appbutton{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 20%;
+  bottom: 0;
+  background: #ccc;
+  display: inline-block;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  /*border: 2px #989898 solid;*/
+  /*margin: 30px 30px;*/
+  @include transition-all("margin-left", 300ms);
+  opacity: 0;
+  overflow: hidden;
+
+  & p{
+    color: #FFF;
+    font-size: 25px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    /* top: 0; */
+    bottom: 50px;
+    text-align: center;
+    font-style: italic;
+    z-index: 100;
+  }
+}
+
+.appbutton[data-type="folder"]{
+  overflow: visible !important;
+}
+
+.appbutton-folder{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: -80px;
+  background: #ccc;
+  display: inline-block;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  /*border: 2px #989898 solid;*/
+  /*margin: 30px 30px;*/
+  @include transition-all("margin-left", 300ms);
+  /*opacity: 0;*/
+  overflow: hidden;
+  //margin-left: 0 !important;
+  transform: translateY(0) !important;
+  opacity: 0;
+
+  & p{
+    color: #FFF;
+    font-size: 10px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    /* top: 0; */
+    bottom: 10px;
+    text-align: center;
+    font-style: italic;
+    z-index: 100;
+  }
+}
+
+/* -- icons -- */
+
+.icon01{
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: -10px;
+  background-image: none, url('../images/tv.svg');
+  background-position: 50% 3%;
+  background-repeat: no-repeat;
+  background-size:90%;
+  -webkit-perspective: 1000;
+}
+.icon02{
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: -10px;
+  background-image: none, url('../images/application.svg');
+  background-position: 50% 3%;
+  background-repeat: no-repeat;
+  background-size:90%;
+  -webkit-perspective: 1000;
+}
+.icon03{
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: -10px;
+  background-image: none, url('../images/device.svg');
+  background-position: 50% 3%;
+  background-repeat: no-repeat;
+  background-size:90%;
+  -webkit-perspective: 1000;
+}
+
+.icon_folder{
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: -10px;
+  background-image: none, url('../images/folder-white.svg');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:40%;
+  -webkit-perspective: 1000;
+  opacity: 0.6;
+}
+
+#app04{
+  background-image: none, url('../images/ic_browser.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+
+#option{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  text-align: center;
+  /*display: none;*/
+
+}
+#delete{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  text-align: center;
+  /*display: none;*/
+
+}
+
+.message{
+  font-family: 'fira_sanshair';
+  color: #FFF;
+  font-size: 36px;
+  line-height: 2;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 10%;
+  text-align: center;
+  font-style: italic;
+  opacity: 0;
+}
+
+#confirm{
+  color: #FFF;
+  background-color: red;
+}
+
+#delete .optbutton{
+  margin-top: 420px !important;
+
+  & p{
+    bottom: 43% !important;
+  }
+}
+
+.optbutton{
+  background-color: rgb(96,96,96);
+  display: inline-block;
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  margin: 30px 20px;
+  margin-top: 346px;
+  opacity: 0;
+  z-index: -1;
+  p{
+    color: #FFF;
+    font-size: 20px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    /* top: 0; */
+    bottom: 55px;
+    text-align: center;
+    font-style: italic;
+    @include transition-all("all", 400ms);
+  }
+  &.pressed{
+    & p{
+      color: #FFF;
+    }
+  }
+
+  &#rename{
+    margin-left: 30px;
+    background-image: none, url('../images/rename-white.svg');
+    background-position: 50% 35%;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    &.optbutton.selectedOption{
+      background-image: none, url('../images/rename.svg');
+      &.pressed{
+        background-color: #5eabd9;
+        background-image: none, url('../images/rename-white.svg');
+      }
+    }
+  }
+
+  &#remove{
+    background-image: none, url('../images/delete-white.svg');
+    background-position: 50% 25%;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    &.optbutton.selectedOption{
+      background-image: none, url('../images/delete.svg');
+      &.pressed{
+        background-color: #5eabd9;
+        background-image: none, url('../images/delete-white.svg');
+      }
+    }
+  }
+}
+
+.selectedOption p{
+  color: #2d2d2d;
+  @include transition-all("all", 400ms);
+}
+
+.transition{
+  position: absolute;
+  background: #000;
+  opacity: .8;
+  z-index: 50;
+  border-radius: 50%;
+  height: 1px;
+  width: 1px;
+  bottom: 0;
+  left: 50%;
+  margin-left: 0;
+  text-align: center;
+}
+
+#dummy{
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+
+  p{
+    text-align: center;
+    color: #FFF;
+    font-size: 40pt;
+    margin: auto;
+    top: 48%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+#black{
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.next{
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-image: none, url('../images/ic_arrownext.png');
+  background-position: 50% 35%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 48.6%;
+  left: 520px;
+  z-index: 4000;
+  opacity: 0;
+}
+
+.prev{
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-image: none, url('../images/ic_arrowprev.png');
+  background-position: 50% 35%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 48.6%;
+  left: 230px;
+  z-index: 4000;
+  opacity: 0;
+}
+
+.wave01a{
+  position: absolute;
+  top: -140px;
+  display: block;
+  height: 200%;
+  width: 400%;
+  background-image: none, url('../images/wave_pink_01.png');
+  background-position: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+.wave01b{
+  position: absolute;
+  top: -160px;
+  display: block;
+  height: 200%;
+  width: 400%;
+  background-image: none, url('../images/wave_pink_02.png');
+  background-position: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-100px,0);
+  z-index: -1;
+}
+
+.wave02a{
+  position: absolute;
+  top: -140px;
+  display: block;
+  height: 200%;
+  width: 400%;
+  background-image: none, url('../images/wave_green_01.png');
+  background-position: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+.wave02b{
+  position: absolute;
+  top: -160px;
+  display: block;
+  height: 200%;
+  width: 400%;
+  background-image: none, url('../images/wave_green_02.png');
+  background-position: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-100px,0);
+  z-index: -1;
+}
+
+.wave03a{
+  position: absolute;
+  top: -140px;
+  display: block;
+  height: 200%;
+  width: 400%;
+  background-image: none, url('../images/wave_blue_01.png');
+  background-position: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+.wave03b{
+  position: absolute;
+  top: -160px;
+  display: block;
+  height: 200%;
+  width: 400%;
+  background-image: none, url('../images/wave_blue_02.png');
+  background-position: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-100px,0);
+  z-index: -1;
+}
+
+#addfolder{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin:auto;
+  background-color: rgba(0,0,0,0);
+  z-index: 10000;
+  opacity: 0;
+
+  &-name{
+    display: block;
+    position: absolute;
+    background-color: #FFF;
+    width: 300px;
+    height: 60px;
+    border-radius: 6px;
+    margin: 100px;
+
+    p{
+      font-size: 20pt;
+      padding: 20px;
+    }
+  }
+
+  &-done{
+    display: block;
+    position: absolute;
+    background-color: #FFF;
+    width: 160px;
+    height: 60px;
+    border-radius: 30px;
+    margin: 100px;
+    right: 0;
+
+    p{
+      font-size: 20pt;
+      padding: 20px;
+      text-align: center;
+      color: #000;
+
+      &.inactive{
+        color: #ccc;
+      }
+      &.pressed{
+        color: #FFF;
+      }
+    }
+  }
+
+  &-number{
+    position: absolute;
+    font-family: 'fira_sansthin';
+    text-align: center;
+    font-size: 25pt;
+    color: #FFF;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    &--selected{
+      font-size: 50pt;
+    }
+    &--total{
+      font-size: 30pt;
+    }
+  }
+
+  & .applist{
+    /*margin: 240px 100px !important;*/
+    position: absolute;
+    margin: auto;
+    left: 0 !important;
+    right: 0;
+    bottom: -80px;
+    background: #ccc;
+    display: inline-block;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    /*border: 2px #989898 solid;*/
+    /*margin: 30px 30px;*/
+    border: 0px;
+    @include transition-all();
+    /*opacity: 0;*/
+    overflow: hidden;
+
+    &.appselected{
+      // background-color: #5eabd9 !important;
+      border: 6px #FFF solid !important;
+      @include transition-all();
+    }
+
+    & p{
+      color: #FFF;
+      font-size: 16px;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      /* top: 0; */
+      bottom: 25px;
+      text-align: center;
+      font-style: italic;
+      z-index: 100;
+    }
+  }
+}
+
+/* -- Fonts -- */
+
+@font-face {
+    font-family: 'fira_sanshair';
+    src: url('../fonts/firasans-hair-webfont.eot');
+    src: url('../fonts/firasans-hair-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/firasans-hair-webfont.woff2') format('woff2'),
+         url('../fonts/firasans-hair-webfont.woff') format('woff'),
+         url('../fonts/firasans-hair-webfont.ttf') format('truetype'),
+         url('../fonts/firasans-hair-webfont.svg#fira_sanshair') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'fira_sansthin';
+    src: url('../fonts/firasans-thin-webfont.eot');
+    src: url('../fonts/firasans-thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/firasans-thin-webfont.woff2') format('woff2'),
+         url('../fonts/firasans-thin-webfont.woff') format('woff'),
+         url('../fonts/firasans-thin-webfont.ttf') format('truetype'),
+         url('../fonts/firasans-thin-webfont.svg#fira_sansthin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
