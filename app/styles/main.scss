@@ -154,13 +154,14 @@ body {
     background-image: none, url('../images/filter-white.svg');
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    z-index: 10;
     &.navbutton.selected{
       background-image: none, url('../images/filter.svg');
       &.pressed{
-        background-color: #5eabd9;
         background-image: none, url('../images/filter-white.svg');
       }
     }
+
   }
 
   &#search{
@@ -201,6 +202,33 @@ body {
         background-image: none, url('../images/folder-white.svg');
       }
     }
+  }
+}
+
+.filter-section{
+  position: absolute;
+  display: block;
+  bottom: 25px;
+  left: 50px;
+  width: 780px;
+  height: 88px;
+  background-color: #FFF;
+  border-radius: 80px;
+
+  & ul{
+    list-style: none;
+    margin: 33px 30px 30px 0px;
+  }
+
+  & li{
+    display: inline;
+    font-size: 20pt;
+    font-style: italic;
+    margin: 0 0 0 50px;
+  }
+
+  & li:first-child{
+    margin-left: 60px;
   }
 }
 
