@@ -389,6 +389,10 @@ body {
   }
 }
 
+/*.cardselected{
+  border: 6px #FFF solid !important;
+}*/
+
 .optbutton{
   background-color: rgb(96,96,96);
   display: inline-block;
@@ -609,6 +613,11 @@ body {
   z-index: -1;
 }
 
+/*.cardselected{
+  border: 6px #FFF solid !important;
+  @include transition-all();
+}*/
+
 #addfolder{
   width: 100%;
   height: 100%;
@@ -641,9 +650,10 @@ body {
     background-color: #FFF;
     width: 160px;
     height: 60px;
-    border-radius: 30px;
+    border-radius: 60px;
     margin: 100px;
     right: 0;
+    border: 6px #FFF solid;
 
     p{
       font-size: 20pt;

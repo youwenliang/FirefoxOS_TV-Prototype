@@ -215,9 +215,9 @@ $(document).ready(function(){
    		$.fn.isSelected = function(s) {
    			s = s || 1.6;
 
-
     		if(this.hasClass('cardselected')){
-    			TweenLite.to(this, scale_speed, {scale:s, width:'100px', height: '100px', marginLeft: '-=25px', top: '+=5px', zIndex: 10, border: '6px #FFF solid !important', ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
+    			//this.css({border: '4px #FFF solid'});
+    			TweenLite.to(this, scale_speed, {border: '4px #FFF solid',borderTop: '4px #FFF solid',borderBottom: '4px #FFF solid',borderLeft: '4px #FFF solid',borderRight: '4px #FFF solid', scale:s, width:'100px', height: '100px', marginLeft: '-=25px', top: '+=5px', zIndex: 10, ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
     				flag = true;
     			}});
     		}
@@ -259,7 +259,8 @@ $(document).ready(function(){
 				TweenLite.to($("#"+id+" > .appbutton-folder"), speed3, {opacity: 0});
 			}
 			if(this.hasClass('cardselected')){
-    			TweenLite.to(this, scale_speed, {scale:s, width:'60px', height: '60px', marginLeft: '+=25px', top: '-=5px', zIndex: 1, border: '0px #989898 solid', ease: Power4.easeInOut, onComplete: function(){
+				//this.css({border: '0px #FFF solid'});
+    			TweenLite.to(this, scale_speed, {border: '0px #FFF solid',borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid', scale:s, width:'60px', height: '60px', marginLeft: '+=25px', top: '-=5px', zIndex: 1, ease: Power4.easeInOut, onComplete: function(){
 					//flag = true;
 				}});
     		}
@@ -405,7 +406,7 @@ $(document).ready(function(){
     		TweenLite.to(this, trans_speed-1, {marginLeft: '0', bottom:'0', width:'0px', height:'0px', ease: Power4.easeIn, onComplete: function(){
 					if(m == "optionmode"){
 						TweenLite.to($('#option'), .001, {zIndex:-1, ease: Power4.easeInOut});
-						if(option_stage == 3) ;
+						if(option_stage == 3 && $('#remove').hasClass('pressed')) ;
 						else {
 							$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
 							$('.selectedOption').notSelected_option();
@@ -435,6 +436,16 @@ $(document).ready(function(){
    		};
 	})( jQuery );
 
+	$.fn.moveUp = function() {
+    	$.each(this, function() {
+        	 $(this).after($(this).prev());   
+    	});
+	};
+	$.fn.moveDown = function() {
+    	$.each(this, function() {
+        	 $(this).before($(this).next());   
+    	});
+	};
 
 	/**************** Keyboard Controls ****************/
 
@@ -460,7 +471,8 @@ $(document).ready(function(){
 					if($getapp.attr('data-type')=="folder"){
 						var $child = $('.appbutton-folder[data-number="'+stage+'-'+'1"]');
 						$child.addClass('cardselected');
-						$child.isSelected(2);
+						$child.isSelected();
+
 						//$getapp.isSelected(1);
 						TweenLite.to($getapp, .3, {scale: 1, border: '0px #FFF solid', ease: Power4.easeInOut});
 						level = 3;
@@ -480,6 +492,7 @@ $(document).ready(function(){
 					setting_stage = 1;
 				}
 				else if(level == 3) {
+					flag = false;
 					$('.cardselected').notSelected();
 					$('.cardselected').removeClass('cardselected');
 					$getapp.notSelected();
@@ -495,7 +508,7 @@ $(document).ready(function(){
 					folder_level++;
 					$('.applist[data-number=\"folder-card'+applistposition+'\"]').isSelected();
 					TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '20px'});
-					TweenLite.to($('#addfolder-done'), .3, {scale: 1, border: '0px #5eabd9 solid', onComplete: function(){
+					TweenLite.to($('#addfolder-done'), .3, {scale: 1, border: '6px #FFF solid', onComplete: function(){
 						flag = true;
 					}});
 				}
@@ -504,7 +517,7 @@ $(document).ready(function(){
 				if(rearrangelevel == 1){
 					rearrangelevel = 2;
 					var $current = $('.selected[data-number='+stage+']');
-					TweenLite.to($current, speed3, {opacity: 1, y: '+=230px', ease: Power4.easeInOut});
+					TweenLite.to($current, speed3, {backgroundColor: 'rgba(204,204,204,1)', y: '+=230px', ease: Power4.easeInOut});
 					var $follow = $('.appbutton[data-number='+stage+'] > .appbutton-folder');
 					TweenLite.to($follow, speed3, {marginLeft: '+=160px', ease: Power4.easeInOut});
 
@@ -537,11 +550,14 @@ $(document).ready(function(){
 					level--;
 				}
 				else if(level == 3) {
+					flag = false;
 					rearrange_nav_stage = 1;
 					$('.cardselected').notSelected();
 					$('.cardselected').removeClass('cardselected');
 					//$getapp.isSelected();
-					TweenLite.to($getapp, .3, {scale: 1.6, border: '6px #FFF solid', ease: Power4.easeInOut});
+					TweenLite.to($getapp, .3, {scale: 1.6, border: '6px #FFF solid', ease: Power4.easeInOut, onComplete: function(){
+						flag = true;
+					}});
 					level = 1;
 				}
 			}
@@ -562,7 +578,7 @@ $(document).ready(function(){
 				if(rearrangelevel == 2 && rearrange_stage == 1){
 					rearrangelevel = 1;
 					var $current = $('.selected[data-number='+stage+']');
-					TweenLite.to($current, speed3, {opacity: .5, y: '-=230px', ease: Power4.easeInOut});
+					TweenLite.to($current, speed3, {backgroundColor: 'rgba(204,204,204,0.5)', y: '-=230px', ease: Power4.easeInOut});
 					var $follow = $('.appbutton[data-number='+stage+'] > .appbutton-folder');
 					TweenLite.to($follow, speed3, {marginLeft: '-=160px', ease: Power4.easeInOut});
 				}
@@ -582,7 +598,9 @@ $(document).ready(function(){
 					var $next = $current.findNext('right');
 					if($current.attr('data-type') == "card" && $next.attr('data-type') == "folder"){
 						mode = "rearrange-folder";
-						
+						TweenLite.to($('#'+$next.attr('id')+" p"), speed3, {'opacity': 0});
+						TweenLite.to($('#'+$next.attr('id')+" .icon_folder"), speed3, {'backgroundSize': '80% 80%'});
+
 						console.log('current='+stage);
 						//$current = $('#app > .appbutton[data-number='+stage+']');
 
@@ -604,7 +622,7 @@ $(document).ready(function(){
 							TweenLite.to(this, speed3, {opacity: 1, width: '150px', height: '150px', marginLeft: '-='+(45-90*k)+'px', bottom: '-180px'});	
 						});
 						
-						TweenLite.to($current, speed3, {scale:.65, x: '-=5px', opacity: .5, ease: Power4.easeInOut});
+						TweenLite.to($current, speed3, {scale:.65, x: '-=5px', backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut});
 						TweenLite.to($next, speed3, {scale:.9, zIndex: 2999, ease: Power4.easeInOut, onComplete: function(){
 							flag = true;
 						}});
@@ -615,7 +633,7 @@ $(document).ready(function(){
 						stage++;
 						var m1 = $current.css('margin-left');
 						var m2 = $next.css('margin-left');
-
+						$current.moveDown();
 						TweenLite.to($current, .2, {marginLeft: m2, ease: Power4.easeInOut, onComplete: function(){flag = true}});
 						TweenLite.to($next, .2, {marginLeft: m1, ease: Power4.easeInOut, onComplete: function(){flag = true}});
 
@@ -637,6 +655,8 @@ $(document).ready(function(){
 			else if(mode == "rearrange-folder"){
 				if(rearrangelevel == 1){
 					mode = "rearrange";
+
+					flag = false;
 					$current = $('.selected[data-number='+stage+']');
 
 					for(var j = count-1; j >= parseInt(stage)+1; j--){
@@ -662,26 +682,34 @@ $(document).ready(function(){
 					};
 					var nextstage = parseInt(stage)-1;
 					$next = $('.appbutton[data-number='+nextstage+']');
+					TweenLite.to($('#'+$next.attr('id')+" p"), speed3, {'opacity': 1});
+					TweenLite.to($('#'+$next.attr('id')+" .icon_folder"), speed3, {'backgroundSize': '40% 40%'});
 					$('#'+$next.attr('id')+' > .appbutton-folder').each(function(index, element){
 						TweenLite.to(this, speed3, {opacity: 0, width: '60px', height: '60px', marginLeft: '+='+(45-90*index)+'px', bottom: '-80px'});
 					});
-					TweenLite.to($current, speed3, {scale:.9, x: 0, opacity: 1, ease: Power4.easeInOut});
-					TweenLite.to($next, speed3, {scale:.5, zIndex: 1, ease: Power4.easeInOut});
+					TweenLite.to($current, speed3, {scale:.9, x: 0,  backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut});
+					TweenLite.to($next, speed3, {scale:.5, zIndex: 1, ease: Power4.easeInOut, onComplete: function(){
+						flag = true;
+					}});
 					//$next.isSelected(1.2);
 					currentposition++;
 					TweenLite.to($('.next, .prev'), speed3, {x:'+=80px', ease: Power4.easeInOut});
 				}
 				else if(rearrangelevel == 2){
+					
 					var $child = $('.appbutton[data-number='+stage+'][data-type="folder"] > .appbutton-folder');
 					//console.log($child[0]);
 					var rearrange_count = $child.length+1;
 					var $current = $('.selected[data-number='+stage+']');
 					if(rearrange_stage != rearrange_count){
+						flag = false;
 						var m1 = $current.css('margin-left');
 						var m2 = $('.appbutton-folder[data-number="'+stage+'-'+rearrange_stage+'"]').css('margin-left');
 						console.log(m1+'========='+m2);
 						TweenLite.to($current, speed3, {marginLeft: '+=150px', ease: Power4.easeInOut});
-						TweenLite.to($('.appbutton-folder[data-number="'+stage+'-'+rearrange_stage+'"]'), speed3, {marginLeft: '-=150px', ease: Power4.easeInOut});
+						TweenLite.to($('.appbutton-folder[data-number="'+stage+'-'+rearrange_stage+'"]'), speed3, {marginLeft: '-=150px', ease: Power4.easeInOut, onComplete: function(){
+							flag = true;
+						}});
 						rearrange_stage++;
 					}
 				}
@@ -718,13 +746,14 @@ $(document).ready(function(){
 				else if(level == 3){
 					var rearrange_nav_count = $('.appbutton[data-number='+(parseInt(stage))+'] > .appbutton-folder').length;
 					if(rearrange_nav_stage < rearrange_nav_count){
+						flag = false;
 						console.log(rearrange_nav_count);
 
 						$('.cardselected').notSelected();
 						$('.cardselected').removeClass('cardselected');
 						var $child = $('.appbutton-folder[data-number="'+stage+'-'+(parseInt(rearrange_nav_stage)+1)+'"]');
 						$child.addClass('cardselected');
-						$child.isSelected(2);
+						$child.isSelected();
 						rearrange_nav_stage++;
 					}
 				}
@@ -772,6 +801,8 @@ $(document).ready(function(){
 					var $next = $current.findNext('left');
 					if($current.attr('data-type') == "card" && $next.attr('data-type') == "folder"){
 						mode = "rearrange-folder";
+						TweenLite.to($('#'+$next.attr('id')+" p"), speed3, {'opacity': 0});
+						TweenLite.to($('#'+$next.attr('id')+" .icon_folder"), speed3, {'backgroundSize': '80% 80%'});
 						stage--;
 						currentposition--;
 						$current = $('#app > .appbutton[data-number="'+stage+'"]');
@@ -794,7 +825,7 @@ $(document).ready(function(){
 							var k = $(this).attr('data-number').split('-')[1]-1;
 							TweenLite.to(this, speed3, {opacity: 1, width: '150px', height: '150px', marginLeft: '-='+(45-90*k)+'px', bottom: '-180px'});	
 						});
-						TweenLite.to($current, speed3, {scale:.65, x: '-=5px', opacity: .5, ease: Power4.easeInOut});
+						TweenLite.to($current, speed3, {scale:.65, x: '-=5px',  backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut});
 						TweenLite.to($next, speed3, {scale:.9, zIndex: 2999, ease: Power4.easeInOut, onComplete: function(){
 							flag = true;
 						}});
@@ -806,6 +837,7 @@ $(document).ready(function(){
 						var m1 = $current.css('margin-left');
 						var m2 = $next.css('margin-left');
 
+						$current.moveUp();
 						TweenLite.to($current, .2, {marginLeft: m2, ease: Power4.easeInOut, onComplete: function(){flag = true}});
 						TweenLite.to($next, .2, {marginLeft: m1, ease: Power4.easeInOut, onComplete: function(){flag = true}});
 
@@ -826,6 +858,7 @@ $(document).ready(function(){
 			}
 			else if(mode == "rearrange-folder"){
 				if(rearrangelevel == 1){
+					flag = false;
 					mode = "rearrange";
 					$current = $('.selected[data-number='+stage+']');
 					
@@ -853,27 +886,35 @@ $(document).ready(function(){
 					};
 					var nextstage = parseInt(stage)+1;
 					$next = $('.appbutton[data-number='+nextstage+']');
+					TweenLite.to($('#'+$next.attr('id')+" p"), speed3, {'opacity': 1});
+					TweenLite.to($('#'+$next.attr('id')+" .icon_folder"), speed3, {'backgroundSize': '40% 40%'});
 					$('#'+$next.attr('id')+' > .appbutton-folder').each(function(index, element){
 						TweenLite.to(this, speed3, {opacity: 0, width: '60px', height: '60px', marginLeft: '+='+(45-90*index)+'px', bottom: '-80px'});
 					});
 					
-					TweenLite.to($current, speed3, {scale:.9, x: 0, opacity: 1, ease: Power4.easeInOut});
-					TweenLite.to($next, speed3, {scale:.5, zIndex: 1, ease: Power4.easeInOut});
+					TweenLite.to($current, speed3, {scale:.9, x: 0,  backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut});
+					TweenLite.to($next, speed3, {scale:.5, zIndex: 1, ease: Power4.easeInOut, onComplete: function(){
+						flag = true;
+					}});
 					//$next.isSelected(1.2);
 					TweenLite.to($('.next, .prev'), speed3, {x:'-=80px', ease: Power4.easeInOut});
 				}
 				else if(rearrangelevel == 2){
+					
 					var $child = $('.appbutton[data-number='+stage+'][data-type="folder"] > .appbutton-folder');
 					console.log($child+"????");
 					//console.log($child[1]);
 					var rearrange_count = $child.length+1;
 					var $current = $('.selected[data-number='+stage+']');
 					if(rearrange_stage != 1){
+						flag = false;
 						var m1 = $current.css('margin-left');
 						var m2 = $('.appbutton-folder[data-number="'+stage+'-'+(rearrange_stage-1)+'"]').css('margin-left');
 						console.log(m1+'========='+m2);
 						TweenLite.to($current, speed3, {marginLeft: '-=150px', ease: Power4.easeInOut});
-						TweenLite.to($('.appbutton-folder[data-number="'+stage+'-'+(rearrange_stage-1)+'"]'), speed3, {marginLeft: '+=150px', ease: Power4.easeInOut});
+						TweenLite.to($('.appbutton-folder[data-number="'+stage+'-'+(rearrange_stage-1)+'"]'), speed3, {marginLeft: '+=150px', ease: Power4.easeInOut, onComplete: function(){
+							flag = true;
+						}});
 						rearrange_stage--;
 					}
 				}
@@ -911,11 +952,12 @@ $(document).ready(function(){
 				else if(level == 3){
 					var rearrange_nav_count = $('.appbutton[data-number='+(parseInt(stage))+'] > .appbutton-folder').length;
 					if(rearrange_nav_stage > 1){
+						flag = false;
 						$('.cardselected').notSelected();
 						$('.cardselected').removeClass('cardselected');
 						var $child = $('.appbutton-folder[data-number="'+stage+'-'+(parseInt(rearrange_nav_stage)-1)+'"]');
 						$child.addClass('cardselected');
-						$child.isSelected(2);
+						$child.isSelected();
 						rearrange_nav_stage--;
 					}
 				}
@@ -960,7 +1002,7 @@ $(document).ready(function(){
 			if(flag){
 	    	if (e.altKey && level == 1 && mode == "navigation") {
 					mode = "optionmode"
-	    		option_stage = 1;
+	    			option_stage = 1;
 
 					// Reset Initial state
 					$('#option .optbutton').notSelected_option(.001);
@@ -968,6 +1010,11 @@ $(document).ready(function(){
 
 					flag = false;
 					$('.transition').transition_opening("optionmode");
+					var $current = $('.appbutton[data-number='+stage+']');
+	   				if($current.attr('data-type') == "folder"){
+	   					TweenLite.to($('#'+$current.attr('id')+' > .appbutton-folder'), speed3, {opacity:0});
+	   				}
+   			
 	    	}
 			}
 	});
@@ -1259,6 +1306,7 @@ var timeout = 400;
 									}
 									else {
 										$('.appbutton[data-number='+parseInt(stage)+']').isSelected();
+										$("#remove").removeClass('pressed');
 									}
 									$current.remove();
 									count-=1;
@@ -1276,6 +1324,27 @@ var timeout = 400;
 				$('.appbutton[data-number='+(parseInt(stage))+']').notSelected(.5);
 				var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
 
+
+				// if($current.attr('data-type') == "folder"){
+				// 	var $children = $('#'+$current.attr('id')+'> .appbutton-folder');
+				// 	$children.each(function(index, element){
+				// 		var origin_number = $(element).attr('data-number').split('-')[1];
+				// 		$(element).attr('data-number', stage+'-'+origin_number);
+				// 	});
+				// }
+
+				$('#app > .appbutton').each(function(index, element){
+					if($(element).attr('data-type') == "folder"){
+					var $children = $('#'+$(element).attr('id')+'> .appbutton-folder');
+					var thisstage = $(element).attr('data-number');
+					$children.each(function(index1, element1){
+						var origin_number = $(element1).attr('data-number').split('-')[1];
+						$(element1).attr('data-number', thisstage+'-'+origin_number);
+					});
+				}
+
+				});
+
 				TweenLite.to($('.next, .prev'), .001, {opacity:0, x: 0});
 				for(var i = 0; i < 3; i++){
 					tl1[i].kill();
@@ -1290,11 +1359,11 @@ var timeout = 400;
 				setTimeout(function(){
 					if(count <= 5) {
 						for ( var i = 0; i < count; i++ ) {
-							TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*count)/2+i*(300+100/count), ease: Power4.easeInOut});
+							TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*count)/2+i*(300+100/count)+10, ease: Power4.easeInOut});
 						}
 					} else {
 						for ( var i = 0; i < count; i++ ) {
-							TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*5-100)/2+i*(300+100/5), ease: Power4.easeInOut});
+							TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*5-100)/2+i*(300+100/5)+10, ease: Power4.easeInOut});
 						}
 					};
 
@@ -1417,7 +1486,7 @@ var timeout = 400;
 						console.log("done");
 						TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '20px'});
 						$('#addfolder-done p').addClass('pressed');
-						TweenLite.to($('#addfolder-done'), .3, {scale: 1, background: '#5eabd9', border: '0px #5eabd9 solid', onComplete: function(){
+						TweenLite.to($('#addfolder-done'), .3, {scale: 1, background: '#5eabd9', border: '6px #5eabd9 solid', onComplete: function(){
 							TweenLite.to($('.transition'), trans_speed, {marginLeft: '0px', bottom:'0px', width:'0px', height:'0px', ease: Power4.easeOut, delay: .3});
 
 							//Step 1
@@ -1440,7 +1509,7 @@ var timeout = 400;
 								$(this).attr('data-number', parseInt(index)+1);
 								for ( var i = 0; i < count; i++ ) {
 									var $getapp = $('#app > .appbutton[data-number='+(i+1)+']');
-									$getapp.css('margin-left',(1920-300*5)/2+i*(300+100/5)-40);
+									$getapp.css({'margin-left':(1920-300*5)/2+i*(300+100/5)-40, 'left':-350*position_move});
 								}
 							});
 
@@ -1479,19 +1548,20 @@ var timeout = 400;
 
 								for(var i = 0; i < folder_card.length; i++){
 									folder_card[i].attr('data-number', stage+'-'+(parseInt(i)+1));
-									folder_card[i].css('margin-left', 120+70*i);
+									folder_card[i].css({'margin-left': 120+70*i, 'left':0});
 									$current.append(folder_card[i]);
 
 								}
 
 								$current.css('background-color', '#5a5a5a');
-								$current.css('margin-left', (1920-300*5)/2+(stage-1)*(300+100/5)-40 - position_move*350);
+								$current.css({'margin-left': (1920-300*5)/2+(stage-1)*(300+100/5)-40, 'left':-350*position_move});
 								$current.css('z-index', 100);
-								$current.append('<span class="icon_folder"></span>');
+								$current.prepend('<span class="icon_folder"></span>');
 
-								$current.isSelected();
 								setTimeout(function(){
-									TweenLite.fromTo($current, .4, {scale: 0,opacity: 0}, {scale: 1.6, opacity: 1, y: '-=100'});
+									TweenLite.fromTo($current, .4, {scale: 0,opacity: 0}, {scale: 1.6, border:'6px #FFF solid', opacity: 1, y: '-=100', onComplete: function(){
+										$current.isSelected();
+									}});
 								}, 500);
 
 								mode = "navigation";
@@ -1502,7 +1572,7 @@ var timeout = 400;
 								//stage -= offset;
 
 								$('#addfolder-number--selected').text(appselected);
-								TweenLite.to($('#addfolder-done'), .01, {background: '#FFF'});
+								TweenLite.to($('#addfolder-done'), .01, {background: '#FFF', border: '6px #FFF solid'});
 								$('#addfolder-done p').removeClass('pressed');
 								$('#addfolder-done p').addClass('inactive');
 								folder_level = 1;
@@ -1552,7 +1622,7 @@ var timeout = 400;
 					}
 					var $clone = $select.clone().removeClass('selected').removeClass('appbutton').addClass('appbutton-folder').attr('data-type', 'folder-card').css('opacity',0).attr('data-number', stage+'-'+rearrange_stage);
 					var $parent = $('.appbutton[data-number='+stage+'][data-type="folder"]');
-					$parent.prepend($clone);
+					$parent.append($clone);
 
 
 					$clone.css({'border': '0px'});
