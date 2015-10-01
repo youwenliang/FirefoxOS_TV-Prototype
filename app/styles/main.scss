@@ -4,7 +4,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower*/
 
-@mixin transition-all($m:"all", $t:"300ms") {
+@mixin transition-all($m:all, $t:300ms) {
   -webkit-transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
   -moz-transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
   -o-transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
@@ -210,21 +210,35 @@ body {
   display: block;
   bottom: 25px;
   left: 50px;
-  width: 780px;
+  width: 0px;
   height: 88px;
-  background-color: #FFF;
+  background-color: rgba(0,0,0,.8);
   border-radius: 80px;
+  overflow: hidden;
 
   & ul{
     list-style: none;
     margin: 33px 30px 30px 0px;
+    position: absolute;
+    width: 820px;
+    height: 56px;
   }
 
   & li{
     display: inline;
     font-size: 20pt;
+    color: #FFF;
     font-style: italic;
     margin: 0 0 0 50px;
+    position: absolute;
+    text-align: center;
+    text-indent: 10px;
+    @include transition-all(color,300ms);
+
+    &.active{
+      color: #5eabd9;
+      @include transition-all(color, 300ms);
+    }
   }
 
   & li:first-child{
@@ -442,7 +456,7 @@ body {
     bottom: 55px;
     text-align: center;
     font-style: italic;
-    @include transition-all("all", 400ms);
+    @include transition-all(all, 400ms);
   }
   &.pressed{
     & p{
@@ -482,7 +496,7 @@ body {
 
 .selectedOption p{
   color: #2d2d2d;
-  @include transition-all("all", 400ms);
+  @include transition-all(all, 400ms);
 }
 
 .transition{
@@ -732,7 +746,7 @@ body {
     /*border: 2px #989898 solid;*/
     /*margin: 30px 30px;*/
     border: 0px;
-    @include transition-all();
+    /*@include transition-all();*/
     /*opacity: 0;*/
     overflow: hidden;
 
@@ -743,7 +757,7 @@ body {
       background-size:60%;
       /*background-color: #5eabd9 !important;*/
       border: 6px #FFF solid !important;
-      @include transition-all();
+      /*@include transition-all();*/
     }
 
     & p{

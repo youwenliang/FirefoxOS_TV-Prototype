@@ -47,11 +47,11 @@
           <div class="navbutton" id="filter"></div>
           <div class="filter-section">
             <ul>
-              <li>All</li>
-              <li>Live TV</li>
-              <li>Application</li>
-              <li>Device</li>
-              <li>Website</li>
+              <li class="active" data-type="all">All</li>
+              <li data-type="TV">Live TV</li>
+              <li data-type="Apps">Application</li>
+              <li data-type="Devices">Device</li>
+              <li data-type="Browser">Website</li>
             </ul>
           </div>
         </div>
@@ -116,8 +116,9 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/keymaster/keymaster.js"></script>
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/keymaster/keymaster.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

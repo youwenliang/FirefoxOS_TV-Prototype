@@ -22,8 +22,11 @@ $(document).ready(function(){
 	var appselected = 0;
 	var apptotal = 0;
 
+	var $backup;
+
 	//rearrange mode
 	var currentposition = 0;
+	var filter_stage = 1;
 
 	var setting = ["#search", "#setting", "#folder"];
 	var setting_stage = 1;
@@ -53,6 +56,7 @@ $(document).ready(function(){
 	var slide_speed = .3;
 	var trans_speed = 1.8;
 	var speed3 = .4;
+	var filter_duration = 300;
 
 	var count = $('#app > .appbutton').length;
   var total = count;
@@ -110,17 +114,50 @@ $(document).ready(function(){
 
 	/**************** Initial Settings ****************/
 
+	(function( $ ){
+		$.fn.opening = function(){
+			var time = 100;
+			$(this).each(function(index, element){
+				setTimeout( function(){
+					//console.log(element);
+					TweenLite.to(element, .8, {opacity:1, y:'-=100', ease: Power4.easeInOut});
+				}, time);
+				time+=100;
+			});
+			return this;
+		};
+	})( jQuery );
+
+	(function( $ ){
+		$.fn.closing = function(){
+			var time = 100;
+			$(this).each(function(index, element){
+				setTimeout( function(){
+					//console.log(element);
+					TweenLite.to(element, .8, {opacity:0, y:'+=100', ease: Power4.easeInOut});
+				}, time);
+				time+=100;
+			});
+
+			if($('#app > .appbutton').length != 1){
+				$backup = $('#app > .appbutton').clone();
+				TweenLite.to($backup, .001, {opacity:0, y:0, ease: Power4.easeInOut});
+			}
+			return this;
+		};
+	})( jQuery );
+
 	//1. Transition In
 	var $app = $('.appbutton');
-	var time = 100;
-	$app.each(function(index, element){
-		setTimeout( function(){
-			//console.log(element);
-			TweenLite.to(element, .8, {opacity:1, y:'-=100', ease: Power4.easeInOut});
-		}, time);
-		time+=100;
-	});
+	$app.opening();
 
+	var margink = 0;
+	$('.filter-section li').each(function(index, element){
+		console.log(parseInt(index+1)*50+'-'+margink);
+		$(this).css('margin-left', parseInt(index+1)*50 + parseInt(margink));
+		margink += $(this).width();
+		
+	})
 	//2. Highlight App01
 	$(window).on("blur focus", function(e) {
 	    var prevType = $(this).data("prevType");
@@ -195,6 +232,7 @@ $(document).ready(function(){
    		};
 	})( jQuery );
 
+	
 	/*todolist:
 
 	1. group all isSelected && notSeleted + combine with pressed & release?
@@ -237,13 +275,21 @@ $(document).ready(function(){
     			var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
     			var appid = $current.attr('id').split('0')[1];
 
-	      		if(wave[appid*2-2]!=null) wave[appid*2-2].resume();
+	      		if(wave[appid*2-2]!=null) {
+	      			wave[appid*2-2].resume();
+	      			console.log("resume?"+appid+"----"+wave[appid*2-2]);
+	      		}
 	      		else {
+	      			console.log("else1");
 	      			wave[appid*2-2] = new TimelineMax({repeat:-1});
 	      			wave[appid*2-2].fromTo($('.wave0'+appid+'a'), 3, {x:'0px'},{x:'-600px', ease: Linear.easeNone});
 	      		}
-	      		if(wave[appid*2-1]!=null) wave[appid*2-1].resume();
+	      		if(wave[appid*2-1]!=null) {
+	      			wave[appid*2-1].resume();
+	      			console.log("resume!");
+	      		}
 	      		else {
+	      			console.log("else2");
 	      			wave[appid*2-1] = new TimelineMax({repeat:-1});
 	      			wave[appid*2-1].fromTo($('.wave0'+appid+'b'), 3.1, {x:'-100px'},{x:'-700px', ease: Linear.easeNone});
 	      		}
@@ -287,7 +333,14 @@ $(document).ready(function(){
 					console.log($(this));
 				}, 300);
    				TweenLite.to(this, .3, {scale: 1.1, backgroundColor: 'rgba(0,0,0,.8)', delay: .3, ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
-					flag = true;
+					TweenLite.to($('.filter-section'), 1, {width: '820px', ease: Power2.easeOut, onComplete: function(){
+						flag = true;
+					}});
+					$('.filter-section li').eq(filter_stage-1).delay(500).animate({  textIndent: 12 }, {
+						    step: function(now,fx) {
+						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						    },duration:filter_duration
+						},'linear');
 				}});
    			}
 			else {
@@ -302,9 +355,21 @@ $(document).ready(function(){
 	})( jQuery );
 	(function( $ ){
    		$.fn.notSelected_setting = function() {
-      		TweenLite.to(this, .2, {scale:1, zIndex: 1, backgroundColor: 'rgba(0,0,0,.8)', ease: Power2.easeInOut, onComplete: function(){
-						//flag = true;
+   			var $t = this;
+      		TweenLite.to($t, .2, {scale:1, zIndex: 1, backgroundColor: 'rgba(0,0,0,.8)', ease: Power2.easeInOut, onComplete: function(){
+				if($t.attr('id')=="filter"){
+					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
+						    step: function(now,fx) {
+						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						    },duration: 200
+						},'linear');
+					TweenLite.to($('.filter-section'), .6, {width: '0px', ease: Power2.easeOut, delay: .2, onComplete: function(){
+						flag = true;
+						filter_stage = 1;
 					}});
+				}
+			}});
+
       		this.removeClass('selected');
       		return this;
    		};
@@ -781,6 +846,27 @@ $(document).ready(function(){
 						setting_stage++;
 					}
 				}
+				else if(level == 2){
+					var filter_count = $('.filter-section li').length;
+					if(filter_stage != filter_count){
+						//flag = false;
+						console.log('?');
+						
+						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
+						    step: function(now,fx) {
+						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						    },duration:filter_duration
+						},'linear');
+						
+						$('.filter-section li').eq(filter_stage).animate({  textIndent: 12 }, {
+						    step: function(now,fx) {
+						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						    },duration:filter_duration
+						},'linear');
+
+						filter_stage++;
+					}
+				}
 				else if(level == 3){
 					var rearrange_nav_count = $('.appbutton[data-number='+(parseInt(stage))+'] > .appbutton-folder').length;
 					if(rearrange_nav_stage < rearrange_nav_count){
@@ -998,6 +1084,27 @@ $(document).ready(function(){
 						setting_stage--;
 					}
 				}
+				else if(level == 2){
+					var filter_count = $('.filter-section li').length;
+					if(filter_stage != 1){
+						//flag = false;
+						console.log('!');
+						
+						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
+						    step: function(now,fx) {
+						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						    },duration:filter_duration
+						},'linear');
+						
+						$('.filter-section li').eq(filter_stage-2).animate({  textIndent: 12 }, {
+						    step: function(now,fx) {
+						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						    },duration:filter_duration
+						},'linear');
+
+						filter_stage--;
+					}
+				}
 				else if(level == 3){
 					var rearrange_nav_count = $('.appbutton[data-number='+(parseInt(stage))+'] > .appbutton-folder').length;
 					if(rearrange_nav_stage > 1){
@@ -1184,6 +1291,52 @@ var timeout = 400;
 					// 		flag = true;
 					// 	}});
 					// },timeout);
+					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 8 }, {
+					    step: function(now,fx) {
+					      $(this).css('-webkit-transform','scale('+now/10+')'); 
+					    },duration:100
+					},'linear');
+					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 12 }, {
+					    step: function(now,fx) {
+					      $(this).css('-webkit-transform','scale('+now/10+')'); 
+					    },duration:200
+					},'linear');
+					setTimeout(function(){
+						$('.active').removeClass('active');
+						$('.filter-section li').eq(filter_stage-1).addClass('active');
+
+						$('#app > .appbutton').closing();
+						var timing;
+						if(count == 1) timing = 700;
+						else timing = 1000;
+						setTimeout(function(){
+							if($('.filter-section li').eq(filter_stage-1).attr('data-type') == "all"){
+								if($('#app > .appbutton').length == 1){
+									$('#app > .appbutton').remove();
+									$('#app').append($backup);
+									count = $backup.length;
+								}
+								$('#app > .appbutton').opening();							
+							}
+							else{
+								var type = $('.filter-section li').eq(filter_stage-1).attr('data-type');
+								$('#app > .appbutton').remove();
+								$('#app').append($backup);
+								$('.next, .prev').css('display', 'none');
+
+								var $filtered = $('#app > .appbutton[data-content="'+type+'"]').clone();
+								$filtered.attr('data-number', 1);
+								$filtered.css('marginLeft', (1920-300)/2);
+								count = 1;
+								setTimeout(function(){
+									$('#app > .appbutton').remove();
+									$('#app').append($filtered);
+									$('#app > .appbutton').opening();
+								}, 200);
+							}
+							flag = true;
+						}, timing);
+					},100);
 				}
 			}
 			else if(mode == "optionmode"){
