@@ -1,8 +1,8 @@
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
-// bower:scss
+/*// bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// endbower
+// endbower*/
 
 @mixin transition-all($m:"all", $t:"300ms") {
   -webkit-transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
@@ -699,7 +699,11 @@ body {
     overflow: hidden;
 
     &.appselected{
-      // background-color: #5eabd9 !important;
+      background-image: none, url('../images/check.svg');
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size:60%;
+      /*background-color: #5eabd9 !important;*/
       border: 6px #FFF solid !important;
       @include transition-all();
     }
