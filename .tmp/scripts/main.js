@@ -1138,25 +1138,30 @@ $(document).ready(function () {
 		}
 	});
 
-	key('option, alt, ctrl, control, command, o', function () {
-		if (flag) {
-			if (level == 1 && mode == "navigation" && !filtering) {
-				mode = "optionmode";
-				option_stage = 1;
+	document.onkeydown = checkKey;
 
-				// Reset Initial state
-				$('#option .optbutton').notSelected_option(.001);
-				TweenLite.to($('.transition'), .001, { opacity: .8, backgroundColor: '#000' });
+	function checkKey(e) {
+		e = e || window.event;
+		if (e.keyCode == KeyEvent.DOM_VK_SUBMENU) {
+			if (flag) {
+				if (level == 1 && mode == "navigation" && !filtering) {
+					mode = "optionmode";
+					option_stage = 1;
 
-				flag = false;
-				$('.transition').transition_opening("optionmode");
-				var $current = $('.appbutton[data-number=' + stage + ']');
-				if ($current.attr('data-type') == "folder") {
-					TweenLite.to($('#' + $current.attr('id') + ' > .appbutton-folder'), speed3, { opacity: 0 });
+					// Reset Initial state
+					$('#option .optbutton').notSelected_option(.001);
+					TweenLite.to($('.transition'), .001, { opacity: .8, backgroundColor: '#000' });
+
+					flag = false;
+					$('.transition').transition_opening("optionmode");
+					var $current = $('.appbutton[data-number=' + stage + ']');
+					if ($current.attr('data-type') == "folder") {
+						TweenLite.to($('#' + $current.attr('id') + ' > .appbutton-folder'), speed3, { opacity: 0 });
+					}
 				}
 			}
 		}
-	});
+	}
 
 	// // 2. Click for options
 	// $('#app').on('click',".selected", function(){
