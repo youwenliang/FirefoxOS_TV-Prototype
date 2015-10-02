@@ -263,22 +263,24 @@ $(document).ready(function () {
 				var $current = $('.appbutton[data-number=' + parseInt(stage) + ']');
 				var appid = $current.attr('id').split('0')[1];
 
-				if (wave[appid * 2 - 2] != null) {
-					wave[appid * 2 - 2].resume();
-					console.log("resume?" + appid + "----" + wave[appid * 2 - 2]);
-				} else {
-					console.log("else1");
-					wave[appid * 2 - 2] = new TimelineMax({ repeat: -1 });
-					wave[appid * 2 - 2].fromTo($('.wave0' + appid + 'a'), 3, { x: '0px' }, { x: '-600px', ease: Linear.easeNone });
-				}
-				if (wave[appid * 2 - 1] != null) {
-					wave[appid * 2 - 1].resume();
-					console.log("resume!");
-				} else {
-					console.log("else2");
-					wave[appid * 2 - 1] = new TimelineMax({ repeat: -1 });
-					wave[appid * 2 - 1].fromTo($('.wave0' + appid + 'b'), 3.1, { x: '-100px' }, { x: '-700px', ease: Linear.easeNone });
-				}
+				// if(wave[appid*2-2]!=null && count != 1) {
+				// 	wave[appid*2-2].resume();
+				// 	console.log("resume?"+appid+"----"+wave[appid*2-2]);
+				// }
+				// else {
+				console.log("else1");
+				wave[appid * 2 - 2] = new TimelineMax({ repeat: -1 });
+				wave[appid * 2 - 2].fromTo($('.wave0' + appid + 'a'), 3, { x: '0px' }, { x: '-600px', ease: Linear.easeNone });
+				// }
+				// if(wave[appid*2-1]!=null && count != 1) {
+				// 	wave[appid*2-1].resume();
+				// 	console.log("resume!");
+				// }
+				// else {
+				console.log("else2");
+				wave[appid * 2 - 1] = new TimelineMax({ repeat: -1 });
+				wave[appid * 2 - 1].fromTo($('.wave0' + appid + 'b'), 3.1, { x: '-100px' }, { x: '-700px', ease: Linear.easeNone });
+				//}
 			}
 			return this;
 		};
@@ -815,12 +817,14 @@ $(document).ready(function () {
 							$('.filter-section li').eq(filter_stage - 1).animate({ textIndent: 10 }, {
 								step: function step(now, fx) {
 									$(this).css('-webkit-transform', 'scale(' + now / 10 + ')');
+									if ($(this).hasClass('active')) ;else $(this).css('color', '#CCC');
 								}, duration: filter_duration
 							}, 'linear');
 
 							$('.filter-section li').eq(filter_stage).animate({ textIndent: 12 }, {
 								step: function step(now, fx) {
 									$(this).css('-webkit-transform', 'scale(' + now / 10 + ')');
+									if ($(this).hasClass('active')) ;else $(this).css('color', '#FFF');
 								}, duration: filter_duration
 							}, 'linear');
 
@@ -1041,12 +1045,14 @@ $(document).ready(function () {
 							$('.filter-section li').eq(filter_stage - 1).animate({ textIndent: 10 }, {
 								step: function step(now, fx) {
 									$(this).css('-webkit-transform', 'scale(' + now / 10 + ')');
+									if ($(this).hasClass('active')) ;else $(this).css('color', '#CCC');
 								}, duration: filter_duration
 							}, 'linear');
 
 							$('.filter-section li').eq(filter_stage - 2).animate({ textIndent: 12 }, {
 								step: function step(now, fx) {
 									$(this).css('-webkit-transform', 'scale(' + now / 10 + ')');
+									if ($(this).hasClass('active')) ;else $(this).css('color', '#FFF');
 								}, duration: filter_duration
 							}, 'linear');
 
@@ -1243,6 +1249,7 @@ $(document).ready(function () {
 						}, duration: 200
 					}, 'linear');
 					setTimeout(function () {
+						$('.active').css('color', '#ccc');
 						$('.active').removeClass('active');
 						$('.filter-section li').eq(filter_stage - 1).addClass('active');
 
@@ -1251,6 +1258,7 @@ $(document).ready(function () {
 						if (count == 1) timing = 700;else timing = 1000;
 						setTimeout(function () {
 							if ($('.filter-section li').eq(filter_stage - 1).attr('data-type') == "all") {
+								$('.next, .prev').css('display', 'block');
 								if ($('#app > .appbutton').length == 1) {
 									$('#app > .appbutton').remove();
 									$('#app').append($backup);

@@ -227,7 +227,7 @@ body {
   & li{
     display: inline;
     font-size: 20pt;
-    color: #FFF;
+    color: #CCC;
     font-style: italic;
     margin: 0 0 0 50px;
     position: absolute;
@@ -236,7 +236,7 @@ body {
     @include transition-all(color,300ms);
 
     &.active{
-      color: #5eabd9;
+      color: #5eabd9 !important;
       @include transition-all(color, 300ms);
     }
   }
