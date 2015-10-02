@@ -23,6 +23,8 @@ $(document).ready(function(){
 	var apptotal = 0;
 
 	var $backup;
+	var filter_mode = "all";
+	var filtering = false;
 
 	//rearrange mode
 	var currentposition = 0;
@@ -59,7 +61,7 @@ $(document).ready(function(){
 	var filter_duration = 300;
 
 	var count = $('#app > .appbutton').length;
-  var total = count;
+  	var total = count;
 
 	var arrow_next = 515 + (8-count)*0.5*(150+10);
 	var arrow_prev = 235 + (8-count)*0.5*(150+10);
@@ -124,6 +126,7 @@ $(document).ready(function(){
 				}, time);
 				time+=100;
 			});
+			if(level == 2) flag = true;
 			return this;
 		};
 	})( jQuery );
@@ -138,8 +141,16 @@ $(document).ready(function(){
 				}, time);
 				time+=100;
 			});
-
-			if($('#app > .appbutton').length != 1){
+			if(position_move>0){
+				TweenLite.to($('.appbutton'),slide_speed,{left: '+='+(350*position_move), ease: Power1.easeInOut, onComplete: function(){
+					$backup = $('#app > .appbutton').clone();
+					TweenLite.to($backup, .001, {opacity:0, y:0, ease: Power4.easeInOut});
+				}});
+				position = 0;
+				position_move = 0;
+				stage = 1;
+			}
+			else if(filter_mode == "all"){
 				$backup = $('#app > .appbutton').clone();
 				TweenLite.to($backup, .001, {opacity:0, y:0, ease: Power4.easeInOut});
 			}
@@ -322,8 +333,10 @@ $(document).ready(function(){
 	(function( $ ){
    		$.fn.isSelected_setting = function() {
    			if(this.attr('id')=="filter"){
+
    				var $t = this;
 				$t.addClass('selected');
+				$('#filter.navbutton.selected .filtericon01').addClass('important-'+filter_mode);
 
    				TweenLite.to(this, .3, {scale: 1.1, backgroundColor: 'rgba(255,255,255,1)', ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
 
@@ -338,7 +351,8 @@ $(document).ready(function(){
 					}});
 					$('.filter-section li').eq(filter_stage-1).delay(500).animate({  textIndent: 12 }, {
 						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						      $(this).css('-moz-transform','scale('+now/10+')');
+						      $(this).css('color', '#FFF');
 						    },duration:filter_duration
 						},'linear');
 				}});
@@ -360,7 +374,8 @@ $(document).ready(function(){
 				if($t.attr('id')=="filter"){
 					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						      $(this).css('-moz-transform','scale('+now/10+')'); 
+						      $(this).css('color', '#CCC');
 						    },duration: 200
 						},'linear');
 					TweenLite.to($('.filter-section'), .6, {width: '0px', ease: Power2.easeOut, delay: .2, onComplete: function(){
@@ -854,7 +869,7 @@ $(document).ready(function(){
 						
 						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						      $(this).css('-moz-transform','scale('+now/10+')'); 
 						      if($(this).hasClass('active'));
 						      else $(this).css('color','#CCC');
 						    },duration:filter_duration
@@ -862,7 +877,7 @@ $(document).ready(function(){
 						
 						$('.filter-section li').eq(filter_stage).animate({  textIndent: 12 }, {
 						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						      $(this).css('-moz-transform','scale('+now/10+')'); 
 						      if($(this).hasClass('active'));
 						      else $(this).css('color','#FFF');
 						    },duration:filter_duration
@@ -1096,7 +1111,7 @@ $(document).ready(function(){
 						
 						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						      $(this).css('-moz-transform','scale('+now/10+')'); 
 						      if($(this).hasClass('active'));
 						      else $(this).css('color','#CCC');
 						    },duration:filter_duration
@@ -1104,7 +1119,7 @@ $(document).ready(function(){
 						
 						$('.filter-section li').eq(filter_stage-2).animate({  textIndent: 12 }, {
 						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')'); 
+						      $(this).css('-moz-transform','scale('+now/10+')'); 
 						      if($(this).hasClass('active'));
 						      else $(this).css('color','#FFF');
 						    },duration:filter_duration
@@ -1164,7 +1179,7 @@ $(document).ready(function(){
 
 	$(window).keydown(function (e){
 			if(flag){
-	    	if (e.altKey && level == 1 && mode == "navigation") {
+	    	if (e.altKey && level == 1 && mode == "navigation" && !filtering) {
 					mode = "optionmode"
 	    			option_stage = 1;
 
@@ -1299,16 +1314,41 @@ var timeout = 400;
 					// 		flag = true;
 					// 	}});
 					// },timeout);
+					flag = false;
+
 					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 8 }, {
 					    step: function(now,fx) {
-					      $(this).css('-webkit-transform','scale('+now/10+')'); 
+					      $(this).css('-moz-transform','scale('+now/10+')'); 
 					    },duration:100
 					},'linear');
 					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 12 }, {
 					    step: function(now,fx) {
-					      $(this).css('-webkit-transform','scale('+now/10+')'); 
+					      $(this).css('-moz-transform','scale('+now/10+')'); 
 					    },duration:200
 					},'linear');
+
+					var type = $('.filter-section li').eq(filter_stage-1).attr('data-filter');
+
+					if(type != filter_mode){
+						TweenLite.to($('#filter .filtericon01'), .5, {backgroundPosition: '50% 265%', ease: Power4.easeOut});
+						$('#filter .filtericon02').css('background-image','url(../images/'+type+'.svg)');
+						//$('#filter.navbutton.selected .filtericon02').css('background-image','url(../images/'+type+'-dark.svg) !important');
+						$('.filtericon02').removeClass('important-'+filter_mode);
+						//$('#filter.navbutton.selected .filtericon02').addClass('important-'+type);
+
+						TweenLite.to($('#filter .filtericon02'), .5, {backgroundPosition: '50% 50%', ease: Power4.easeOut, onComplete: function(){
+							$('#filter .filtericon02').css('background-position', '50% -165%');
+							
+							$('#filter .filtericon01').css('background-position', '50% 50%');
+							$('#filter .filtericon01').css('background-image','url(../images/'+type+'.svg)');
+							//$('#filter.navbutton.selected .filtericon01').css('background-image','url(../images/'+type+'-dark.svg) !important');
+							console.log('../images/'+type+'-dark.svg');
+							$('.filtericon01').removeClass('important-'+filter_mode);
+							//$('#filter.navbutton.selected .filtericon01').addClass('important-'+type);
+						}});
+
+					}
+
 					setTimeout(function(){
 						$('.active').css('color', '#ccc');
 						$('.active').removeClass('active');
@@ -1318,33 +1358,45 @@ var timeout = 400;
 						var timing;
 						if(count == 1) timing = 700;
 						else timing = 1000;
+
+
 						setTimeout(function(){
-							if($('.filter-section li').eq(filter_stage-1).attr('data-type') == "all"){
+
+							if(type == "all"){
+								filtering = false;
 								$('.next, .prev').css('display', 'block');
-								if($('#app > .appbutton').length == 1){
+								if($('#app > .appbutton').length != $backup.length){
 									$('#app > .appbutton').remove();
 									$('#app').append($backup);
 									count = $backup.length;
 								}
-								$('#app > .appbutton').opening();							
+								$('#app > .appbutton').opening();
+								filter_mode = "all";						
 							}
 							else{
-								var type = $('.filter-section li').eq(filter_stage-1).attr('data-type');
+								filtering = true;
+								
 								$('#app > .appbutton').remove();
 								$('#app').append($backup);
 								$('.next, .prev').css('display', 'none');
+								filter_mode = type;
 
-								var $filtered = $('#app > .appbutton[data-content="'+type+'"]').clone();
-								$filtered.attr('data-number', 1);
-								$filtered.css('marginLeft', (1920-300)/2);
-								count = 1;
+								var $filtered = $('#app > .appbutton[data-filter="'+type+'"]').clone();
+
+								count = $filtered.length;
+								console.log('count='+count);
+
+								$filtered.each(function(index, element){
+									$(this).attr('data-number', parseInt(index)+1);
+									$(this).css('margin-left',(1920-300*count)/2+index*(300+100/count)-40);
+								});
 								setTimeout(function(){
 									$('#app > .appbutton').remove();
 									$('#app').append($filtered);
+									$('#app > .appbutton').css('left', 0);
 									$('#app > .appbutton').opening();
 								}, 200);
 							}
-							flag = true;
 						}, timing);
 					},100);
 				}
@@ -1731,7 +1783,7 @@ var timeout = 400;
 								//Step 2
 
 								var $current = $('.appbutton[data-number='+stage+']');
-								for(var i = count; i >= parseInt(stage)+1; i--){
+								for(var i = count; i >= parseInt(stage)+1-offset; i--){
 									var $follow = $('.appbutton[data-number='+(parseInt(i))+']');
 									//console.log(i);
 									$follow.attr('data-number', parseInt(i)+1);
@@ -1739,9 +1791,11 @@ var timeout = 400;
 									TweenLite.to($follow, .4, {marginLeft: '+=320px', ease: Power4.easeInOut, delay: .2});
 								}
 								stage++;
+								stage-=offset;
 								count++;
 								total++;
 								position++;
+								position-=offset;
 
 								arrow_next = 515 + (8-count)*0.5*(150+10);
 								arrow_prev = 235 + (8-count)*0.5*(150+10);
@@ -1753,6 +1807,7 @@ var timeout = 400;
 									position = 4;
 									position_move += 1;
 								}
+
 								var folder_amount = $('.appbutton[data-type="folder"]').length;
 								folder_amount++;
 								$current.after('<div class="appbutton" id="app'+pad(total,2)+'" data-type="folder" data-number="'+stage+'" data-content="Folder'+folder_amount+'"><p>Folder'+folder_amount+'</p>');

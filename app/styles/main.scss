@@ -11,6 +11,9 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
   transition: $m $t cubic-bezier(0.475, 0.185, 0, 0.995);
 }
 
+html, body{
+  position: fixed;
+}
 
 .browsehappy {
   margin: 0.2em 0;
@@ -137,6 +140,9 @@ body {
   margin-right: 10px;
 }
 
+
+
+
 .navbutton{
   background: rgba(0,0,0,.7);
   display: inline-block;
@@ -151,15 +157,27 @@ body {
     left: 30px;
     width: 80px;
     height: 80px;
-    background-image: none, url('../images/filter-white.svg');
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
     z-index: 10;
-    &.navbutton.selected{
-      background-image: none, url('../images/filter.svg');
-      &.pressed{
-        background-image: none, url('../images/filter-white.svg');
-      }
+    
+    & .filtericon01{
+      position: absolute;
+      background-image: url('../images/all.svg');
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      z-index: 100;
+      width: 80px;
+      height: 80px;
+      display: block;
+    }
+    & .filtericon02{
+      position: absolute;
+      background-image: url('../images/tv.svg');
+      background-position: 50% -165%;
+      background-repeat: no-repeat;
+      z-index: 100;
+      width: 80px;
+      height: 80px;
+      display: block;
     }
 
   }
@@ -204,6 +222,61 @@ body {
     }
   }
 }
+
+.hint{
+  position: absolute;
+  bottom: 40px;
+  right: 70px;
+  z-index: 10;
+  & p{
+    color: #FFF;
+    font-style: italic;
+    font-size: 20pt;
+  }
+}
+
+#filter.navbutton.selected .filtericon01{
+  background-image: url('../images/all-dark.svg');
+
+  &.important-tv{
+   background-image: url('../images/tv-dark.svg') !important; 
+  }
+  &.important-app{
+   background-image: url('../images/app-dark.svg') !important; 
+  }
+  &.important-device{
+   background-image: url('../images/device-dark.svg') !important; 
+  }
+  &.important-all{
+   background-image: url('../images/all-dark.svg') !important; 
+  }
+  &.important-web{
+   background-image: url('../images/web-dark.svg') !important; 
+  }
+}
+
+#filter.navbutton.selected .filtericon02{
+  background-image: url('../images/tv-dark.svg');
+
+  &.important-tv{
+   background-image: url('../images/tv-dark.svg') !important; 
+  }
+  &.important-app{
+   background-image: url('../images/app-dark.svg') !important; 
+  }
+  &.important-device{
+   background-image: url('../images/device-dark.svg') !important; 
+  }
+  &.important-all{
+   background-image: url('../images/all-dark.svg') !important; 
+  }
+  &.important-web{
+   background-image: url('../images/web-dark.svg') !important; 
+  }
+}
+
+
+
 
 .filter-section{
   position: absolute;
@@ -345,7 +418,7 @@ body {
   width: 100%;
   height: 100%;
   margin-top: -10px;
-  background-image: none, url('../images/application.svg');
+  background-image: none, url('../images/app.svg');
   background-position: 50% 3%;
   background-repeat: no-repeat;
   background-size:90%;

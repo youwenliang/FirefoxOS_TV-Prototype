@@ -44,14 +44,17 @@
           <div class="navbutton" id="search"></div>
           <div class="navbutton" id="setting"></div>
           <div class="navbutton" id="folder"></div>
-          <div class="navbutton" id="filter"></div>
+          <div class="navbutton" id="filter">
+            <span class="filtericon01"></span>
+            <span class="filtericon02"></span>
+          </div>
           <div class="filter-section">
             <ul>
-              <li class="active" data-type="all">All</li>
-              <li data-type="TV">Live TV</li>
-              <li data-type="Apps">Application</li>
-              <li data-type="Devices">Device</li>
-              <li data-type="Browser">Website</li>
+              <li class="active" data-filter="all">All</li>
+              <li data-filter="tv">Live TV</li>
+              <li data-filter="app">Application</li>
+              <li data-filter="device">Device</li>
+              <li data-filter="web">Website</li>
             </ul>
           </div>
         </div>
@@ -72,24 +75,26 @@
           <div class="transition"></div>
           <span class="prev"></span><span class="next"></span><span class="prev"></span><span class="next"></span><span class="prev"></span><span class="next"></span>
 
-          <div class="appbutton" id="app01" data-type="main" data-number="1" data-content="TV"><p>TV</p>
+          <div class="appbutton" id="app01" data-type="main" data-number="1" data-content="TV" data-filter="tv"><p>TV</p>
             <span class="wave01a"></span><span class="icon01"></span><span class="wave01b"></span>
           </div>
-          <div class="appbutton" id="app02" data-type="main" data-number="2" data-content="Apps"><p>Apps</p>
+          <div class="appbutton" id="app02" data-type="main" data-number="2" data-content="Apps" data-filter="app"><p>Apps</p>
             <span class="wave02a"></span><span class="icon02"></span><span class="wave02b"></span>
           </div>
-          <div class="appbutton" id="app03" data-type="main" data-number="3" data-content="Devices"><p>Devices</p>
+          <div class="appbutton" id="app03" data-type="main" data-number="3" data-content="Devices" data-filter="device"><p>Devices</p>
             <span class="wave03a"></span><span class="icon03"></span><span class="wave03b"></span>
           </div>
-          <div class="appbutton" id="app04" data-type="main" data-number="4" data-content="Browser"><p>Browser</p></div>
-          <div class="appbutton" id="app05" data-type="card" data-number="5" data-content="Card1"><p>Card1</p></div>
-          <div class="appbutton" id="app06" data-type="card" data-number="6" data-content="Card2"><p>Card2</p></div>
-          <div class="appbutton" id="app07" data-type="card" data-number="7" data-content="Card3"><p>Card3</p></div>
-          <div class="appbutton" id="app08" data-type="card" data-number="8" data-content="Card4"><p>Card4</p></div>
+          <div class="appbutton" id="app04" data-type="main" data-number="4" data-content="Browser" data-filter="web"><p>Browser</p></div>
+          <div class="appbutton" id="app05" data-type="card" data-number="5" data-content="Card1" data-filter="app"><p>Card1</p></div>
+          <div class="appbutton" id="app06" data-type="card" data-number="6" data-content="Card2" data-filter="app"><p>Card2</p></div>
+          <div class="appbutton" id="app07" data-type="card" data-number="7" data-content="Card3" data-filter="app"><p>Card3</p></div>
+          <div class="appbutton" id="app08" data-type="card" data-number="8" data-content="Card4" data-filter="app"><p>Card4</p></div>
       </div>
-
+      <div class="hint">
+        <p>: Open menu</p>
+      </div>
       <div id="option">
-        <div class="optbutton" id="rearrange"><p>Rearrange</p></div>
+        <div class="optbutton" id="rearrange"><p>Move</p></div>
         <div class="optbutton" id="rename"><p>Rename</p></div>
         <div class="optbutton" id="remove"><p>Remove</p></div>
       </div>
@@ -116,9 +121,8 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/keymaster/keymaster.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/keymaster/keymaster.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
