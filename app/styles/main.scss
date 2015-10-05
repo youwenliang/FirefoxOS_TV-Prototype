@@ -109,11 +109,7 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/wallpaper_tv.jpg") center center no-repeat;
   background-size: cover;
   margin: auto;
-  position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   /*border: 2px #989898 solid;*/
   overflow: hidden;
 }
@@ -149,11 +145,19 @@ body {
   margin-right: 10px;
 }
 
+#ampm{
+  position: absolute;
+  /*font-family: 'fira_sansthin';*/
+  color: #FFF;
+  font-size: 16pt;
+  top: 105px;
+  right: 510px;
+}
 
 
 
 .navbutton{
-  background: rgba(0,0,0,.7);
+  background: rgba(0,0,0,.5);
   display: inline-block;
   border-radius: 50%;
   width: 90px;
@@ -162,7 +166,7 @@ body {
 
   &#filter{
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     left: 30px;
     width: 80px;
     height: 80px;
@@ -196,6 +200,7 @@ body {
     background-image: none, url('../images/search-white.svg');
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    background-size: 75%;
     &.navbutton.selected{
       background-image: none, url('../images/search.svg');
       &.pressed{
@@ -209,6 +214,7 @@ body {
     background-image: none, url('../images/setting-white.svg');
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    background-size: 75%;
     &.navbutton.selected{
       background-image: none, url('../images/setting.svg');
       &.pressed{
@@ -219,14 +225,15 @@ body {
   }
 
   &#folder{
-    background-image: none, url('../images/folder-white.svg');
+    background-image: none, url('../images/addfolder-white.svg');
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    background-size: 75%;
     &.navbutton.selected{
-      background-image: none, url('../images/folder.svg');
+      background-image: none, url('../images/addfolder.svg');
       &.pressed{
         background-color: #5eabd9;
-        background-image: none, url('../images/folder-white.svg');
+        background-image: none, url('../images/addfolder-white.svg');
       }
     }
   }
@@ -234,13 +241,22 @@ body {
 
 .hint{
   position: absolute;
-  bottom: 40px;
+  font-family: 'fira_sansthin';
+  position: absolute;
+  display: block;
+  bottom: 60px;
+  width: 480px;
+  height: 80px;
+  background-color: rgba(0,0,0,.8);
+  border-radius: 80px;
+
   right: 70px;
   z-index: 10;
   & p{
     color: #FFF;
     font-style: italic;
     font-size: 20pt;
+    margin: 25px 0 0 40px;
   }
 }
 
@@ -290,7 +306,7 @@ body {
 .filter-section{
   position: absolute;
   display: block;
-  bottom: 25px;
+  bottom: 55px;
   left: 50px;
   width: 0px;
   height: 88px;
@@ -379,12 +395,12 @@ body {
   margin: auto;
   left: 0;
   right: 0;
-  bottom: -80px;
+  bottom: -150px;
   background: #ccc;
   display: inline-block;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   /*border: 2px #989898 solid;*/
   /*margin: 30px 30px;*/
   /*@include transition-all("margin-left", 300ms);*/
@@ -397,13 +413,13 @@ body {
 
   & p{
     color: #FFF;
-    font-size: 10px;
+    font-size: 16px;
     position: absolute;
     margin: auto;
     left: 0;
     right: 0;
     /* top: 0; */
-    bottom: 10px;
+    bottom: 20px;
     text-align: center;
     font-style: italic;
     z-index: 100;
@@ -514,7 +530,9 @@ body {
   }
 }
 
-.cardselected{
+.cardselected p{
+  /*font-size: 20pt;
+  bottom: 30px;*/
   /*transform: translate3d(0,-30px,0) !important;
   -moz-transition: transform 200ms ease-in-out;*/
 }
@@ -545,6 +563,21 @@ body {
   &.pressed{
     & p{
       color: #FFF;
+    }
+  }
+
+  &#rearrange{
+    margin-left: 30px;
+    background-image: none, url('../images/move-white.svg');
+    background-position: 50% 35%;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    &.optbutton.selectedOption{
+      background-image: none, url('../images/move.svg');
+      &.pressed{
+        background-color: #5eabd9;
+        background-image: none, url('../images/move-white.svg');
+      }
     }
   }
 
@@ -744,7 +777,7 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  top: 50px;
   bottom: 0;
   margin:auto;
   background-color: rgba(0,0,0,0);
@@ -758,6 +791,7 @@ body {
     width: 300px;
     height: 60px;
     border-radius: 6px;
+    border: 6px #FFF solid;
     margin: 100px;
 
     p{
@@ -775,6 +809,7 @@ body {
     border-radius: 60px;
     margin: 100px;
     right: 0;
+    top: -50px;
     border: 6px #FFF solid;
 
     p{
@@ -854,6 +889,15 @@ body {
       z-index: 100;
     }
   }
+}
+
+#new{
+  color: #FFF;
+  font-size: 25pt;
+  position: absolute;
+  left: 100px;
+  top: 50px;
+  font-family: "fira_sansthin";
 }
 
 /*.isSelected{
