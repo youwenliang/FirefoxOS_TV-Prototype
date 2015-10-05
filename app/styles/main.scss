@@ -393,7 +393,7 @@ body {
   //margin-left: 0 !important;
   transform: translateY(0) !important;
   opacity: 0;
-  -moz-transition: transform 200ms ease-in-out;
+  /*-moz-transition: transform 200ms ease-in-out;*/
 
   & p{
     color: #FFF;
@@ -515,8 +515,8 @@ body {
 }
 
 .cardselected{
-  transform: translate3d(0,-30px,0) !important;
-  -moz-transition: transform 200ms ease-in-out;
+  /*transform: translate3d(0,-30px,0) !important;
+  -moz-transition: transform 200ms ease-in-out;*/
 }
 
 .optbutton{

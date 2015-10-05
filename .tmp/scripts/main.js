@@ -532,7 +532,7 @@ $(document).ready(function () {
 		var timeout = 400;
 
 		//Option Key
-		if (e.keyCode == KeyEvent.DOM_VK_SUBMENU || e.keyCode == KeyEvent.DOM_VK_ALT) {
+		if (e.keyCode == KeyEvent.DOM_VK_SUBMENU || e.keyCode == KeyEvent.DOM_VK_ALT || e.keyCode == 58) {
 			if (flag) {
 				if (level == 1 && mode == "navigation" && !filtering) {
 					mode = "optionmode";
@@ -552,7 +552,7 @@ $(document).ready(function () {
 			}
 		}
 		//Enter Key
-		else if (e.keyCode == KeyEvent.DOM_VK_RETURN || e.keyCode == KeyEvent.DOM_VK_ENTER) {
+		else if (e.keyCode == KeyEvent.DOM_VK_RETURN || e.keyCode == KeyEvent.DOM_VK_ENTER || e.keyCode == 13) {
 				if (flag) {
 					if (mode == "navigation") {
 						flag = false;
@@ -1233,7 +1233,7 @@ $(document).ready(function () {
 				}
 			}
 			//Esc Key
-			else if (e.keyCode == KeyEvent.DOM_VK_BACK_SPACE || e.keyCode == KeyEvent.DOM_VK_ESCAPE) {
+			else if (e.keyCode == KeyEvent.DOM_VK_BACK_SPACE || e.keyCode == KeyEvent.DOM_VK_ESCAPE || e.keyCode == 8 || e.keyCode == 27) {
 					if (flag) {
 						if (mode == "optionmode" || mode == "dummymode" || mode == "addfolder") {
 							flag = false;
@@ -1242,7 +1242,7 @@ $(document).ready(function () {
 					}
 				}
 				//Arrow Keys UP
-				else if (e.keyCode == KeyEvent.DOM_VK_UP) {
+				else if (e.keyCode == KeyEvent.DOM_VK_UP || e.keyCode == 38) {
 						console.log("up");
 
 						// for(var i = 0; i < 6; i++){
@@ -1301,7 +1301,7 @@ $(document).ready(function () {
 						}
 					}
 					//Arrow Keys DOWN
-					else if (e.keyCode == KeyEvent.DOM_VK_DOWN) {
+					else if (e.keyCode == KeyEvent.DOM_VK_DOWN || e.keyCode == 40) {
 							console.log("down");
 
 							// for(var i = 0; i < 6; i++){
@@ -1372,7 +1372,7 @@ $(document).ready(function () {
 							}
 						}
 						//Arrow Keys LEFT
-						else if (e.keyCode == KeyEvent.DOM_VK_LEFT) {
+						else if (e.keyCode == KeyEvent.DOM_VK_LEFT || e.keyCode == 37) {
 								console.log("left");
 								// for(var i = 0; i < 6; i++){
 								// 	if(wave[i]!=null) wave[i].pause();
@@ -1596,7 +1596,7 @@ $(document).ready(function () {
 								}
 							}
 							//Arrow Keys RIGHT
-							else if (e.keyCode == KeyEvent.DOM_VK_RIGHT) {
+							else if (e.keyCode == KeyEvent.DOM_VK_RIGHT || e.keyCode == 39) {
 									console.log("right");
 									// for(var i = 0; i < 6; i++){
 									// 	if(wave[i]!=null) wave[i].pause();
