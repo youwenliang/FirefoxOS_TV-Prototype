@@ -393,6 +393,7 @@ body {
   //margin-left: 0 !important;
   transform: translateY(0) !important;
   opacity: 0;
+  -moz-transition: transform 200ms ease-in-out;
 
   & p{
     color: #FFF;
@@ -513,9 +514,10 @@ body {
   }
 }
 
-/*.cardselected{
-  border: 6px #FFF solid !important;
-}*/
+.cardselected{
+  transform: translate3d(0,-30px,0) !important;
+  -moz-transition: transform 200ms ease-in-out;
+}
 
 .optbutton{
   background-color: rgb(96,96,96);
@@ -584,14 +586,10 @@ body {
 .transition{
   position: absolute;
   background: #000;
-  opacity: .8;
+  opacity: 0;
   z-index: 50;
-  border-radius: 50%;
-  height: 1px;
-  width: 1px;
-  bottom: 0;
-  left: 50%;
-  margin-left: 0;
+  height: 100%;
+  width: 100%;
   text-align: center;
 }
 
@@ -857,6 +855,16 @@ body {
     }
   }
 }
+
+/*.isSelected{
+  transform: scale3d(1.6,1.6,1.6) !important;
+  transform-origin: 50% 100%;
+  border: 6px #FFF solid;
+  z-index: 10;
+  -moz-transition: all 300ms ease-in-out;
+  -moz-transition-delay: 2s;
+}*/
+
 
 /* -- Fonts -- */
 
