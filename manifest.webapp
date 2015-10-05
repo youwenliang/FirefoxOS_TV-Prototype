@@ -1,7 +1,7 @@
 {
   "name": "Smart Home Prototype",
   "description": "TV Prototype for user testing",
-  "launch_path": "/dist/index.html",
+  "launch_path": "/app/index.html",
   "icons": {
     
   },

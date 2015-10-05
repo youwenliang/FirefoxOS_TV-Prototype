@@ -27,6 +27,10 @@ html, body{
   padding: 0.2em 0;
 }
 
+div{
+  -moz-backface-visibility: hidden;
+}
+
 /* Space out content a bit */
 body {
   font-family: 'Fira Sans', sans-serif !important;
@@ -34,7 +38,7 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
   background: #989898;
-  opacity: 0;
+  /*opacity: 0;*/
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
