@@ -395,7 +395,7 @@ body {
   margin: auto;
   left: 0;
   right: 0;
-  bottom: -150px;
+  bottom: -250px;
   background: #ccc;
   display: inline-block;
   border-radius: 50%;
@@ -406,8 +406,8 @@ body {
   /*@include transition-all("margin-left", 300ms);*/
   /*opacity: 0;*/
   overflow: hidden;
-  //margin-left: 0 !important;
-  transform: translateY(0) !important;
+  /*margin-left: 0 !important;*/
+  /*transform: translateY(0) !important;*/
   opacity: 0;
   /*-moz-transition: transform 200ms ease-in-out;*/
 

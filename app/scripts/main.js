@@ -288,12 +288,12 @@ $(document).ready(function(){
 
     		if(this.hasClass('cardselected')){
     			//this.css({border: '4px #FFF solid'});
-    			TweenLite.to(this, scale_speed, {border: '4px #FFF solid',borderTop: '4px #FFF solid',borderBottom: '4px #FFF solid',borderLeft: '4px #FFF solid',borderRight: '4px #FFF solid', scaleX:s, scaleY:s, scaleZ:s, z: 0.001, width:'300px', height: '300px', top: '-=92px', zIndex: 10, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
+    			TweenLite.to(this, scale_speed, {border: '4px #FFF solid',borderTop: '4px #FFF solid',borderBottom: '4px #FFF solid',borderLeft: '4px #FFF solid',borderRight: '4px #FFF solid', scaleX:1.6, scaleY:1.6, scaleZ:1.6, z: 0.001, zIndex: 2000, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
     				flag = true;
     			}});
     		}
     		else {
-    			TweenLite.to(this, scale_speed, {scaleX:s, scaleY:s, scaleZ:s, z: 0.001, zIndex: 10, border: '6px #FFF solid', ease: Power4.easeInOut, force3D: true, perspective: 1000, onComplete:function(){
+    			TweenLite.to(this, scale_speed, {scaleX:s, scaleY:s, scaleZ:s, z: 0.001, zIndex: 2000, border: '6px #FFF solid', ease: Power4.easeInOut, force3D: true, perspective: 1000, onComplete:function(){
     				flag = true;
     			}});
     		}
@@ -341,7 +341,7 @@ $(document).ready(function(){
 				}
 				if(this.hasClass('cardselected')){
 					//this.css({border: '0px #FFF solid'});
-	    			TweenLite.to(this, scale_speed, {border: '0px #FFF solid',borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid', scaleX:s, scaleY:s, scaleZ:s, z: 0.001, width: notSelected_cardsize, height: notSelected_cardsize, top: '+=92px', zIndex: 1, force3D: true, ease: Power4.easeInOut, onComplete: function(){
+	    			TweenLite.to(this, scale_speed, {border: '0px #FFF solid',borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid', scaleX:1, scaleY:1, scaleZ:1, z: 0.001, zIndex: 1, force3D: true, ease: Power4.easeInOut, onComplete: function(){
 						//flag = true;
 					}});
 	    		}
@@ -1259,6 +1259,7 @@ $(document).ready(function(){
 						else $('#addfolder-done p').addClass('inactive');
 					}
 				}
+			
 				else if(mode == "rearrange-folder"){
 					var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
 					TweenLite.to($('#'+$current.attr('id')+' > .appbutton-folder'), speed3, {opacity: 0});
@@ -1286,10 +1287,15 @@ $(document).ready(function(){
 
 
 						$clone.css({'border': '0px'});
+						
+/***********************/	
 						$('#'+$current.attr('id')+' > .appbutton-folder').each(function(index, element){
 							var k = $(this).attr('data-number').split('-')[1]-1;
-							TweenLite.to(this, .001, {width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: cardoffset+(notSelected_cardsize+10)*k+'px', bottom: '-150px', force3D: true, delay: .3});
+							$(this).css('transform','translate3d(0px,0px,0.001px)');
+							TweenLite.to(this, .001, {width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: cardoffset+(notSelected_cardsize+10)*k+'px', bottom: '-350px', force3D: true, delay: .3});
 						});
+/***********************/
+
 
 						if(rearrangelevel == 1){
 							TweenLite.to($select, .8, {opacity: 0, ease: Power4.easeInOut, delay: .3, onComplete: function(){
@@ -1386,7 +1392,8 @@ $(document).ready(function(){
 /******************************************************************************///backagain***
 						TweenLite.to($('#app'), .3, {y: '+=100px', z: 0.001, force3D: true, ease: Power2.easeInOut});
 						$('#'+$getapp.attr('id')+' > .appbutton-folder').each(function(index, element){
-							TweenLite.to(this, .3, {width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '-='+(130*index-92)+'px', ease: Power2.easeInOut});
+							var m = (parseInt($(this).css('margin-left').split('p')[0])+75)/1.5+'px';
+							TweenLite.to(this, .3, {width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px',z: 0.001, force3D: true, marginLeft: m, ease: Power2.easeInOut});
 						});
 						//TweenLite.to($('#app'), .3, {scale:1, transformOrigin: '50% 50%'});
 
@@ -1444,7 +1451,8 @@ $(document).ready(function(){
 /******************************************************************************///again***
 							TweenLite.to($('#app'), .3, {y: '-=100px', z: 0.001, force3D: true, ease: Power2.easeInOut});
 							$('#'+$getapp.attr('id')+' > .appbutton-folder').each(function(index, element){
-							TweenLite.to(this, .3, {width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '+='+(130*index-92)+'px', ease: Power2.easeInOut});
+							var m = $(this).css('margin-left').split('p')[0]*1.5-75+'px';
+							TweenLite.to(this, .3, {width: origin_cardsize, height: origin_cardsize, bottom: '-350px', z: 0.001, force3D: true, marginLeft: m, ease: Power2.easeInOut});
 						});
 							//TweenLite.to($('#app'), .3, {scale:.8, transformOrigin: '50% 50%'});
 							$child.addClass('cardselected');
@@ -1478,7 +1486,8 @@ $(document).ready(function(){
 /******************************************************************************///backagain***
 						TweenLite.to($('#app'), .3, {y: '+=100px', z: 0.001, force3D: true, ease: Power2.easeInOut});
 						$('#'+$getapp.attr('id')+' > .appbutton-folder').each(function(index, element){
-							TweenLite.to(this, .3, {width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '-='+(130*index-92)+'px', ease: Power2.easeInOut});
+							var m = (parseInt($(this).css('margin-left').split('p')[0])+75)/1.5+'px';
+							TweenLite.to(this, .3, {width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px', z: 0.001, force3D: true,  marginLeft: m, ease: Power2.easeInOut});
 						});
 						//TweenLite.to($('#app'), .3, {scale:1, transformOrigin: '50% 50%'});
 						
@@ -1555,7 +1564,7 @@ $(document).ready(function(){
 							};
 							$('#'+$next.attr('id')+' > .appbutton-folder').each(function(index, element){
 								var k = $(this).attr('data-number').split('-')[1]-1;
-								TweenLite.to(this, speed3, {opacity: 1, width: '180px', height: '180px', marginLeft: '-='+(30-58*k)+'px', bottom: '-200px', force3D: true});
+								TweenLite.to(this, speed3, {opacity: 1, width: '180px', height: '180px', marginLeft: '-='+(30-58*k)+'px', bottom: '-300px', force3D: true});
 							});
 							TweenLite.to($current, speed3, {scaleX:.65, scaleY:.65, scaleZ:.65, z: 0.001, force3D: true, x: '-=5px', z:0.001,  backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut});
 							TweenLite.to($next, speed3, {scaleX:.9, scaleY:.9, scaleZ:.9, z: 0.001, force3D: true, zIndex: 2999, ease: Power4.easeInOut, onComplete: function(){
@@ -1805,7 +1814,7 @@ $(document).ready(function(){
 							};
 							$('#'+$next.attr('id')+' > .appbutton-folder').each(function(index, element){
 								var k = $(this).attr('data-number').split('-')[1]-1;
-								TweenLite.to(this, speed3, {opacity: 1, width: '180px', height: '180px', marginLeft: '-='+(30-58*k)+'px', bottom: '-200px', force3D: true});
+								TweenLite.to(this, speed3, {opacity: 1, width: '180px', height: '180px', marginLeft: '-='+(30-58*k)+'px', bottom: '-300px', force3D: true});
 							});
 
 							TweenLite.to($current, speed3, {scaleX:.65, scaleY:.65, scaleZ:.65, z: 0.001, force3D: true, x: '-=5px', backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut});
@@ -1970,6 +1979,8 @@ $(document).ready(function(){
 						if(rearrange_nav_stage < rearrange_nav_count){
 							flag = false;
 							console.log(rearrange_nav_count);
+
+
 
 							$('.cardselected').notSelected();
 							$('.cardselected').removeClass('cardselected');
