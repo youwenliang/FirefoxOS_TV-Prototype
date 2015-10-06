@@ -1003,6 +1003,7 @@ $(document).ready(function () {
 										$home.each(function (index, element) {
 											$(this).removeClass('appbutton-folder').addClass('appbutton').attr({ 'data-number': parseInt(count) + parseInt(index) + 1, 'data-type': 'card' });
 											$(this).css({ 'margin-left': (1920 - 300 * 5) / 2 + (parseInt(count) + parseInt(index)) * (300 + 100 / 5) - 40, 'left': -350 * position_move, 'opacity': 1 });
+											TweenLite.to(this, .001, { width: '300px', height: '300px', bottom: '0px', force3D: true });
 										});
 
 										$('#app').append($home);
@@ -1210,6 +1211,10 @@ $(document).ready(function () {
 						}
 						var $clone = $select.clone().removeClass('selected').removeClass('appbutton').addClass('appbutton-folder').attr('data-type', 'folder-card').css({ 'opacity': 0, 'background-color': '#ccc' }).attr('data-number', stage + '-' + rearrange_stage);
 						var $parent = $('.appbutton[data-number=' + stage + '][data-type="folder"]');
+
+						var down = 0;
+						if (rearrangelevel == 1) down = 0;else down = 1;
+						TweenLite.to($clone, .001, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, x: '+=5px', y: '-=' + 235 * down + 'px', ease: Power4.easeInOut });
 						$parent.append($clone);
 
 						$clone.css({ 'border': '0px' });
@@ -1217,8 +1222,7 @@ $(document).ready(function () {
 						/***********************/
 						$('#' + $current.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 							var k = $(this).attr('data-number').split('-')[1] - 1;
-							$(this).css('transform', 'translate3d(0px,0px,0.001px)');
-							TweenLite.to(this, .001, { width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: cardoffset + (notSelected_cardsize + 10) * k + 'px', bottom: '-350px', force3D: true, delay: .3 });
+							TweenLite.to(this, .001, { width: notSelected_cardsize, height: notSelected_cardsize, 'margin-left': 92 + 130 * k, 'left': 0, bottom: '-250px', force3D: true, delay: .3 });
 						});
 						/***********************/
 
@@ -1452,7 +1456,7 @@ $(document).ready(function () {
 											var $next = $current.findNext('left');
 											if ($current.attr('data-type') == "card" && $next.attr('data-type') == "folder") {
 												mode = "rearrange-folder";
-												TweenLite.to($('#' + $next.attr('id') + " p"), speed3, { 'opacity': 0 });
+												TweenLite.to($('#' + $next.attr('id') + " > p"), speed3, { 'opacity': 0 });
 												TweenLite.to($('#' + $next.attr('id') + " .icon_folder"), speed3, { 'backgroundSize': '80% 80%' });
 												stage--;
 												currentposition--;
@@ -1535,7 +1539,7 @@ $(document).ready(function () {
 											};
 											var nextstage = parseInt(stage) + 1;
 											$next = $('.appbutton[data-number=' + nextstage + ']');
-											TweenLite.to($('#' + $next.attr('id') + " p"), speed3, { 'opacity': 1 });
+											TweenLite.to($('#' + $next.attr('id') + " > p"), speed3, { 'opacity': 1 });
 											TweenLite.to($('#' + $next.attr('id') + " .icon_folder"), speed3, { 'backgroundSize': '40% 40%' });
 											$('#' + $next.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 												TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '+=' + (30 - 58 * index) + 'px', bottom: '-80px', force3D: true });
@@ -1688,7 +1692,7 @@ $(document).ready(function () {
 												var $next = $current.findNext('right');
 												if ($current.attr('data-type') == "card" && $next.attr('data-type') == "folder") {
 													mode = "rearrange-folder";
-													TweenLite.to($('#' + $next.attr('id') + " p"), speed3, { 'opacity': 0 });
+													TweenLite.to($('#' + $next.attr('id') + " > p"), speed3, { 'opacity': 0 });
 													TweenLite.to($('#' + $next.attr('id') + " .icon_folder"), speed3, { 'backgroundSize': '80% 80%' });
 
 													console.log('current=' + stage);
@@ -1771,7 +1775,7 @@ $(document).ready(function () {
 												};
 												var nextstage = parseInt(stage) - 1;
 												$next = $('.appbutton[data-number=' + nextstage + ']');
-												TweenLite.to($('#' + $next.attr('id') + " p"), speed3, { 'opacity': 1 });
+												TweenLite.to($('#' + $next.attr('id') + " > p"), speed3, { 'opacity': 1 });
 												TweenLite.to($('#' + $next.attr('id') + " .icon_folder"), speed3, { 'backgroundSize': '40% 40%' });
 												$('#' + $next.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 													TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '+=' + (30 - 58 * index) + 'px', bottom: '-80px' });
