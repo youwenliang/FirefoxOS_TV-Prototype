@@ -292,8 +292,8 @@ $(document).ready(function () {
 				var id = $(this).attr('id');
 				TweenLite.to($("#" + id + " > .appbutton-folder"), speed3, { opacity: 1 });
 
-				var $current = $('.appbutton[data-number=' + parseInt(stage) + ']');
-				var appid = $current.attr('id').split('0')[1];
+				// var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
+				// var appid = $current.attr('id').split('0')[1];
 
 				// if(wave[appid*2-2]!=null && !filteringwave1) {
 				// 	wave[appid*2-2].resume();
@@ -1107,8 +1107,8 @@ $(document).ready(function () {
 										TweenLite.to($('#addfolder'), .5, { opacity: 0, zIndex: -1, onComplete: function onComplete() {
 
 												//Step 2
-
-												var $current = $('.appbutton[data-number=' + stage + ']');
+												//var $current = $('.appbutton[data-number='+stage+']');
+												console.log($current + '!!!');
 												for (var i = count; i >= parseInt(stage) + 1 - offset; i--) {
 													var $follow = $('.appbutton[data-number=' + parseInt(i) + ']');
 													//console.log(i);
@@ -1136,15 +1136,19 @@ $(document).ready(function () {
 
 												var folder_amount = $('.appbutton[data-type="folder"]').length;
 												folder_amount++;
+												var $current = $('.appbutton[data-number=' + (stage - 1) + ']');
+												console.log($current + '???');
 												$current.after('<div class="appbutton" id="app' + pad(total, 2) + '" data-type="folder" data-number="' + stage + '" data-content="Folder' + folder_amount + '"><p>Folder' + folder_amount + '</p>');
 												var $current = $('.appbutton[data-number=' + stage + ']');
+
+												console.log($current + '...');
 
 												for (var i = 0; i < folder_card.length; i++) {
 													folder_card[i].attr('data-number', stage + '-' + (parseInt(i) + 1));
 													folder_card[i].css({ 'margin-left': 92 + 130 * i, 'left': 0 });
 													$current.append(folder_card[i]);
 												}
-
+												console.log($current + '@@@');
 												$current.css('background-color', '#5a5a5a');
 												$current.css({ 'margin-left': (1920 - 300 * 5) / 2 + (stage - 1) * (300 + 100 / 5) - 40, 'left': -350 * position_move });
 												$current.css('z-index', 1);
