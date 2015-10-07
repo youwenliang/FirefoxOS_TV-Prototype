@@ -1295,7 +1295,7 @@ $(document).ready(function(){
 						var down = 0;
 						if(rearrangelevel == 1) down = 0;
 						else down = 1;
-						TweenLite.to($clone, .001, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, x: '+=5px', y: '-='+235*down+'px', ease: Power4.easeInOut});
+						TweenLite.to($clone, .001, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, zIndex:0, force3D: true, x: '+=5px', y: '-='+235*down+'px', ease: Power4.easeInOut});
 						$parent.append($clone);
 
 
