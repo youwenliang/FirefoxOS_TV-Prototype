@@ -802,15 +802,15 @@ $(document).ready(function () {
 									var $next = $('.next');
 									var animatespeed = .6;
 
-									//Next & Prev
-									$next.each(function (index, element) {
-										tl1[index].fromTo(element, animatespeed, { left: arrow_next + (150 + 10) * (stage - 1) + 16 * index + 'px', opacity: 0, ease: Power2.easeIn }, { left: arrow_next + 5 + (150 + 10) * (stage - 1) + 16 * index + 'px', opacity: 1, ease: Power2.easeIn }).to(element, animatespeed, { left: arrow_next + 10 + (150 + 10) * (stage - 1) + 16 * index + 'px', opacity: 0, ease: Power2.easeOut });
-									});
+									// //Next & Prev
+									// $next.each(function(index, element){
+									// 	tl1[index].fromTo(element, animatespeed, {left: (arrow_next+(150+10)*(stage-1)+16*index)+'px', opacity:0, ease: Power2.easeIn}, {left: (arrow_next+5+(150+10)*(stage-1)+16*index)+'px', opacity:1, ease: Power2.easeIn}).to(element, animatespeed, {left: (arrow_next+10+(150+10)*(stage-1)+16*index)+'px', opacity:0, ease: Power2.easeOut});
+									// });
 
-									var $prev = $('.prev');
-									$prev.each(function (index, element) {
-										tl2[index].fromTo(element, animatespeed, { left: arrow_prev + (150 + 10) * (stage - 1) - 16 * index + 'px', opacity: 0, ease: Power2.easeIn }, { left: arrow_prev - 5 + (150 + 10) * (stage - 1) - 16 * index + 'px', opacity: 1, ease: Power2.easeIn }).to(element, animatespeed, { left: arrow_prev - 10 + (150 + 10) * (stage - 1) - 16 * index + 'px', opacity: 0, ease: Power2.easeOut });
-									});
+									// var $prev = $('.prev');
+									// $prev.each(function(index, element){
+									// 	tl2[index].fromTo(element, animatespeed, {left: (arrow_prev+(150+10)*(stage-1)-16*index)+'px', opacity:0, ease: Power2.easeIn}, {left: (arrow_prev-5+(150+10)*(stage-1)-16*index)+'px', opacity:1, ease: Power2.easeIn}).to(element, animatespeed, {left: (arrow_prev-10+(150+10)*(stage-1)-16*index)+'px', opacity:0, ease: Power2.easeOut});
+									// });
 
 									TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), .001, { zIndex: 3000 });
 
