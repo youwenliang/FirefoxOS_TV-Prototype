@@ -63,7 +63,7 @@
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--2-col"></div>
             <div class="mdl-cell mdl-cell--5-col">
-              <p id="time"></p>
+              <p id="ampm"></p><p id="time"></p>
             </div>
             <div class="mdl-cell mdl-cell--5-col" id="weather">
             </div>
@@ -91,7 +91,7 @@
           <div class="appbutton" id="app08" data-type="card" data-number="8" data-content="Card4" data-filter="app"><p>Card4</p></div>
       </div>
       <div class="hint">
-        <p>: Open menu</p>
+        <p>Press "OPTION" key to open menu</p>
       </div>
       <div id="option">
         <div class="optbutton" id="rearrange"><p>Move</p></div>
@@ -106,9 +106,13 @@
       </div>
 
       <div id="addfolder">
+        <p id="new">Create a New Folder</p>
         <div id="addfolder-name"><p>My Folder</p></div>
         <div id="addfolder-done"><p class="inactive">Done</p></div>
-        <p id="addfolder-number"><span id="addfolder-number--selected">0</span>/<span id="addfolder-number--total">9</span> selected</p>
+        <p id="addfolder-number">
+          Select the card into folder. 
+          <span id="addfolder-number--selected">0</span>/<span id="addfolder-number--total">9</span>
+          selected</p>
       </div>
 
       <div id="dummy">
