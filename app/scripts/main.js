@@ -346,7 +346,7 @@ $(document).ready(function(){
 					}});
 	    		}
 	    		else {
-	    			TweenLite.to(this, scale_speed, {scaleX:s, scaleY:s, scaleZ: s, z: 0.001, zIndex: 1, border: '0px #989898 solid', ease: Power4.easeInOut, force3D: true, onComplete: function(){
+	    			TweenLite.to(this, scale_speed, {scaleX:s, scaleY:s, scaleZ: s, z: 0.001, zIndex: 0, border: '0px #989898 solid', ease: Power4.easeInOut, force3D: true, onComplete: function(){
 						//flag = true;
 					}});
 	    		}
