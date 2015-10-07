@@ -373,13 +373,13 @@ body {
 
   & p{
     color: #FFF;
-    font-size: 25px;
+    font-size: 25px !important;
     position: absolute;
     margin: auto;
     left: 0;
     right: 0;
     /* top: 0; */
-    bottom: 50px;
+    bottom: 50px !important;
     text-align: center;
     font-style: italic;
     z-index: 100;
@@ -413,13 +413,13 @@ body {
 
   & p{
     color: #FFF;
-    font-size: 16px;
+    font-size: 16px !important;
     position: absolute;
     margin: auto;
     left: 0;
     right: 0;
     /* top: 0; */
-    bottom: 20px;
+    bottom: 20px !important;
     text-align: center;
     font-style: italic;
     z-index: 100;
@@ -529,12 +529,14 @@ body {
     bottom: 43% !important;
   }
 }
-
-.cardselected p{
-  /*font-size: 20pt;
-  bottom: 30px;*/
-  /*transform: translate3d(0,-30px,0) !important;
-  -moz-transition: transform 200ms ease-in-out;*/
+.appbutton-folder[data-type="folder-card"] p{
+  -moz-transition: all 200ms ease-in-out;
+}
+.appbutton-folder[data-type="folder-card"].focus p{
+  font-size: 25pt !important;
+  bottom: 50px !important;
+  /*transform: translate3d(0,-30px,0) !important;*/
+  -moz-transition: all 200ms ease-in-out;
 }
 
 .optbutton{
@@ -877,13 +879,13 @@ body {
 
     & p{
       color: #FFF;
-      font-size: 16px;
+      font-size: 16px !important;
       position: absolute;
       margin: auto;
       left: 0;
       right: 0;
       /* top: 0; */
-      bottom: 25px;
+      bottom: 25px !important;
       text-align: center;
       font-style: italic;
       z-index: 100;

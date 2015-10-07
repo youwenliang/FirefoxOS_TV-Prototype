@@ -673,7 +673,7 @@ $(document).ready(function(){
 							$('.applist').each(function(index, element){
 								var data = $(this).attr('data-number')
 								$(this).attr('data-number', "folder-card"+(index+1));
-								$(this).css('margin','240px '+parseInt(100+index*170)+'px');
+								$(this).css({'width':'160px', 'height': '160px', 'margin':'240px '+parseInt(100+index*170)+'px'});
 							});
 
 							TweenLite.to($('.transition'), .001, {backgroundColor:'#000'});
@@ -1004,11 +1004,11 @@ $(document).ready(function(){
 					TweenMax.delayedCall(.3, function(){
 						if(count <= 5) {
 							for ( var i = 0; i < count; i++ ) {
-								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*count)/2+i*(300+100/count)+10, force3D: true, ease: Power4.easeInOut});
+								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*count)/2+i*(300+100/count)-40, force3D: true, ease: Power4.easeInOut});
 							}
 						} else {
 							for ( var i = 0; i < count; i++ ) {
-								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*5-100)/2+i*(300+100/5)+10, force3D: true, ease: Power4.easeInOut});
+								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*5-100)/2+i*(300+100/5)-40, force3D: true, ease: Power4.easeInOut});
 							}
 						};
 
@@ -1061,6 +1061,11 @@ $(document).ready(function(){
 									$home.each(function(index, element){
 										$(this).removeClass('appbutton-folder').addClass('appbutton').attr({'data-number': parseInt(count)+parseInt(index)+1, 'data-type':'card'});
 										$(this).css({'margin-left': (1920-300*5)/2+(parseInt(count)+parseInt(index))*(300+100/5)-40, 'left':-350*position_move, 'opacity': 1});
+										console.log($('#'+$(this).attr('id') + ' > p'));
+
+										TweenLite.to($('#'+$(this).attr('id') + ' > p'), .3, {fontSize: '19pt', bottom: '50px', ease: Power2.easeInOut});	
+										console.log("!!!!");
+										console.log($('#'+$(this).attr('id') + ' > p').css('font-size'));
 										TweenLite.to(this, .001, {width: isSelected_cardsize, height: isSelected_cardsize, bottom: '0px', force3D: true});
 									});
 
@@ -1155,6 +1160,7 @@ $(document).ready(function(){
 									removed.push(folder_card[index].attr('data-number'));
 									folder_card[index].removeClass('appbutton').addClass('appbutton-folder');
 									folder_card[index].attr('data-type', 'folder-card');
+									folder_card[index].css({'width':notSelected_cardsize, 'height': notSelected_cardsize, 'bottom': '-250px'});
 									if($('#app > .appbutton#'+id).attr('data-number') <= stage) offset++;
 									console.log("offset="+offset);
 									$('#app > .appbutton#'+id).remove();
@@ -1337,11 +1343,11 @@ $(document).ready(function(){
 					TweenMax.delayedCall(.3,function(){
 						if(count <= 5) {
 							for ( var i = 0; i < count; i++ ) {
-								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*count)/2+i*(300+100/count), force3D: true, ease: Power4.easeInOut});
+								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*count)/2+i*(300+100/count)-40, force3D: true, ease: Power4.easeInOut});
 							}
 						} else {
 							for ( var i = 0; i < count; i++ ) {
-								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*5-100)/2+i*(300+100/5), force3D: true, ease: Power4.easeInOut});
+								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-300*5-100)/2+i*(300+100/5)-40, force3D: true, ease: Power4.easeInOut});
 							}
 						};
 
@@ -1406,6 +1412,7 @@ $(document).ready(function(){
 						$('#'+$getapp.attr('id')+' > .appbutton-folder').each(function(index, element){
 							var m = (parseInt($(this).css('margin-left').split('p')[0])+230)/2.5+'px';
 							TweenLite.to($('#'+$(this).attr('id') + ' > p'), .3, {fontSize: '12pt', bottom: '20px', ease: Power2.easeInOut});	
+							$(this).removeClass('focus');
 							TweenLite.to(this, .3, {width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px',z: 0.001, force3D: true, marginLeft: m, ease: Power2.easeInOut});
 						});
 						//TweenLite.to($('#app'), .3, {scale:1, transformOrigin: '50% 50%'});
@@ -1466,6 +1473,7 @@ $(document).ready(function(){
 							$('#'+$getapp.attr('id')+' > .appbutton-folder').each(function(index, element){
 							TweenLite.to($('#'+$(this).attr('id') + ' > p'), .3, {fontSize: '19pt', bottom: '50px', ease: Power2.easeInOut});	
 							var m = $(this).css('margin-left').split('p')[0]*2.5-230+'px';
+							$(this).addClass('focus');
 							TweenLite.to(this, .3, {width: origin_cardsize, height: origin_cardsize, bottom: '-450px', z: 0.001, force3D: true, marginLeft: m, ease: Power2.easeInOut});
 						});
 							//TweenLite.to($('#app'), .3, {scale:.8, transformOrigin: '50% 50%'});
@@ -1503,6 +1511,7 @@ $(document).ready(function(){
 							TweenLite.to($('#'+$(this).attr('id') + ' > p'), .3, {fontSize: '12pt', bottom: '20px', ease: Power2.easeInOut});	
 							var m = (parseInt($(this).css('margin-left').split('p')[0])+230)/2.5+'px';
 							TweenLite.to(this, .3, {width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px', z: 0.001, force3D: true,  marginLeft: m, ease: Power2.easeInOut});
+							$(this).removeClass('focus');
 						});
 						//TweenLite.to($('#app'), .3, {scale:1, transformOrigin: '50% 50%'});
 
