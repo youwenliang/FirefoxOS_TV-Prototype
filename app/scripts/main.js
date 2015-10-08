@@ -88,8 +88,8 @@ $(document).ready(function(){
 	}
 
 	var time = h+":"+m;
-	$('#ampm').css('right', $('#time').width()+270);
 	$('#time').text(time);
+	$('#ampm').css('right', $('#time').width()+300);
 
 	setInterval(function() {
 		var d = new Date();
@@ -103,9 +103,9 @@ $(document).ready(function(){
 		}
 
 		var time = h+":"+m;
-		$('#ampm').css('right', $('#time').width()+270);
 		$('#time').text(time);
-	}, 60 * 1000); // 60 * 1000 milsec
+		$('#ampm').css('right', $('#time').width()+300);
+	}, 1 * 1000); // 60 * 1000 milsec
 
 	// Animation Loops
 	var tl1 = new TimelineMax({repeat:-1});
