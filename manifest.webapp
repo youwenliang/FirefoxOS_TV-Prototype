@@ -1,0 +1,15 @@
+{
+  "name": "Smart Home Prototype",
+  "description": "TV Prototype for user testing",
+  "launch_path": "/dist/index.html",
+  "icons": {
+    "60": "/icon/icon-60.png",
+    "128": "/icon/icon-128.png"
+  },
+  "developer": {
+    "name": "Mark Liang",
+    "url": "mliang@mozilla.com"
+  },
+  "default_locale": "en",
+  "chrome": { "navigation": true }
+}

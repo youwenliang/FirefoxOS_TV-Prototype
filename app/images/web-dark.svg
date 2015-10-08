@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="54px" height="54px" viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{display:inline;opacity:0.3;fill:#E30613;enable-background:new    ;}
+	.st1{font-family:'UniversLTStd-Cn';}
+	.st2{fill:#1D1D1B;}
+	.st3{font-size:8;}
+	.st4{display:inline;fill:#646363;}
+	.st5{display:none;}
+	.st6{display:inline;fill:#464445;}
+]]>
+</style>
+<font horiz-adv-x="1000">
+<!-- Copyright 1987, 1991, 1994, 1998, 2002 Adobe Systems Incorporated. All rights reserved. Copyright 1981, 1998, 2002 Heidelberger Druckmaschinen AG. All rights reserved. Univers is a trademark of Linotype Corp registered in the U.S. Patent and Trademark Office and may be registered in certain other jurisdictions in the name of Linotype Corp. or its licensee Linotype GmbH. -->
+<font-face font-family="UniversLTStd-Cn" units-per-em="1000" underline-position="-100" underline-thickness="50"/>
+<missing-glyph horiz-adv-x="500" d="M0,0l500,0l0,700l-500,0M250,395l-170,255l340,0M280,350l170,255l0,-510M80,50l170,255l170,-255M50,605l170,-255l-170,-255z"/>
+<glyph unicode="e" horiz-adv-x="500" d="M152,288C153,428 196,453 248,453C308,453 349,435 349,288M436,226l0,43C436,436 400,515 256,515C81,515 64,393 64,245C64,22 149,-10 256,-10C362,-10 431,41 432,153l-90,0C339,102 310,57 254,57C190,57 152,85 152,226z"/>
+<glyph unicode="f" horiz-adv-x="278" d="M9,505l0,-62l78,0l0,-443l82,0l0,443l102,0l0,62l-102,0l0,86C169,632 184,669 271,663l0,59C259,724 249,725 232,725C159,725 87,705 87,603l0,-98z"/>
+<glyph unicode="i" horiz-adv-x="222" d="M152,505l-82,0l0,-505l82,0M65,634l92,0l0,88l-92,0z"/>
+<glyph unicode="l" horiz-adv-x="222" d="M152,722l-82,0l0,-722l82,0z"/>
+<glyph unicode="r" horiz-adv-x="333" d="M157,505l-82,0l0,-505l82,0l0,298C157,366 180,435 271,435C279,435 286,434 293,433C300,432 308,431 315,430l0,85C235,515 193,506 159,429l-2,0z"/>
+<glyph unicode="t" horiz-adv-x="278" d="M-2,505l0,-62l83,0l0,-359C81,26 116,-6 194,-6C221,-6 248,0 275,2l0,63C257,63 244,61 238,61C163,61 163,102 163,134l0,309l110,0l0,62l-110,0l0,134l-82,-37l0,-97z"/>
+</font>
+
+	<g id="Layer_40" class="st5">
+	<rect x="-52.3" y="-156" class="st6" width="691.3" height="784"/>
+</g>
+<g id="Layer_6">
+</g>
+<g id="Layer_5" class="st5">
+	<path class="st0" d="M0,0v54h54V0H0z M47,47H7V7h40V47z"/>
+</g>
+<g id="name" class="st5">
+	<text transform="matrix(1 0 0 1 4.189 50.4395)" class="st4 st1 st3">filter</text>
+</g>
+<g id="Title" class="st5">
+</g>
+<path class="st2" d="M27,13c-7.7,0-14,6.3-14,14c0,7.7,6.3,14,14,14c7.7,0,14-6.3,14-14C41,19.3,34.7,13,27,13z M31,18.6
+	c-0.8-1.1-1.6-2.1-2.4-2.9c1.8,0.3,3.4,0.9,4.8,1.9L31,18.6z M31.7,25.1c0.5,1.3,1,2.7,1.3,3.9l-8.8,3.6c-0.7-1.1-1.3-2.3-1.8-3.7
+	c-0.5-1.2-0.9-2.4-1.2-3.6l8.9-3.6C30.6,22.7,31.2,23.9,31.7,25.1z M28.6,19.6l-8,3.3c-0.1-1.1-0.2-2.1-0.2-3.1
+	c0-0.9,0.2-1.7,0.4-2.4c1.1-0.7,2.4-1.3,3.8-1.6C25.9,16.5,27.3,17.8,28.6,19.6z M20,29.8c0.5,1.3,1.2,2.6,1.8,3.7l-3.1,1.3
+	c-1.8-1.9-3-4.5-3.1-7.3l3.2-1.3C19.1,27.5,19.5,28.7,20,29.8z M23.2,35.7c0.7,1,1.4,1.8,2.2,2.6c-1.6-0.2-3.1-0.8-4.5-1.6
+	L23.2,35.7z M25.6,34.7l7.8-3.2c0.1,0.9,0.2,1.8,0.1,2.7c0,0.9-0.2,1.7-0.4,2.4c-1.1,0.7-2.4,1.3-3.8,1.6
+	C28.2,37.6,26.9,36.4,25.6,34.7z M34,24.2c-0.5-1.2-1-2.3-1.6-3.4l3.2-1.3c1.7,2,2.8,4.5,2.9,7.4l-3.1,1.3
+	C35,26.8,34.5,25.5,34,24.2z M18,20.1c0,1.2,0.1,2.4,0.3,3.7l-2.4,1C16.2,23,16.9,21.4,18,20.1z M36,33.9c0-1.1,0-2.2-0.2-3.4
+	l2.3-0.9C37.7,31.2,37,32.7,36,33.9z"/>
+</svg>
