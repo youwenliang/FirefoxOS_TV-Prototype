@@ -1213,11 +1213,11 @@ $(document).ready(function () {
 							if (index == applistposition - 1) {
 								if ($(this).hasClass('appselected')) {
 									var $currentID = $(this).attr('id');
-									TweenLite.to($(this), .1, { backgroundColor: colors[$currentID] });
+									//TweenLite.to($(this), .1, {backgroundColor: colors[$currentID]});
 									$(this).removeClass('appselected');
 									appselected--;
 								} else {
-									TweenLite.to($(this), .1, { backgroundColor: '#5eabd9' });
+									//TweenLite.to($(this), .1, {backgroundColor: '#5eabd9'});
 									$(this).addClass('appselected');
 									appselected++;
 								}
