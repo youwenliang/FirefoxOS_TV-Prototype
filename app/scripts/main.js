@@ -44,7 +44,7 @@ $(document).ready(function(){
 	var deletelist = ["#cancel", "#confirm"];
 	var delete_stage = 1;
 
-	var colors = {"app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04":"#00a6d5", "app05":"#cccccc", "app06":"#cccccc", "app07":"#cccccc", "app08":"#cccccc", "app09":"#5a5a5a",  "app10":"#5a5a5a"};
+	var colors = {"app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04":"#00a6d5", "app05":"#a9d146", "app06":"#02aff1", "app07":"#df5b60", "app08":"#5ca37a"};
 	var pressed = "#5eabd9";
 
 	//All checking flag
@@ -288,12 +288,12 @@ $(document).ready(function(){
 
     		if(this.hasClass('cardselected')){
     			//this.css({border: '4px #FFF solid'});
-    			TweenLite.to(this, scale_speed, {border: '6px #FFF solid',borderTop: '6px #FFF solid',borderBottom: '6px #FFF solid',borderLeft: '6px #FFF solid',borderRight: '6px #FFF solid', scaleX:1.6, scaleY:1.6, scaleZ:1.6, z: 0.001, zIndex: 10, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
+    			TweenLite.to(this, scale_speed, {paddingLeft: '-=6px', border: '6px #FFF solid',borderTop: '6px #FFF solid',borderBottom: '6px #FFF solid',borderLeft: '6px #FFF solid',borderRight: '6px #FFF solid',  scaleX:1.6, scaleY:1.6, scaleZ:1.6, z: 0.001, zIndex: 10, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
     				flag = true;
     			}});
     		}
     		else {
-    			TweenLite.to(this, scale_speed, {scaleX:s, scaleY:s, scaleZ:s, z: 0.001, zIndex: 10, border: '6px #FFF solid', ease: Power4.easeInOut, force3D: true, perspective: 1000, onComplete:function(){
+    			TweenLite.to(this, scale_speed, {paddingLeft: '-=6px', scaleX:s, scaleY:s, scaleZ:s, z: 0.001, zIndex: 10,  border: '6px #FFF solid', ease: Power4.easeInOut, force3D: true, perspective: 1000, onComplete:function(){
     				flag = true;
     			}});
     		}
@@ -341,12 +341,12 @@ $(document).ready(function(){
 				}
 				if(this.hasClass('cardselected')){
 					//this.css({border: '0px #FFF solid'});
-	    			TweenLite.to(this, scale_speed, {border: '0px #FFF solid',borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid', scaleX:1, scaleY:1, scaleZ:1, z: 0.001, zIndex: 1, force3D: true, ease: Power4.easeInOut, onComplete: function(){
+	    			TweenLite.to(this, scale_speed, {paddingLeft: '+=6px', border: '0px #FFF solid',borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid',  scaleX:1, scaleY:1, scaleZ:1, z: 0.001, zIndex: 1, force3D: true, ease: Power4.easeInOut, onComplete: function(){
 						//flag = true;
 					}});
 	    		}
 	    		else {
-	    			TweenLite.to(this, scale_speed, {scaleX:s, scaleY:s, scaleZ: s, z: 0.001, zIndex: 0, border: '0px #989898 solid', ease: Power4.easeInOut, force3D: true, onComplete: function(){
+	    			TweenLite.to(this, scale_speed, {paddingLeft: '+=6px', scaleX:s, scaleY:s, scaleZ: s, z: 0.001, zIndex: 0, border: '0px #989898 solid', ease: Power4.easeInOut, force3D: true, onComplete: function(){
 						//flag = true;
 					}});
 	    		}
@@ -375,7 +375,10 @@ $(document).ready(function(){
 					}});
 					$('.filter-section li').eq(filter_stage-1).delay(500).animate({  textIndent: 12 }, {
 						    step: function(now,fx) {
-						      $(this).css('-moz-transform','scale('+now/10+')');
+						      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 						      $(this).css('color', '#FFF');
 						    },duration:filter_duration
 						},'linear');
@@ -398,7 +401,10 @@ $(document).ready(function(){
 				if($t.attr('id')=="filter"){
 					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 						    step: function(now,fx) {
-						      $(this).css('-moz-transform','scale('+now/10+')');
+						      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 						      $(this).css('color', '#CCC');
 						    },duration: 200
 						},'linear');
@@ -505,7 +511,7 @@ $(document).ready(function(){
 				}
 				if(m == "addfolder"){
 					TweenLite.to($('#addfolder'), .5, {opacity: 1, zIndex: 3000, delay: .5, force3D: true, onComplete: function(){
-							$(".applist").first().isSelected();
+							$(".applist").first().isSelected(1.5);
 							applistposition = 1;
 					}});
 				}
@@ -548,12 +554,15 @@ $(document).ready(function(){
 					}
 					else if(m =="addfolder"){
 						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
+						if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "folder"){
+								TweenLite.to($('#'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('id')+' > .appbutton-folder'), speed3, {opacity:1});
+							}
 						mode = "navigation";
 						level = 1;
 						setting_stage = 1;
 						applistposition = 1;
 						folder_level = 1;
-						$('#addfolder-done p').addClass('inactive');
+						$('#addfolder-done p').addClass('inactive').css('color', '#aaa');
 					}
 				}});
       	return this;
@@ -690,7 +699,7 @@ $(document).ready(function(){
 							mode = "addfolder";
 
 							var totalcard = $('#app .appbutton[data-type=\"card\"]').length;
-							$('#addfolder-number--total').text(totalcard);
+							$('#addfolder-number--total').text("/"+totalcard);
 							$('#addfolder .appbutton[data-type=\"card\"]').remove();
 
 							$('#app .appbutton[data-type=\"card\"]').clone().appendTo($('#addfolder'));
@@ -698,7 +707,7 @@ $(document).ready(function(){
 							$('.applist').each(function(index, element){
 								var data = $(this).attr('data-number')
 								$(this).attr('data-number', "folder-card"+(index+1));
-								$(this).css({'width':'160px', 'height': '160px', 'margin':'240px '+parseInt(100+index*170)+'px'});
+								$(this).css({'width':'190px', 'height': '190px', 'margin':'240px '+parseInt(155+index*240)+'px'});
 							});
 
 							TweenLite.to($('.transition'), .001, {backgroundColor:'#000'});
@@ -726,12 +735,18 @@ $(document).ready(function(){
 
 						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 8 }, {
 						    step: function(now,fx) {
-						      $(this).css('-moz-transform','scale('+now/10+')');
+						      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 						    },duration:100
 						},'linear');
 						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 12 }, {
 						    step: function(now,fx) {
-						      $(this).css('-moz-transform','scale('+now/10+')');
+						      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 						    },duration:200
 						},'linear');
 
@@ -1170,9 +1185,9 @@ $(document).ready(function(){
 							var offset = 0;
 							var removed = [];
 							console.log("done");
-							TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '20px'});
-							$('#addfolder-done p').addClass('pressed');
-							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, background: '#5eabd9', border: '6px #5eabd9 solid', onComplete: function(){
+							TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px'});
+							$('#addfolder-done p').addClass('pressed').css('color', '#FFF');
+							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, background: '#5eabd9', onComplete: function(){
 								TweenLite.to($('.transition'), trans_speed, {opacity: 0, force3D: true, ease: Power4.easeOut, delay: .3});
 
 								//Step 1
@@ -1233,7 +1248,7 @@ $(document).ready(function(){
 									folder_amount++;
 									var $current = $('.appbutton[data-number='+(stage-1)+']');
 									
-									$current.after('<div class="appbutton" id="app'+pad(total,2)+'" data-type="folder" data-number="'+stage+'" data-content="Folder'+folder_amount+'"><p>Folder'+folder_amount+'</p>');
+									$current.after('<div class="appbutton" id="app'+pad(total,2)+'" data-type="folder" data-number="'+stage+'" data-content="My Folder'+folder_amount+'"><p>My Folder '+folder_amount+'</p>');
 									var $current = $('.appbutton[data-number='+stage+']');
 
 									
@@ -1264,9 +1279,9 @@ $(document).ready(function(){
 									//stage -= offset;
 
 									$('#addfolder-number--selected').text(appselected);
-									TweenLite.to($('#addfolder-done'), .01, {background: '#FFF', border: '6px #FFF solid'});
+									TweenLite.to($('#addfolder-done'), .01, {backgroundColor: 'rgba(0,0,0,.8)'});
 									$('#addfolder-done p').removeClass('pressed');
-									$('#addfolder-done p').addClass('inactive');
+									$('#addfolder-done p').addClass('inactive').css('color','#aaa');
 									folder_level = 1;
 								}});
 							}});
@@ -1277,7 +1292,8 @@ $(document).ready(function(){
 						$('.applist').each(function(index,element){
 							if(index == applistposition-1) {
 								if($(this).hasClass('appselected')){
-									TweenLite.to($(this), .1, {backgroundColor: '#ccc'});
+									var $currentID = $(this).attr('id');
+									TweenLite.to($(this), .1, {backgroundColor: colors[$currentID]});
 									$(this).removeClass('appselected');
 									appselected--;
 								}
@@ -1290,8 +1306,8 @@ $(document).ready(function(){
 						});
 						$('#addfolder-number--selected').text(appselected);
 
-						if(appselected != 0) $('#addfolder-done p').removeClass('inactive');
-						else $('#addfolder-done p').addClass('inactive');
+						if(appselected != 0) $('#addfolder-done p').removeClass('inactive').css('color', '#fff');
+						else $('#addfolder-done p').addClass('inactive').css('color', '#aaa');
 					}
 				}
 
@@ -1452,8 +1468,9 @@ $(document).ready(function(){
 						folder_level--;
 						$('.selected').notSelected();
 						//todo: highlight "done"
-						TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '20px'});
-						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, border: '6px #5eabd9 solid', onComplete: function(){
+						if($('#addfolder-done p').hasClass('inactive')) ;
+						else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#000"});
+						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, backgroundColor:'rgba(255,255,255,1)', onComplete: function(){
 							flag = true;
 						}});
 					}
@@ -1548,10 +1565,14 @@ $(document).ready(function(){
 						flag = false;
 						folder_level++;
 						addfolder_stage = 2;
-						$('.applist[data-number=\"folder-card'+applistposition+'\"]').isSelected();
-						TweenLite.to($('#addfolder-name'), .3, {z: 0.001, force3D: true, border: '6px #FFF solid'});
-						TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '20px'});
-						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, border: '6px #FFF solid', onComplete: function(){
+						$('.applist[data-number=\"folder-card'+applistposition+'\"]').isSelected(1.5);
+						TweenLite.to($('#addfolder-name p'), .3, {z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,0)"});
+						TweenLite.to($('#addfolder-name'), .3, {z: 0.001, force3D: true, borderBottomColor: '#fff', borderWidth: '2px'});
+						TweenLite.to($('#keyboard'), .6, {z: 0.001, force3D: true, bottom: '-50%', ease: Power4.easeInOut});
+						TweenLite.to($('#close'), .3, {opacity: 0});
+						if($('#addfolder-done p').hasClass('inactive')) ;
+						else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#fff"});
+						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, backgroundColor:"rgba(0,0,0,.8)", onComplete: function(){
 							flag = true;
 						}});
 					}
@@ -1724,18 +1745,18 @@ $(document).ready(function(){
 							flag = false;
 							stage--;
 							position--;
+							//Move Apps
+							if(position < 0){
+								flag = false;
+								TweenLite.to($('.appbutton'),slide_speed,{left: '+=350', force3D: true, ease: Power1.easeInOut, onComplete: function(){
+									//flag = true;
+								}});
+								position = 0;
+								position_move-=1;
+							}
+							$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
+							$('.appbutton[data-number='+(parseInt(stage+1))+']').notSelected();
 						}
-						//Move Apps
-						if(position < 0){
-							flag = false;
-							TweenLite.to($('.appbutton'),slide_speed,{left: '+=350', force3D: true, ease: Power1.easeInOut, onComplete: function(){
-								//flag = true;
-							}});
-							position = 0;
-							position_move-=1;
-						}
-						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
-						$('.appbutton[data-number='+(parseInt(stage+1))+']').notSelected();
 					}
 					// Settings
 					else if(level == 0){
@@ -1754,7 +1775,10 @@ $(document).ready(function(){
 
 							$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 							    step: function(now,fx) {
-							      $(this).css('-moz-transform','scale('+now/10+')');
+							      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#CCC');
 							    },duration:filter_duration
@@ -1762,7 +1786,10 @@ $(document).ready(function(){
 
 							$('.filter-section li').eq(filter_stage-2).animate({  textIndent: 12 }, {
 							    step: function(now,fx) {
-							      $(this).css('-moz-transform','scale('+now/10+')');
+							      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#FFF');
 							    },duration:filter_duration
@@ -1806,7 +1833,7 @@ $(document).ready(function(){
 						if(applistposition > 1) {
 							applistposition--;
 							$('.applist[data-number=\"folder-card'+(applistposition+1)+'\"]').notSelected();
-							$('.applist[data-number=\"folder-card'+applistposition+'\"]').isSelected();
+							$('.applist[data-number=\"folder-card'+applistposition+'\"]').isSelected(1.5);
 							
 						}
 					}
@@ -1814,9 +1841,14 @@ $(document).ready(function(){
 						if(addfolder_stage == 2){
 							addfolder_stage--;
 							flag = false;
-							TweenLite.to($('#addfolder-name'), .3, {z: 0.001, force3D: true, border: '6px #5eabd9 solid'});
-							TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '20px'});
-							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, border: '6px #FFF solid', onComplete: function(){
+							TweenLite.to($('#addfolder-name p'), .3, {z: 0.001, force3D: true, backgroundColor: "#4B788C"});
+							TweenLite.to($('#addfolder-name'), .3, {z: 0.001, force3D: true, borderBottomColor: '#5eabd9', borderWidth: '4px'});
+							TweenLite.to($('#keyboard'), .6, {z: 0.001, force3D: true, bottom: '0', ease: Power4.easeInOut});
+							TweenLite.to($('#close'), .3, {opacity: 1});
+
+							if($('#addfolder-done p').hasClass('inactive')) ;
+							else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#FFF"});
+							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, backgroundColor:"rgba(0,0,0,.8)", onComplete: function(){
 								flag = true;
 							}});
 						}
@@ -1972,18 +2004,18 @@ $(document).ready(function(){
 							flag = false;
 							stage++;
 							position++;
+							//Move Apps
+							if(position >= 5){
+								flag = false;
+								TweenLite.to($('.appbutton'),slide_speed,{left: '-=350', force3D: true, ease: Power1.easeInOut, onComplete: function(){
+									//flag = true;
+								}});
+								position = 4;
+								position_move += 1;
+							}
+							$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
+							$('.appbutton[data-number='+(parseInt(stage-1))+']').notSelected();
 						}
-						//Move Apps
-						if(position >= 5){
-							flag = false;
-							TweenLite.to($('.appbutton'),slide_speed,{left: '-=350', force3D: true, ease: Power1.easeInOut, onComplete: function(){
-								//flag = true;
-							}});
-							position = 4;
-							position_move += 1;
-						}
-						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
-						$('.appbutton[data-number='+(parseInt(stage-1))+']').notSelected();
 					}
 					// Settings
 					else if(level == 0){
@@ -2002,7 +2034,10 @@ $(document).ready(function(){
 
 							$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 							    step: function(now,fx) {
-							      $(this).css('-moz-transform','scale('+now/10+')');
+							      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#CCC');
 							    },duration:filter_duration
@@ -2010,7 +2045,10 @@ $(document).ready(function(){
 
 							$('.filter-section li').eq(filter_stage).animate({  textIndent: 12 }, {
 							    step: function(now,fx) {
-							      $(this).css('-moz-transform','scale('+now/10+')');
+							      $(this).css('-webkit-transform','scale('+now/10+')');
+$(this).css('transform','scale('+now/10+')');
+$(this).css('-moz-transform','scale('+now/10+')');
+
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#FFF');
 							    },duration:filter_duration
@@ -2060,7 +2098,7 @@ $(document).ready(function(){
 						if(applistposition != $('.applist').length) {
 							applistposition++;
 							$('.applist[data-number=\"folder-card'+(applistposition-1)+'\"]').notSelected();
-							$('.applist[data-number=\"folder-card'+applistposition+'\"]').isSelected();
+							$('.applist[data-number=\"folder-card'+applistposition+'\"]').isSelected(1.5);
 							
 						}
 					}
@@ -2068,9 +2106,13 @@ $(document).ready(function(){
 						if(addfolder_stage == 1){
 							flag = false;
 							addfolder_stage++;
-							TweenLite.to($('#addfolder-name'), .3, {z: 0.001, force3D: true, border: '6px #FFF solid'});
-							TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '20px'});
-							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, border: '6px #5eabd9 solid', onComplete: function(){
+							TweenLite.to($('#addfolder-name p'), .3, {z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,0)"});
+							TweenLite.to($('#addfolder-name'), .3, {z: 0.001, force3D: true, borderBottomColor: '#fff', borderWidth: '2px'});
+							TweenLite.to($('#keyboard'), .6, {z: 0.001, force3D: true, bottom: '-50%', ease: Power4.easeInOut});
+							TweenLite.to($('#close'), .3, {opacity: 0});
+							if($('#addfolder-done p').hasClass('inactive')) ;
+ 							else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#000"});
+							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, backgroundColor: "rgba(255,255,255,1)", onComplete: function(){
 								flag = true;
 							}});
 						}
