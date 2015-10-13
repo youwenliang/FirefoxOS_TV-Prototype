@@ -568,9 +568,11 @@ $(this).css('-moz-transform','scale('+now/10+')');
 						setting_stage = 1;
 						applistposition = 1;
 						folder_level = 1;
+						appselected = 0;
+						$('#addfolder-number--selected').text(appselected);
 
 						if($('#addfolder-done p').hasClass('inactive')) ;
-						else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#fff"});
+						else TweenLite.to($('#addfolder-done p'), .3, { color: "#fff"});
 						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, rotate: '0.01deg',  backgroundColor:"rgba(0,0,0,.8)", onComplete: function(){
 							flag = true;
 						}});
@@ -1483,7 +1485,7 @@ $(this).css('-moz-transform','scale('+now/10+')');
 						$('.selected').notSelected();
 						//todo: highlight "done"
 						if($('#addfolder-done p').hasClass('inactive')) ;
-						else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#000"});
+						else TweenLite.to($('#addfolder-done p'), .3, { color: "#000"});
 						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, rotate: '0.01deg',  backgroundColor:'rgba(255,255,255,1)', onComplete: function(){
 							flag = true;
 						}});
@@ -1585,7 +1587,7 @@ $(this).css('-moz-transform','scale('+now/10+')');
 						TweenLite.to($('#keyboard'), .6, {z: 0.001, force3D: true, rotate: '0.01deg',  bottom: '-50%', ease: Power4.easeInOut});
 						TweenLite.to($('#close'), .3, {opacity: 0});
 						if($('#addfolder-done p').hasClass('inactive')) ;
-						else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#fff"});
+						else TweenLite.to($('#addfolder-done p'), .3, { color: "#fff"});
 						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, rotate: '0.01deg',  backgroundColor:"rgba(0,0,0,.8)", onComplete: function(){
 							flag = true;
 						}});
@@ -1861,7 +1863,7 @@ $(this).css('-moz-transform','scale('+now/10+')');
 							TweenLite.to($('#close'), .3, {opacity: 1});
 
 							if($('#addfolder-done p').hasClass('inactive')) ;
-							else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#FFF"});
+							else TweenLite.to($('#addfolder-done p'), .3, { color: "#FFF"});
 							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, rotate: '0.01deg',  backgroundColor:"rgba(0,0,0,.8)", onComplete: function(){
 								flag = true;
 							}});
@@ -2125,7 +2127,7 @@ $(this).css('-moz-transform','scale('+now/10+')');
 							TweenLite.to($('#keyboard'), .6, {z: 0.001, force3D: true, rotate: '0.01deg',  bottom: '-50%', ease: Power4.easeInOut});
 							TweenLite.to($('#close'), .3, {opacity: 0});
 							if($('#addfolder-done p').hasClass('inactive')) ;
- 							else TweenLite.to($('#addfolder-done p'), .3, {paddingTop: '24px', color: "#000"});
+ 							else TweenLite.to($('#addfolder-done p'), .3, { color: "#000"});
 							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, force3D: true, rotate: '0.01deg',  backgroundColor: "rgba(255,255,255,1)", onComplete: function(){
 								flag = true;
 							}});

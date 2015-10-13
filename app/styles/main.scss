@@ -463,6 +463,7 @@ body {
 #option{
   width: 100%;
   height: 100%;
+  top: 17%;
   position: absolute;
   overflow: hidden;
   text-align: center;
@@ -472,6 +473,7 @@ body {
 #delete{
   width: 100%;
   height: 100%;
+  top: 17%;
   position: absolute;
   overflow: hidden;
   text-align: center;
@@ -808,7 +810,7 @@ body {
       font-size: 28pt;
       color: #fff;
       display: inline-block;
-      padding: 15px 20px 15px 20px;
+      padding: 5px 15px;
       margin: 15px;
     }
   }
@@ -828,7 +830,7 @@ body {
     p{
       font-size: 18pt;
       font-family: 'fira_sansitalic';
-      padding: 24px;
+      /*padding: 24px;*/
       text-align: center;
       color: #FFF;
 
@@ -913,7 +915,7 @@ body {
   font-size: 40pt;
   position: absolute;
   left: 70px;
-  top: 50px;
+  top: -20px;
   font-family: "fira_sansthin_italic";  
 }
 
