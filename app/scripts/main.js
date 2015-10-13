@@ -79,8 +79,8 @@ $(document).ready(function(){
 	var d = new Date();
 	var h = ("0"+d.getHours()).slice(-2);
 	var m = ("0"+d.getMinutes()).slice(-2);
-	if(parseInt(h) >= 12) $('#ampm').text("PM");
-	else $('#ampm').text("AM");
+	if(parseInt(h) >= 12) $('.ampm').text("PM");
+	else $('.ampm').text("AM");
 
 	if(parseInt(h) > 12) {
 		h = d.getHours() - 12;
@@ -89,7 +89,7 @@ $(document).ready(function(){
 
 	var time = h+":"+m;
 	$('#time').text(time);
-	$('#ampm').css('right', $('#time').width()+300);
+	$('.ampm').css('right', $('#time').width()+280);
 
 	setInterval(function() {
 		var d = new Date();
@@ -104,7 +104,7 @@ $(document).ready(function(){
 
 		var time = h+":"+m;
 		$('#time').text(time);
-		$('#ampm').css('right', $('#time').width()+300);
+		$('.ampm').css('right', $('#time').width()+280);
 	}, 1 * 1000); // 60 * 1000 milsec
 
 	// Animation Loops
@@ -369,8 +369,9 @@ $(document).ready(function(){
 					$t.removeClass('selected');
 					
 				});
-   				TweenLite.to(this, .3, {scaleX: 1.1, scaleY:1.1, scaleZ:1.1, z: 0.001,  backgroundColor: 'rgba(0,0,0,.5)', delay: .3, force3D: true, rotate: '0.01deg',  ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
-					TweenLite.to($('.filter-section'), 1, {width: '820px', force3D: true, rotate: '0.01deg',  ease: Power2.easeOut, onComplete: function(){
+   				TweenLite.to(this, .3, {scaleX: 1, scaleY:1, scaleZ:1, z: 0.001,  backgroundColor: 'rgba(0,0,0,.5)', delay: .3, force3D: true, rotate: '0.01deg',  ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
+   					TweenLite.to($('.filter-section'), .01, {opacity: 1});
+					TweenLite.to($('.filter-section'), 1, {width: '840px', force3D: true, rotate: '0.01deg',  ease: Power2.easeOut, onComplete: function(){
 						flag = true;
 					}});
 					$('.filter-section li').eq(filter_stage-1).delay(500).animate({  textIndent: 12 }, {
@@ -408,7 +409,8 @@ $(this).css('-moz-transform','scale('+now/10+')');
 						      $(this).css('color', '#CCC');
 						    },duration: 200
 						},'linear');
-					TweenLite.to($('.filter-section'), .6, {width: '0px', force3D: true, rotate: '0.01deg',  ease: Power2.easeOut, delay: .2, onComplete: function(){
+					TweenLite.to($('.filter-section'), .6, {width: '90px', force3D: true, rotate: '0.01deg',  ease: Power2.easeOut, delay: .2, onComplete: function(){
+						TweenLite.to($('.filter-section'), .1, {opacity: 0});
 						flag = true;
 						filter_stage = 1;
 					}});
@@ -765,14 +767,14 @@ $(this).css('-moz-transform','scale('+now/10+')');
 						var type = $('.filter-section li').eq(filter_stage-1).attr('data-filter');
 
 						if(type != filter_mode){
-							TweenLite.to($('#filter .filtericon01'), .5, {backgroundPosition: '50% 265%', ease: Power4.easeOut});
+							TweenLite.to($('#filter .filtericon01'), .5, {backgroundPosition: '50% 335%', ease: Power4.easeOut});
 							$('#filter .filtericon02').css('background-image','url(../images/'+type+'.svg)');
 							//$('#filter.navbutton.selected .filtericon02').css('background-image','url(../images/'+type+'-dark.svg) !important');
 							$('.filtericon02').removeClass('important-'+filter_mode);
 							//$('#filter.navbutton.selected .filtericon02').addClass('important-'+type);
 
 							TweenLite.to($('#filter .filtericon02'), .5, {backgroundPosition: '50% 50%', ease: Power4.easeOut, onComplete: function(){
-								$('#filter .filtericon02').css('background-position', '50% -165%');
+								$('#filter .filtericon02').css('background-position', '50% -235%');
 
 								$('#filter .filtericon01').css('background-position', '50% 50%');
 								$('#filter .filtericon01').css('background-image','url(../images/'+type+'.svg)');
