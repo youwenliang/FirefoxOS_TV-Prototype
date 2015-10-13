@@ -82,10 +82,10 @@ $(document).ready(function () {
 	var m = ("0" + d.getMinutes()).slice(-2);
 	if (parseInt(h) >= 12) $('.ampm').text("PM");else $('.ampm').text("AM");
 
-	if (parseInt(h) > 12) {
-		h = d.getHours() - 12;
-		h = ("0" + h).slice(-2);
-	}
+	// if(parseInt(h) > 12) {
+	// 	h = d.getHours() - 12;
+	// 	h = ("0"+h).slice(-2);
+	// } else if(parseInt(h) == 0) h = 12;
 
 	var time = h + ":" + m;
 	$('#time').text(time);
@@ -96,10 +96,10 @@ $(document).ready(function () {
 		var h = ("0" + d.getHours()).slice(-2);
 		var m = ("0" + d.getMinutes()).slice(-2);
 
-		if (parseInt(h) > 12) {
-			h = d.getHours() - 12;
-			h = ("0" + h).slice(-2);
-		}
+		// if(parseInt(h) > 12) {
+		// 	h = d.getHours() - 12;
+		// 	h = ("0"+h).slice(-2);
+		// } else if(parseInt(h) == 0) h = 12;
 
 		var time = h + ":" + m;
 		$('#time').text(time);
@@ -1123,7 +1123,6 @@ $(document).ready(function () {
 							var offset = 0;
 							var removed = [];
 							console.log("done");
-							TweenLite.to($('#addfolder-done p'), .3, { paddingTop: '24px' });
 							$('#addfolder-done p').addClass('pressed').css('color', '#FFF');
 							TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, perspective: 1000, force3D: true, background: '#5eabd9', onComplete: function onComplete() {
 									TweenLite.to($('.transition'), trans_speed, { opacity: 0, perspective: 1000, force3D: true, ease: Power4.easeOut, delay: .3 });
