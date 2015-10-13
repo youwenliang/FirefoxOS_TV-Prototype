@@ -29,12 +29,12 @@
 .temperature {
   display: inline-block;
   position: absolute;
-  
+
   bottom: 3rem;
   left: 10rem; /* sit at the right of weather-image */
   height: 5.6rem;
   line-height: 5.6rem;
-  
+
   font-size: 6rem;
   font-weight: 100;
   font-family: 'fira_sanshair';
@@ -51,10 +51,10 @@
 .weather-text {
   display: inline-block;
   position: absolute;
-  
+
   bottom: 0;
   left: 10rem; /* sit at the right of weather-image */
-  
+
   font-size: 1.8rem;
   font-style: italic;
   font-weight: 300;
@@ -101,7 +101,6 @@
 .ampm{
   position: absolute;
   color: #FFF;
-  font-size: 16pt;
-  top: 45px;
-  right: 500px;
+  font-size: 1.8rem;
+  bottom: 1.25rem;
 }

@@ -11,7 +11,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 }
 
 html {
-  font-size: 10px;
+  font-size: 10px !important;
   /* We have Fira Sans as default font in real device. But it isn't default in
    * browser. That's the main reason this line is here.*/
   font-family: "Fira Sans";
@@ -209,7 +209,7 @@ body {
   bottom: 55px;
   left: 30px;
   z-index: 10;
-  
+
   & .filtericon01{
     position: absolute;
     background-image: url('../images/all.svg');
@@ -239,19 +239,19 @@ body {
   background-image: url('../images/all-dark.svg');
 
   &.important-tv{
-   background-image: url('../images/tv-dark.svg') !important; 
+   background-image: url('../images/tv-dark.svg') !important;
   }
   &.important-app{
-   background-image: url('../images/app-dark.svg') !important; 
+   background-image: url('../images/app-dark.svg') !important;
   }
   &.important-device{
-   background-image: url('../images/device-dark.svg') !important; 
+   background-image: url('../images/device-dark.svg') !important;
   }
   &.important-all{
-   background-image: url('../images/all-dark.svg') !important; 
+   background-image: url('../images/all-dark.svg') !important;
   }
   &.important-web{
-   background-image: url('../images/web-dark.svg') !important; 
+   background-image: url('../images/web-dark.svg') !important;
   }
 }
 
@@ -259,19 +259,19 @@ body {
   background-image: url('../images/tv-dark.svg');
 
   &.important-tv{
-   background-image: url('../images/tv-dark.svg') !important; 
+   background-image: url('../images/tv-dark.svg') !important;
   }
   &.important-app{
-   background-image: url('../images/app-dark.svg') !important; 
+   background-image: url('../images/app-dark.svg') !important;
   }
   &.important-device{
-   background-image: url('../images/device-dark.svg') !important; 
+   background-image: url('../images/device-dark.svg') !important;
   }
   &.important-all{
-   background-image: url('../images/all-dark.svg') !important; 
+   background-image: url('../images/all-dark.svg') !important;
   }
   &.important-web{
-   background-image: url('../images/web-dark.svg') !important; 
+   background-image: url('../images/web-dark.svg') !important;
   }
 }
 
@@ -915,7 +915,7 @@ body {
   position: absolute;
   left: 70px;
   top: -20px;
-  font-family: "fira_sansthin_italic";  
+  font-family: "fira_sansthin_italic";
 }
 
 /*.isSelected{
@@ -936,12 +936,12 @@ body {
 
 @font-face {
     font-family: 'fira_sansitalic';
-    src: url('firasans-italic-webfont.eot');
-    src: url('firasans-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('firasans-italic-webfont.woff2') format('woff2'),
-         url('firasans-italic-webfont.woff') format('woff'),
-         url('firasans-italic-webfont.ttf') format('truetype'),
-         url('firasans-italic-webfont.svg#fira_sansitalic') format('svg');
+    src: url('fonts/firasans-italic-webfont.eot');
+    src: url('fonts/firasans-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/firasans-italic-webfont.woff2') format('woff2'),
+         url('fonts/firasans-italic-webfont.woff') format('woff'),
+         url('fonts/firasans-italic-webfont.ttf') format('truetype'),
+         url('fonts/firasans-italic-webfont.svg#fira_sansitalic') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -949,12 +949,12 @@ body {
 
 @font-face {
     font-family: 'fira_sanshair';
-    src: url('firasans-hair-webfont.eot');
-    src: url('firasans-hair-webfont.eot?#iefix') format('embedded-opentype'),
-         url('firasans-hair-webfont.woff2') format('woff2'),
-         url('firasans-hair-webfont.woff') format('woff'),
-         url('firasans-hair-webfont.ttf') format('truetype'),
-         url('firasans-hair-webfont.svg#fira_sanshair') format('svg');
+    src: url('fonts/firasans-hair-webfont.eot');
+    src: url('fonts/firasans-hair-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/firasans-hair-webfont.woff2') format('woff2'),
+         url('fonts/firasans-hair-webfont.woff') format('woff'),
+         url('fonts/firasans-hair-webfont.ttf') format('truetype'),
+         url('fonts/firasans-hair-webfont.svg#fira_sanshair') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -963,12 +963,12 @@ body {
 
 @font-face {
     font-family: 'fira_sansmedium_italic';
-    src: url('firasans-mediumitalic-webfont.eot');
-    src: url('firasans-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('firasans-mediumitalic-webfont.woff2') format('woff2'),
-         url('firasans-mediumitalic-webfont.woff') format('woff'),
-         url('firasans-mediumitalic-webfont.ttf') format('truetype'),
-         url('firasans-mediumitalic-webfont.svg#fira_sansmedium_italic') format('svg');
+    src: url('fonts/firasans-mediumitalic-webfont.eot');
+    src: url('fonts/firasans-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/firasans-mediumitalic-webfont.woff2') format('woff2'),
+         url('fonts/firasans-mediumitalic-webfont.woff') format('woff'),
+         url('fonts/firasans-mediumitalic-webfont.ttf') format('truetype'),
+         url('fonts/firasans-mediumitalic-webfont.svg#fira_sansmedium_italic') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -979,12 +979,12 @@ body {
 
 @font-face {
     font-family: 'fira_sansthin';
-    src: url('firasans-thin-webfont.eot');
-    src: url('firasans-thin-webfont.eot?#iefix') format('embedded-opentype'),
-         url('firasans-thin-webfont.woff2') format('woff2'),
-         url('firasans-thin-webfont.woff') format('woff'),
-         url('firasans-thin-webfont.ttf') format('truetype'),
-         url('firasans-thin-webfont.svg#fira_sansthin') format('svg');
+    src: url('fonts/firasans-thin-webfont.eot');
+    src: url('fonts/firasans-thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/firasans-thin-webfont.woff2') format('woff2'),
+         url('fonts/firasans-thin-webfont.woff') format('woff'),
+         url('fonts/firasans-thin-webfont.ttf') format('truetype'),
+         url('fonts/firasans-thin-webfont.svg#fira_sansthin') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -995,12 +995,12 @@ body {
 
 @font-face {
     font-family: 'fira_sansthin_italic';
-    src: url('firasans-thinitalic-webfont.eot');
-    src: url('firasans-thinitalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('firasans-thinitalic-webfont.woff2') format('woff2'),
-         url('firasans-thinitalic-webfont.woff') format('woff'),
-         url('firasans-thinitalic-webfont.ttf') format('truetype'),
-         url('firasans-thinitalic-webfont.svg#fira_sansthin_italic') format('svg');
+    src: url('fonts/firasans-thinitalic-webfont.eot');
+    src: url('fonts/firasans-thinitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/firasans-thinitalic-webfont.woff2') format('woff2'),
+         url('fonts/firasans-thinitalic-webfont.woff') format('woff'),
+         url('fonts/firasans-thinitalic-webfont.ttf') format('truetype'),
+         url('fonts/firasans-thinitalic-webfont.svg#fira_sansthin_italic') format('svg');
     font-weight: normal;
     font-style: normal;
 

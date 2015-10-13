@@ -7,16 +7,18 @@
 
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" type="text/css" href="styles/home.css">
-    <link rel="stylesheet" type="text/css" href="styles/info-bar.css">
+
+    <!--Building Blocks -->
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/info-bar.css">
     <!-- endbuild -->
+
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 
     <!-- Greensock -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TimelineLite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/plugins/CSSPlugin.min.js"></script>
 
@@ -39,9 +41,9 @@
           <div class="navbutton" id="setting"></div>
           <div class="navbutton" id="folder"></div>
         </div>
-        
+
         <section id="information-bar" class="information-bar">
-          <p class="ampm"></p><div id="clock-info" class="clock-info"><span id="time" class="time"></span></div>
+          <div id="clock-info" class="clock-info"><span class="ampm"></span><span id="time" class="time"></span></div>
           <div id="weather-info" class="weather-info">
             <!-- use span here because we will change to icon font -->
             <span id="weather-image" class="weather-image"></span>
@@ -95,7 +97,7 @@
         <div id="addfolder-name"><p>My Folder</p><span id="close"></span></div>
         <div id="addfolder-done"><p class="inactive">Done</p></div>
         <p id="addfolder-number">
-          Select the card into folder. 
+          Select the card into folder.
           <span id="addfolder-number--selected">0</span><span id="addfolder-number--total">/9</span>
           selected.</p>
       </div>
@@ -124,12 +126,13 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/evt/index.js"></script>
-    <script src="bower_components/smart-button/script.js"></script>
-    <script src="bower_components/menu-group/script.js"></script>
-    <script src="bower_components/smart-bubbles/script.js"></script>
-    <script src="bower_components/smart-dialog/script.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/evt/index.js"></script>
+    <script src="/bower_components/smart-button/script.js"></script>
+    <script src="/bower_components/menu-group/script.js"></script>
+    <script src="/bower_components/smart-bubbles/script.js"></script>
+    <script src="/bower_components/smart-dialog/script.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
