@@ -163,7 +163,7 @@ $(document).ready(function () {
 				time += 80;
 			});
 			if (position_move > 0) {
-				TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350 * position_move, ease: Power1.easeInOut, force3D: true, onComplete: function onComplete() {
+				TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350 * position_move, ease: Power1.easeInOut, force3D: true, rotate: '0.01deg', onComplete: function onComplete() {
 						$backup = $('#app > .appbutton').clone();
 						TweenLite.to($backup, .001, { opacity: 0, y: 0, z: 0.001, ease: Power4.easeInOut, force3D: true });
 					} });
@@ -234,7 +234,7 @@ $(document).ready(function () {
 	//     $(this).data("prevType", e.type);
 	// });
 
-	TweenLite.to($('#app01'), scale_speed, { scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, z: 0.001, zIndex: 10, border: '6px #FFF solid', ease: Power1.easeInOut, delay: count * 160 / 1000, force3D: true, onComplete: function onComplete() {
+	TweenLite.to($('#app01'), scale_speed, { scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, z: 0.001, zIndex: 10, border: '6px #FFF solid', ease: Power1.easeInOut, delay: count * 160 / 1000, force3D: true, rotate: '0.01deg', onComplete: function onComplete() {
 			// Finish Loading
 			flag = true;
 
@@ -276,11 +276,11 @@ $(document).ready(function () {
 
 			if (this.hasClass('cardselected')) {
 				//this.css({border: '4px #FFF solid'});
-				TweenLite.to(this, scale_speed, { border: '6px #FFF solid', borderTop: '6px #FFF solid', borderBottom: '6px #FFF solid', borderLeft: '6px #FFF solid', borderRight: '6px #FFF solid', scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, z: 0.001, zIndex: 10, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete: function onComplete() {
+				TweenLite.to(this, scale_speed, { rotate: '0.01deg', border: '6px #FFF solid', borderTop: '6px #FFF solid', borderBottom: '6px #FFF solid', borderLeft: '6px #FFF solid', borderRight: '6px #FFF solid', scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, z: 0.001, zIndex: 10, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, perspective: 1000, onComplete: function onComplete() {
 						flag = true;
 					} });
 			} else {
-				TweenLite.to(this, scale_speed, { scaleX: s, scaleY: s, scaleZ: s, z: 0.001, zIndex: 10, border: '6px #FFF solid', ease: Power4.easeInOut, force3D: true, perspective: 1000, onComplete: function onComplete() {
+				TweenLite.to(this, scale_speed, { rotate: '0.01deg', scaleX: s, scaleY: s, scaleZ: s, z: 0.001, zIndex: 10, border: '6px #FFF solid', ease: Power4.easeInOut, force3D: true, rotate: '0.01deg', perspective: 1000, onComplete: function onComplete() {
 						flag = true;
 					} });
 			}
@@ -302,7 +302,7 @@ $(document).ready(function () {
 				// 	filteringwave1 = false;
 				// 	console.log("else1");
 				// 	wave[appid*2-2] = new TimelineMax({repeat:-1});
-				// 	wave[appid*2-2].fromTo($('.wave0'+appid+'a'), 3, {x:'0px'},{x:'-600px', force3D: true, ease: Linear.easeNone});
+				// 	wave[appid*2-2].fromTo($('.wave0'+appid+'a'), 3, {x:'0px'},{x:'-600px', force3D: true, rotate: '0.01deg',  ease: Linear.easeNone});
 				// }
 				// if(wave[appid*2-1]!=null && !filteringwave2) {
 				// 	wave[appid*2-1].resume();
@@ -312,7 +312,7 @@ $(document).ready(function () {
 				// 	filteringwave2 = false;
 				// 	console.log("else2");
 				// 	wave[appid*2-1] = new TimelineMax({repeat:-1});
-				// 	wave[appid*2-1].fromTo($('.wave0'+appid+'b'), 3.1, {x:'-100px'},{x:'-700px', force3D: true, ease: Linear.easeNone});
+				// 	wave[appid*2-1].fromTo($('.wave0'+appid+'b'), 3.1, {x:'-100px'},{x:'-700px', force3D: true, rotate: '0.01deg',  ease: Linear.easeNone});
 				// }
 			}
 			return this;
@@ -327,11 +327,11 @@ $(document).ready(function () {
 			}
 			if (this.hasClass('cardselected')) {
 				//this.css({border: '0px #FFF solid'});
-				TweenLite.to(this, scale_speed, { border: '0px #FFF solid', borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid', scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, zIndex: 1, force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+				TweenLite.to(this, scale_speed, { rotate: '0.01deg', border: '0px #FFF solid', borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid', scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, zIndex: 1, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 						//flag = true;
 					} });
 			} else {
-					TweenLite.to(this, scale_speed, { scaleX: s, scaleY: s, scaleZ: s, z: 0.001, zIndex: 0, border: '0px #989898 solid', ease: Power4.easeInOut, force3D: true, onComplete: function onComplete() {
+					TweenLite.to(this, scale_speed, { rotate: '0.01deg', scaleX: s, scaleY: s, scaleZ: s, z: 0.001, zIndex: 0, border: '0px #989898 solid', ease: Power4.easeInOut, force3D: true, rotate: '0.01deg', onComplete: function onComplete() {
 							//flag = true;
 						} });
 				}
@@ -347,12 +347,12 @@ $(document).ready(function () {
 				$t.addClass('selected');
 				$('#filter.navbutton.selected .filtericon01').addClass('important-' + filter_mode);
 
-				TweenLite.to(this, .3, { scaleX: 1.1, scaleY: 1.1, scaleZ: 1.1, z: 0.001, backgroundColor: 'rgba(255,255,255,1)', force3D: true, ease: Power2.easeInOut, perspective: 1000, onComplete: function onComplete() {} });
+				TweenLite.to(this, .3, { scaleX: 1.1, scaleY: 1.1, scaleZ: 1.1, z: 0.001, backgroundColor: 'rgba(255,255,255,1)', force3D: true, rotate: '0.01deg', ease: Power2.easeInOut, perspective: 1000, onComplete: function onComplete() {} });
 				TweenMax.delayedCall(.3, function () {
 					$t.removeClass('selected');
 				});
-				TweenLite.to(this, .3, { scaleX: 1.1, scaleY: 1.1, scaleZ: 1.1, z: 0.001, backgroundColor: 'rgba(0,0,0,.5)', delay: .3, force3D: true, ease: Power2.easeInOut, perspective: 1000, onComplete: function onComplete() {
-						TweenLite.to($('.filter-section'), 1, { width: '820px', force3D: true, ease: Power2.easeOut, onComplete: function onComplete() {
+				TweenLite.to(this, .3, { scaleX: 1.1, scaleY: 1.1, scaleZ: 1.1, z: 0.001, backgroundColor: 'rgba(0,0,0,.5)', delay: .3, force3D: true, rotate: '0.01deg', ease: Power2.easeInOut, perspective: 1000, onComplete: function onComplete() {
+						TweenLite.to($('.filter-section'), 1, { width: '820px', force3D: true, rotate: '0.01deg', ease: Power2.easeOut, onComplete: function onComplete() {
 								flag = true;
 							} });
 						$('.filter-section li').eq(filter_stage - 1).delay(500).animate({ textIndent: 12 }, {
@@ -366,7 +366,7 @@ $(document).ready(function () {
 						}, 'linear');
 					} });
 			} else {
-				TweenLite.to(this, .3, { scaleX: 1.1, scaleY: 1.1, scaleZ: 1.1, z: 0.001, backgroundColor: 'rgba(255,255,255,1)', force3D: true, ease: Power2.easeInOut, perspective: 1000, onComplete: function onComplete() {
+				TweenLite.to(this, .3, { scaleX: 1.1, scaleY: 1.1, scaleZ: 1.1, z: 0.001, backgroundColor: 'rgba(255,255,255,1)', force3D: true, rotate: '0.01deg', ease: Power2.easeInOut, perspective: 1000, onComplete: function onComplete() {
 						flag = true;
 					} });
 				this.addClass('selected');
@@ -378,7 +378,7 @@ $(document).ready(function () {
 	(function ($) {
 		$.fn.notSelected_setting = function () {
 			var $t = this;
-			TweenLite.to($t, .2, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, zIndex: 1, backgroundColor: 'rgba(0,0,0,.5)', force3D: true, ease: Power2.easeInOut, onComplete: function onComplete() {
+			TweenLite.to($t, .2, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, zIndex: 1, backgroundColor: 'rgba(0,0,0,.5)', force3D: true, rotate: '0.01deg', ease: Power2.easeInOut, onComplete: function onComplete() {
 					if ($t.attr('id') == "filter") {
 						$('.filter-section li').eq(filter_stage - 1).animate({ textIndent: 10 }, {
 							step: function step(now, fx) {
@@ -389,7 +389,7 @@ $(document).ready(function () {
 								$(this).css('color', '#CCC');
 							}, duration: 200
 						}, 'linear');
-						TweenLite.to($('.filter-section'), .6, { width: '0px', force3D: true, ease: Power2.easeOut, delay: .2, onComplete: function onComplete() {
+						TweenLite.to($('.filter-section'), .6, { width: '0px', force3D: true, rotate: '0.01deg', ease: Power2.easeOut, delay: .2, onComplete: function onComplete() {
 								flag = true;
 								filter_stage = 1;
 							} });
@@ -402,7 +402,7 @@ $(document).ready(function () {
 	(function ($) {
 		$.fn.isSelected_option = function (t) {
 			t = t || .4;
-			TweenLite.to(this, t, { backgroundColor: 'rgb(255,255,255)', scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete: function onComplete() {
+			TweenLite.to(this, t, { backgroundColor: 'rgb(255,255,255)', scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, perspective: 1000, onComplete: function onComplete() {
 					flag = true;
 				} });
 			this.addClass('selectedOption');
@@ -413,7 +413,7 @@ $(document).ready(function () {
 	(function ($) {
 		$.fn.notSelected_option = function (t) {
 			t = t || .4;
-			TweenLite.to(this, t, { backgroundColor: 'rgb(96,96,96)', scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+			TweenLite.to(this, t, { backgroundColor: 'rgb(96,96,96)', scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 					//flag = true;
 				} });
 			this.removeClass('selectedOption');
@@ -456,7 +456,7 @@ $(document).ready(function () {
 			// 	if(wave[i]!=null) wave[i].pause();
 			// }
 
-			TweenLite.to(this, trans_speed, { opacity: .8, force3D: true, ease: Power4.easeOut });
+			TweenLite.to(this, trans_speed, { opacity: .8, force3D: true, rotate: '0.01deg', ease: Power4.easeOut });
 
 			if (m == "optionmode") {
 				var $current = $('.appbutton[data-number=' + parseInt(stage) + ']');
@@ -477,7 +477,7 @@ $(document).ready(function () {
 				$opt.each(function (index, element) {
 					TweenMax.delayedCall(time / 1000, function () {
 
-						TweenLite.to(element, .8, { opacity: 1, y: '-=100', z: 0.001, force3D: true, ease: Power4.easeInOut, delay: .4 });
+						TweenLite.to(element, .8, { opacity: 1, y: '-=100', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, delay: .4 });
 					});
 					time += 200;
 				});
@@ -488,7 +488,7 @@ $(document).ready(function () {
 				});
 			}
 			if (m == "addfolder") {
-				TweenLite.to($('#addfolder'), .5, { opacity: 1, zIndex: 3000, delay: .5, force3D: true, onComplete: function onComplete() {
+				TweenLite.to($('#addfolder'), .5, { opacity: 1, zIndex: 3000, delay: .5, force3D: true, rotate: '0.01deg', onComplete: function onComplete() {
 						$(".applist").first().isSelected(1.5);
 						applistposition = 1;
 					} });
@@ -499,18 +499,18 @@ $(document).ready(function () {
 	(function ($) {
 		$.fn.transition_closing = function (m) {
 			if (m == "optionmode" || m == "rearrange") {
-				TweenLite.to($('#option .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, force3D: true, ease: Power4.easeInOut });
+				TweenLite.to($('#option .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 			} else if (m == "dummymode") {
 				TweenLite.to($('#dummy'), .4, { opacity: 0, zIndex: -1, ease: Power4.easeIn });
 			} else if (m == "addfolder") {
-				TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,0)" });
-				TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, borderBottomColor: '#fff', borderWidth: '2px' });
-				TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, bottom: '-50%', ease: Power4.easeInOut });
+				TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "rgba(0,0,0,0)" });
+				TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', borderBottomColor: '#fff', borderWidth: '2px' });
+				TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, rotate: '0.01deg', bottom: '-50%', ease: Power4.easeInOut });
 				TweenLite.to($('#close'), .3, { opacity: 0 });
 				TweenLite.to($('#addfolder'), .5, { opacity: 0 });
 			}
 
-			TweenLite.to(this, trans_speed - 1, { opacity: 0, force3D: true, ease: Power4.easeIn, onComplete: function onComplete() {
+			TweenLite.to(this, trans_speed - 1, { opacity: 0, force3D: true, rotate: '0.01deg', ease: Power4.easeIn, onComplete: function onComplete() {
 					if (m == "optionmode") {
 						TweenLite.to($('#option'), .001, { zIndex: -1, ease: Power4.easeInOut });
 						if (option_stage == 3 && $('#remove').hasClass('pressed')) ;else {
@@ -540,7 +540,7 @@ $(document).ready(function () {
 						folder_level = 1;
 
 						if ($('#addfolder-done p').hasClass('inactive')) ;else TweenLite.to($('#addfolder-done p'), .3, { paddingTop: '24px', color: "#fff" });
-						TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,.8)", onComplete: function onComplete() {
+						TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "rgba(0,0,0,.8)", onComplete: function onComplete() {
 								flag = true;
 							} });
 						addfolder_stage = 2;
@@ -626,11 +626,11 @@ $(document).ready(function () {
 							TweenLite.to($('.transition'), .01, { backgroundColor: colors[$currentID] });
 							TweenLite.to($('#dummy'), .01, { backgroundColor: colors[$currentID] });
 
-							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed / 2, { scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, ease: Power1.easeInOut });
-							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed, { scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, z: 0.001, force3D: true, ease: Power1.easeInOut, delay: .08 });
+							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed / 2, { scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut });
+							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed, { scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, z: 0.001, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut, delay: .08 });
 
-							TweenLite.to($('.transition'), trans_speed, { opacity: 1, force3D: true, ease: Power4.easeOut, delay: .3 });
-							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, zIndex: 1, border: '0px #989898 solid', ease: Power1.easeIn, delay: 1.5 });
+							TweenLite.to($('.transition'), trans_speed, { opacity: 1, force3D: true, rotate: '0.01deg', ease: Power4.easeOut, delay: .3 });
+							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', zIndex: 1, border: '0px #989898 solid', ease: Power1.easeIn, delay: 1.5 });
 							$('#dummy p').text($('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-content'));
 							TweenLite.to($('#dummy'), 1, { opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: .2, onComplete: function onComplete() {
 									flag = true;
@@ -815,20 +815,20 @@ $(document).ready(function () {
 						TweenLite.to($('#black'), .5, { opacity: .4, zIndex: 2000, ease: Power1.easeInOut, delay: .5 });
 
 						var $app = $('.appbutton');
-						TweenLite.to($app, .8, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, ease: Power4.easeInOut, force3D: true, delay: .5 });
+						TweenLite.to($app, .8, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, ease: Power4.easeInOut, force3D: true, rotate: '0.01deg', delay: .5 });
 
 						if (position_move > 0) {
-							TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350 * position_move, force3D: true, ease: Power1.easeInOut, delay: .5 });
+							TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350 * position_move, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut, delay: .5 });
 						}
 
 						TweenMax.delayedCall(.5, function () {
 							if (count <= 10) {
 								for (var i = 0; i < count; i++) {
-									TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 150 * count - (count - 1) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, ease: Power4.easeInOut });
+									TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 150 * count - (count - 1) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 								}
 							} else {
 								for (var i = 0; i < count; i++) {
-									TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, ease: Power4.easeInOut });
+									TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 								}
 							};
 							TweenMax.delayedCall(.7, function () {
@@ -868,7 +868,7 @@ $(document).ready(function () {
 							TweenLite.to($('#rename'), .2, { backgroundColor: pressed, scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true });
 							TweenMax.delayedCall(timeout / 1000, function () {
 								$("#rename").removeClass('pressed');
-								TweenLite.to($('#rename'), .2, { backgroundColor: '#FFF', scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, onComplete: function onComplete() {
+								TweenLite.to($('#rename'), .2, { backgroundColor: '#FFF', scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, rotate: '0.01deg', onComplete: function onComplete() {
 										flag = true;
 									} });
 							});
@@ -883,7 +883,7 @@ $(document).ready(function () {
 								if ($current.attr('data-type') == "folder") {
 									mode = "delete";
 									console.log("Folder");
-									TweenLite.to($('#option .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+									TweenLite.to($('#option .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 											TweenLite.to($('#option'), .001, { zIndex: -1, ease: Power4.easeInOut });
 											TweenLite.to($('#delete .message'), .4, { opacity: 1, ease: Power4.easeInOut });
 											TweenLite.to($('#delete'), .001, { zIndex: 2000, ease: Power4.easeInOut });
@@ -892,7 +892,7 @@ $(document).ready(function () {
 											var time = 0;
 											$opt.each(function (index, element) {
 												TweenMax.delayedCall(time / 1000, function () {
-													TweenLite.to(element, .8, { opacity: 1, y: '-=100', z: 0.001, force3D: true, ease: Power4.easeInOut });
+													TweenLite.to(element, .8, { opacity: 1, y: '-=100', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 												});
 												time += 200;
 											});
@@ -907,7 +907,7 @@ $(document).ready(function () {
 								} else {
 									$('.transition').transition_closing("optionmode");
 									var $current = $('.appbutton[data-number=' + parseInt(stage) + ']');
-									TweenLite.to($current, .4, { y: '+=200', z: 0.001, opacity: 0, force3D: true, ease: Power2.easeInOut, delay: 1, onComplete: function onComplete() {
+									TweenLite.to($current, .4, { y: '+=200', z: 0.001, opacity: 0, force3D: true, rotate: '0.01deg', ease: Power2.easeInOut, delay: 1, onComplete: function onComplete() {
 
 											for (var i = parseInt(stage) + 1; i <= count; i++) {
 												var $follow = $('.appbutton[data-number=' + parseInt(i) + ']');
@@ -915,14 +915,14 @@ $(document).ready(function () {
 
 												if (count <= 5) {
 													if (stage == 1) {
-														TweenLite.to($follow, .4, { marginLeft: '-=162px', force3D: true, ease: Power4.easeInOut });
+														TweenLite.to($follow, .4, { marginLeft: '-=162px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 														//TweenLite.to($('.next, .prev'), .4, {left:'-=162px', ease: Power4.easeInOut});
 													} else {
-															TweenLite.to($follow, .4, { marginLeft: '-=478px', force3D: true, ease: Power4.easeInOut });
+															TweenLite.to($follow, .4, { marginLeft: '-=478px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 															//TweenLite.to($('.next, .prev'), .4, {left:'-=478px', ease: Power4.easeInOut});
 														}
 												} else {
-														TweenLite.to($follow, .4, { marginLeft: '-=320px', force3D: true, ease: Power4.easeInOut, delay: .2 });
+														TweenLite.to($follow, .4, { marginLeft: '-=320px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, delay: .2 });
 														//TweenLite.to($('.next, .prev'), .4, {left:'-=320px', ease: Power4.easeInOut});
 													}
 											}
@@ -934,15 +934,15 @@ $(document).ready(function () {
 													if (position_move == 0) {
 														position--;
 														if (count <= 5) {
-															TweenLite.to($('.appbutton'), slide_speed, { marginLeft: '+=' + 158, force3D: true, ease: Power1.easeInOut });
+															TweenLite.to($('.appbutton'), slide_speed, { marginLeft: '+=' + 158, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut });
 														}
 													} else if (position_move == count - 5) {
 														position_move--;
-														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, ease: Power1.easeInOut });
+														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut });
 													} else {
 														if (position != 0) position--;else {
 															position_move--;
-															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, ease: Power1.easeInOut });
+															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut });
 														}
 													}
 												} else {
@@ -994,18 +994,18 @@ $(document).ready(function () {
 					TweenMax.delayedCall(.3, function () {
 						if (count <= 5) {
 							for (var i = 0; i < count; i++) {
-								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * count) / 2 + i * (300 + 100 / count) + 10, force3D: true, ease: Power4.easeInOut });
+								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * count) / 2 + i * (300 + 100 / count) + 10, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 							}
 						} else {
 							for (var i = 0; i < count; i++) {
-								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * 5 - 100) / 2 + i * (300 + 100 / 5) + 10, force3D: true, ease: Power4.easeInOut });
+								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * 5 - 100) / 2 + i * (300 + 100 / 5) + 10, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 							}
 						};
 
 						if (position > 4) position = 4;else position = stage - 1;
 
 						if (stage > 5) {
-							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 350 * (stage - 5), force3D: true, ease: Power1.easeInOut, delay: .5 });
+							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 350 * (stage - 5), force3D: true, rotate: '0.01deg', ease: Power1.easeInOut, delay: .5 });
 							position = 4;
 							position_move = stage - 5;
 						} else position_move = 0;
@@ -1025,7 +1025,7 @@ $(document).ready(function () {
 					}
 
 					TweenLite.to($('#delete .message'), .8, { opacity: 0, ease: Power4.easeInOut });
-					TweenLite.to($('#delete .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+					TweenLite.to($('#delete .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 							option_stage = 1;
 
 							if (delete_stage == 1) {
@@ -1056,7 +1056,7 @@ $(document).ready(function () {
 									$('#app').append($home);
 									count += $child.length;
 
-									TweenLite.to($current, .4, { y: '+=200', z: 0.001, opacity: 0, force3D: true, ease: Power2.easeInOut, onComplete: function onComplete() {
+									TweenLite.to($current, .4, { y: '+=200', z: 0.001, opacity: 0, force3D: true, rotate: '0.01deg', ease: Power2.easeInOut, onComplete: function onComplete() {
 
 											for (var i = parseInt(stage) + 1; i <= count; i++) {
 												var $follow = $('.appbutton[data-number=' + parseInt(i) + ']');
@@ -1064,14 +1064,14 @@ $(document).ready(function () {
 												console.log($follow);
 												if (count <= 5) {
 													if (stage == 1) {
-														TweenLite.to($follow, .4, { marginLeft: '-=162px', force3D: true, ease: Power4.easeInOut });
+														TweenLite.to($follow, .4, { marginLeft: '-=162px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 														//TweenLite.to($('.next, .prev'), .4, {left:'-=162px', ease: Power4.easeInOut});
 													} else {
-															TweenLite.to($follow, .4, { marginLeft: '-=478px', force3D: true, ease: Power4.easeInOut });
+															TweenLite.to($follow, .4, { marginLeft: '-=478px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 															//TweenLite.to($('.next, .prev'), .4, {left:'-=478px', ease: Power4.easeInOut});
 														}
 												} else {
-														TweenLite.to($follow, .4, { marginLeft: '-=320px', force3D: true, ease: Power4.easeInOut, delay: .2 });
+														TweenLite.to($follow, .4, { marginLeft: '-=320px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, delay: .2 });
 														//TweenLite.to($('.next, .prev'), .4, {left:'-=320px', ease: Power4.easeInOut});
 													}
 											}
@@ -1083,15 +1083,15 @@ $(document).ready(function () {
 													if (position_move == 0) {
 														position--;
 														if (count <= 5) {
-															TweenLite.to($('.appbutton'), slide_speed, { marginLeft: '+=' + 158, force3D: true, ease: Power1.easeInOut });
+															TweenLite.to($('.appbutton'), slide_speed, { marginLeft: '+=' + 158, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut });
 														}
 													} else if (position_move == count - 5) {
 														position_move--;
-														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, ease: Power1.easeInOut });
+														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut });
 													} else {
 														if (position != 0) position--;else {
 															position_move--;
-															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, ease: Power1.easeInOut });
+															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, force3D: true, rotate: '0.01deg', ease: Power1.easeInOut });
 														}
 													}
 												} else {
@@ -1110,7 +1110,7 @@ $(document).ready(function () {
 							}
 							$('.selectedOption').notSelected_option();
 						} });
-					TweenLite.to($('.transition'), trans_speed - 1, { opacity: 0, force3D: true, ease: Power4.easeIn, delay: .2, onComplete: function onComplete() {
+					TweenLite.to($('.transition'), trans_speed - 1, { opacity: 0, force3D: true, rotate: '0.01deg', ease: Power4.easeIn, delay: .2, onComplete: function onComplete() {
 							TweenLite.to($('#delete'), .001, { zIndex: -1, ease: Power4.easeInOut });
 						} });
 				} else if (mode == "addfolder") {
@@ -1122,8 +1122,8 @@ $(document).ready(function () {
 							console.log("done");
 							TweenLite.to($('#addfolder-done p'), .3, { paddingTop: '24px' });
 							$('#addfolder-done p').addClass('pressed').css('color', '#FFF');
-							TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, background: '#5eabd9', onComplete: function onComplete() {
-									TweenLite.to($('.transition'), trans_speed, { opacity: 0, force3D: true, ease: Power4.easeOut, delay: .3 });
+							TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', background: '#5eabd9', onComplete: function onComplete() {
+									TweenLite.to($('.transition'), trans_speed, { opacity: 0, force3D: true, rotate: '0.01deg', ease: Power4.easeOut, delay: .3 });
 
 									//Step 1
 									var folder_card = [];
@@ -1158,7 +1158,7 @@ $(document).ready(function () {
 												//console.log(i);
 												$follow.attr('data-number', parseInt(i) + 1);
 												//console.log($follow);
-												TweenLite.to($follow, .4, { marginLeft: '+=320px', force3D: true, ease: Power4.easeInOut, delay: .2 });
+												TweenLite.to($follow, .4, { marginLeft: '+=320px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, delay: .2 });
 											}
 											stage++;
 											stage -= offset;
@@ -1171,7 +1171,7 @@ $(document).ready(function () {
 											arrow_prev = 239 + (8 - count) * 0.5 * (150 + 10);
 
 											if (position >= 5) {
-												TweenLite.to($('.appbutton'), slide_speed, { left: '-=350', force3D: true, ease: Power1.easeInOut, onComplete: function onComplete() {
+												TweenLite.to($('.appbutton'), slide_speed, { left: '-=350', force3D: true, rotate: '0.01deg', ease: Power1.easeInOut, onComplete: function onComplete() {
 														//flag = true;
 													} });
 												position = 4;
@@ -1197,7 +1197,7 @@ $(document).ready(function () {
 											$current.prepend('<span class="icon_folder"></span>');
 
 											TweenMax.delayedCall(.5, function () {
-												TweenLite.fromTo($current, .4, { scale: 0, opacity: 0, force3D: true }, { scale: 1.6, force3D: true, border: '6px #FFF solid', opacity: 1, y: '-=100', onComplete: function onComplete() {
+												TweenLite.fromTo($current, .4, { scale: 0, opacity: 0, force3D: true }, { scale: 1.6, force3D: true, rotate: '0.01deg', border: '6px #FFF solid', opacity: 1, y: '-=100', onComplete: function onComplete() {
 														$current.isSelected();
 													} });
 											});
@@ -1263,7 +1263,7 @@ $(document).ready(function () {
 
 					var down = 0;
 					if (rearrangelevel == 1) down = 0;else down = 1;
-					TweenLite.to($clone, .001, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, zIndex: 0, force3D: true, x: '+=5px', y: '-=' + 235 * down + 'px', ease: Power4.easeInOut });
+					TweenLite.to($clone, .001, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, zIndex: 0, force3D: true, rotate: '0.01deg', x: '+=5px', y: '-=' + 235 * down + 'px', ease: Power4.easeInOut });
 					$parent.append($clone);
 
 					$clone.css({ 'border': '0px' });
@@ -1271,7 +1271,7 @@ $(document).ready(function () {
 					/***********************/
 					$('#' + $current.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 						var k = $(this).attr('data-number').split('-')[1] - 1;
-						TweenLite.to(this, .001, { width: notSelected_cardsize, height: notSelected_cardsize, 'margin-left': 92 + 130 * k, 'left': 0, bottom: '-250px', force3D: true, delay: .3 });
+						TweenLite.to(this, .001, { width: notSelected_cardsize, height: notSelected_cardsize, 'margin-left': 92 + 130 * k, 'left': 0, bottom: '-250px', force3D: true, rotate: '0.01deg', delay: .3 });
 					});
 					/***********************/
 
@@ -1281,7 +1281,7 @@ $(document).ready(function () {
 							} });
 					} else {
 						TweenLite.to($select, speed3, { opacity: 0, ease: Power4.easeInOut, onComplete: function onComplete() {
-								TweenLite.to($('.next, .prev'), .3, { y: '-=230px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+								TweenLite.to($('.next, .prev'), .3, { y: '-=230px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 								$select.remove();
 							} });
 					}
@@ -1294,23 +1294,23 @@ $(document).ready(function () {
 					TweenLite.to($('#black'), .5, { opacity: 0, zIndex: -1, ease: Power1.easeInOut, delay: .3 });
 
 					var $app = $('.appbutton');
-					TweenLite.to($app, .8, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, ease: Power4.easeInOut, delay: .3 });
+					TweenLite.to($app, .8, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, delay: .3 });
 
 					TweenMax.delayedCall(.3, function () {
 						if (count <= 5) {
 							for (var i = 0; i < count; i++) {
-								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * count) / 2 + i * (300 + 100 / count) - 40, force3D: true, ease: Power4.easeInOut });
+								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * count) / 2 + i * (300 + 100 / count) - 40, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 							}
 						} else {
 							for (var i = 0; i < count; i++) {
-								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * 5 - 100) / 2 + i * (300 + 100 / 5) - 40, force3D: true, ease: Power4.easeInOut });
+								TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), .8, { marginLeft: (1920 - 300 * 5 - 100) / 2 + i * (300 + 100 / 5) - 40, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 							}
 						};
 
 						if (position > 4) position = 4;else position = stage - 1;
 
 						if (stage > 5) {
-							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 350 * (stage - 5), force3D: true, ease: Power1.easeInOut, delay: .5 });
+							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 350 * (stage - 5), force3D: true, rotate: '0.01deg', ease: Power1.easeInOut, delay: .5 });
 							position = 4;
 							position_move = stage - 5;
 						} else position_move = 0;
@@ -1360,17 +1360,17 @@ $(document).ready(function () {
 								$('.cardselected').removeClass('cardselected');
 
 								/******************************************************************************/ //backagain***
-								TweenLite.to($('#app > .appbutton'), .3, { y: '+=185px', force3D: true, ease: Power2.easeInOut });
+								TweenLite.to($('#app > .appbutton'), .3, { y: '+=185px', force3D: true, rotate: '0.01deg', ease: Power2.easeInOut });
 								$('#' + $getapp.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 									var m = (parseInt($(this).css('margin-left').split('p')[0]) + 230) / 2.5 + 'px';
 									TweenLite.to($('#' + $(this).attr('id') + ' > p'), .3, { fontSize: '12pt', bottom: '20px', ease: Power2.easeInOut });
 									$(this).removeClass('focus');
-									TweenLite.to(this, .3, { width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px', z: 0.001, force3D: true, marginLeft: m, ease: Power2.easeInOut });
+									TweenLite.to(this, .3, { width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px', z: 0.001, force3D: true, rotate: '0.01deg', marginLeft: m, ease: Power2.easeInOut });
 								});
 								//TweenLite.to($('#app'), .3, {scale:1, transformOrigin: '50% 50%'});
 
 								//$getapp.isSelected();
-								TweenLite.to($getapp, .3, { scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, zIndex: 10, z: 0.001, force3D: true, border: '6px #FFF solid', ease: Power4.easeInOut, onComplete: function onComplete() {
+								TweenLite.to($getapp, .3, { scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, zIndex: 10, z: 0.001, force3D: true, rotate: '0.01deg', border: '6px #FFF solid', ease: Power4.easeInOut, onComplete: function onComplete() {
 										flag = true;
 									} });
 								level = 1;
@@ -1383,7 +1383,7 @@ $(document).ready(function () {
 							$('.selected').notSelected();
 							//todo: highlight "done"
 							if ($('#addfolder-done p').hasClass('inactive')) ;else TweenLite.to($('#addfolder-done p'), .3, { paddingTop: '24px', color: "#000" });
-							TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, backgroundColor: 'rgba(255,255,255,1)', onComplete: function onComplete() {
+							TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: 'rgba(255,255,255,1)', onComplete: function onComplete() {
 									flag = true;
 								} });
 						}
@@ -1392,12 +1392,12 @@ $(document).ready(function () {
 							flag = false;
 							rearrangelevel = 1;
 							var $current = $('.selected[data-number=' + stage + ']');
-							TweenLite.to($current, speed3, { backgroundColor: 'rgba(204,204,204,0.5)', y: '-=235px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+							TweenLite.to($current, speed3, { backgroundColor: 'rgba(204,204,204,0.5)', y: '-=235px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 							var $follow = $('.appbutton[data-number=' + stage + '] > .appbutton-folder');
-							TweenLite.to($follow, speed3, { marginLeft: '-=160px', force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+							TweenLite.to($follow, speed3, { marginLeft: '-=160px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 									flag = true;
 								} });
-							TweenLite.to($('.next, .prev'), .3, { y: '-=235px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+							TweenLite.to($('.next, .prev'), .3, { y: '-=235px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 						}
 					}
 				}
@@ -1418,19 +1418,19 @@ $(document).ready(function () {
 										var $child = $('.appbutton-folder[data-number="' + stage + '-' + '1"]');
 
 										/******************************************************************************/ //again***
-										TweenLite.to($('#app > .appbutton'), .3, { y: '-=185px', force3D: true, ease: Power2.easeInOut });
+										TweenLite.to($('#app > .appbutton'), .3, { y: '-=185px', force3D: true, rotate: '0.01deg', ease: Power2.easeInOut });
 										$('#' + $getapp.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 											TweenLite.to($('#' + $(this).attr('id') + ' > p'), .3, { fontSize: '19pt', bottom: '50px', ease: Power2.easeInOut });
 											var m = $(this).css('margin-left').split('p')[0] * 2.5 - 230 + 'px';
 											$(this).addClass('focus');
-											TweenLite.to(this, .3, { width: origin_cardsize, height: origin_cardsize, bottom: '-450px', z: 0.001, force3D: true, marginLeft: m, ease: Power2.easeInOut });
+											TweenLite.to(this, .3, { width: origin_cardsize, height: origin_cardsize, bottom: '-450px', z: 0.001, force3D: true, rotate: '0.01deg', marginLeft: m, ease: Power2.easeInOut });
 										});
 										//TweenLite.to($('#app'), .3, {scale:.8, transformOrigin: '50% 50%'});
 										$child.addClass('cardselected');
 										$child.isSelected();
 
 										//$getapp.isSelected(1);
-										TweenLite.to($getapp, .3, { scaleX: 1, scaleY: 1, scaleZ: 1, zIndex: 1, z: 0.001, force3D: true, border: '0px #FFF solid', ease: Power4.easeInOut });
+										TweenLite.to($getapp, .3, { scaleX: 1, scaleY: 1, scaleZ: 1, zIndex: 1, z: 0.001, force3D: true, rotate: '0.01deg', border: '0px #FFF solid', ease: Power4.easeInOut });
 										level = 3;
 									} else {
 										$getapp.notSelected();
@@ -1453,11 +1453,11 @@ $(document).ready(function () {
 										//console.log($('#'+$getapp.attr('id')+' > .appbutton-folder'));
 
 										/******************************************************************************/ //backagain***
-										TweenLite.to($('#app > .appbutton'), .3, { y: '+=185px', force3D: true, ease: Power2.easeInOut });
+										TweenLite.to($('#app > .appbutton'), .3, { y: '+=185px', force3D: true, rotate: '0.01deg', ease: Power2.easeInOut });
 										$('#' + $getapp.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 											TweenLite.to($('#' + $(this).attr('id') + ' > p'), .3, { fontSize: '12pt', bottom: '20px', ease: Power2.easeInOut });
 											var m = (parseInt($(this).css('margin-left').split('p')[0]) + 230) / 2.5 + 'px';
-											TweenLite.to(this, .3, { width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px', z: 0.001, force3D: true, marginLeft: m, ease: Power2.easeInOut });
+											TweenLite.to(this, .3, { width: notSelected_cardsize, height: notSelected_cardsize, bottom: '-250px', z: 0.001, force3D: true, rotate: '0.01deg', marginLeft: m, ease: Power2.easeInOut });
 											$(this).removeClass('focus');
 										});
 										//TweenLite.to($('#app'), .3, {scale:1, transformOrigin: '50% 50%'});
@@ -1474,12 +1474,12 @@ $(document).ready(function () {
 									folder_level++;
 									addfolder_stage = 2;
 									$('.applist[data-number=\"folder-card' + applistposition + '\"]').isSelected(1.5);
-									TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,0)" });
-									TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, borderBottomColor: '#fff', borderWidth: '2px' });
-									TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, bottom: '-50%', ease: Power4.easeInOut });
+									TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "rgba(0,0,0,0)" });
+									TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', borderBottomColor: '#fff', borderWidth: '2px' });
+									TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, rotate: '0.01deg', bottom: '-50%', ease: Power4.easeInOut });
 									TweenLite.to($('#close'), .3, { opacity: 0 });
 									if ($('#addfolder-done p').hasClass('inactive')) ;else TweenLite.to($('#addfolder-done p'), .3, { paddingTop: '24px', color: "#fff" });
-									TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,.8)", onComplete: function onComplete() {
+									TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "rgba(0,0,0,.8)", onComplete: function onComplete() {
 											flag = true;
 										} });
 								}
@@ -1488,12 +1488,12 @@ $(document).ready(function () {
 									flag = false;
 									rearrangelevel = 2;
 									var $current = $('.selected[data-number=' + stage + ']');
-									TweenLite.to($current, speed3, { backgroundColor: 'rgba(204,204,204,1)', y: '+=235px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+									TweenLite.to($current, speed3, { backgroundColor: 'rgba(204,204,204,1)', y: '+=235px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 									var $follow = $('.appbutton[data-number=' + stage + '] > .appbutton-folder');
-									TweenLite.to($follow, speed3, { marginLeft: '+=160px', force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+									TweenLite.to($follow, speed3, { marginLeft: '+=160px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 											flag = true;
 										} });
-									TweenLite.to($('.next, .prev'), .3, { y: '+=235px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+									TweenLite.to($('.next, .prev'), .3, { y: '+=235px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 
 									$('.prev').css('display', 'none');
 								}
@@ -1527,23 +1527,23 @@ $(document).ready(function () {
 											}
 											if (count <= 10) {
 												for (var i = 0; i < count - 1; i++) {
-													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * (count - 1) - (count - 2) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, ease: Power4.easeInOut });
+													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * (count - 1) - (count - 2) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 												}
 											} else {
 												for (var i = 0; i < count - 1; i++) {
-													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, ease: Power4.easeInOut });
+													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 												}
 											};
 											$('#' + $next.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 												var k = $(this).attr('data-number').split('-')[1] - 1;
 												TweenLite.to(this, speed3, { opacity: 1, width: "180px", height: "180px", marginLeft: '-=' + (30 - 58 * k) + 'px', bottom: '-300px', force3D: true });
 											});
-											TweenLite.to($current, speed3, { scaleX: .65, scaleY: .65, scaleZ: .65, z: 0.001, force3D: true, x: '-=5px', z: 0.001, backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut });
-											TweenLite.to($next, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, zIndex: 2999, ease: Power4.easeInOut, onComplete: function onComplete() {
+											TweenLite.to($current, speed3, { scaleX: .65, scaleY: .65, scaleZ: .65, z: 0.001, force3D: true, rotate: '0.01deg', x: '-=5px', z: 0.001, backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut });
+											TweenLite.to($next, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, rotate: '0.01deg', zIndex: 2999, ease: Power4.easeInOut, onComplete: function onComplete() {
 													flag = true;
 												} });
 											//$next.isSelected(1.2);
-											TweenLite.to($('.next, .prev'), speed3, { x: '-=80px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+											TweenLite.to($('.next, .prev'), speed3, { x: '-=80px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 										} else {
 											stage--;
 											var m1 = $current.css('margin-left');
@@ -1558,7 +1558,7 @@ $(document).ready(function () {
 												} });
 
 											currentposition--;
-											TweenLite.to($('.next, .prev'), .2, { x: '-=160px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+											TweenLite.to($('.next, .prev'), .2, { x: '-=160px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 										}
 									}
 									if (currentposition == count) {
@@ -1587,11 +1587,11 @@ $(document).ready(function () {
 
 										if (count <= 10) {
 											for (var i = 0; i < count; i++) {
-												TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * count - (count - 1) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, ease: Power4.easeInOut });
+												TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * count - (count - 1) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 											}
 										} else {
 											for (var i = 0; i < count - 1; i++) {
-												TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, ease: Power4.easeInOut });
+												TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 											}
 										};
 										var nextstage = parseInt(stage) + 1;
@@ -1602,12 +1602,12 @@ $(document).ready(function () {
 											TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '+=' + (30 - 58 * index) + 'px', bottom: '-80px', force3D: true });
 										});
 
-										TweenLite.to($current, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, x: 0, backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut });
-										TweenLite.to($next, speed3, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, force3D: true, zIndex: 1, ease: Power4.easeInOut, onComplete: function onComplete() {
+										TweenLite.to($current, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, rotate: '0.01deg', x: 0, backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut });
+										TweenLite.to($next, speed3, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, force3D: true, rotate: '0.01deg', zIndex: 1, ease: Power4.easeInOut, onComplete: function onComplete() {
 												flag = true;
 											} });
 										//$next.isSelected(1.2);
-										TweenLite.to($('.next, .prev'), speed3, { x: '-=80px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+										TweenLite.to($('.next, .prev'), speed3, { x: '-=80px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 									} else if (rearrangelevel == 2) {
 
 										var $child = $('.appbutton[data-number=' + stage + '][data-type="folder"] > .appbutton-folder');
@@ -1620,12 +1620,12 @@ $(document).ready(function () {
 											var m1 = $current.css('margin-left');
 											var m2 = $('.appbutton-folder[data-number="' + stage + '-' + (rearrange_stage - 1) + '"]').css('margin-left');
 
-											TweenLite.to($current, speed3, { marginLeft: '-=160px', force3D: true, ease: Power4.easeInOut });
-											TweenLite.to($('.appbutton-folder[data-number="' + stage + '-' + (rearrange_stage - 1) + '"]'), speed3, { marginLeft: '+=160px', force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+											TweenLite.to($current, speed3, { marginLeft: '-=160px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
+											TweenLite.to($('.appbutton-folder[data-number="' + stage + '-' + (rearrange_stage - 1) + '"]'), speed3, { marginLeft: '+=160px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 													flag = true;
 												} });
 											rearrange_stage--;
-											TweenLite.to($('.next, .prev'), .3, { x: '-=160px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+											TweenLite.to($('.next, .prev'), .3, { x: '-=160px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 											if (rearrange_stage == rearrange_count) {
 												$('.next').css('display', 'none');
 											} else if (rearrange_stage == 1) {
@@ -1646,7 +1646,7 @@ $(document).ready(function () {
 											//Move Apps
 											if (position < 0) {
 												flag = false;
-												TweenLite.to($('.appbutton'), slide_speed, { left: '+=350', force3D: true, ease: Power1.easeInOut, onComplete: function onComplete() {
+												TweenLite.to($('.appbutton'), slide_speed, { left: '+=350', force3D: true, rotate: '0.01deg', ease: Power1.easeInOut, onComplete: function onComplete() {
 														//flag = true;
 													} });
 												position = 0;
@@ -1714,7 +1714,7 @@ $(document).ready(function () {
 								} else if (mode == "delete") {
 									if (delete_stage > 1) {
 										flag = false;
-										TweenLite.to($(deletelist[delete_stage - 1]), .4, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, ease: Power4.easeInOut, perspective: 1000 });
+										TweenLite.to($(deletelist[delete_stage - 1]), .4, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, perspective: 1000 });
 										$(deletelist[delete_stage - 2]).isSelected_option();
 										delete_stage--;
 									}
@@ -1729,13 +1729,13 @@ $(document).ready(function () {
 										if (addfolder_stage == 2) {
 											addfolder_stage--;
 											flag = false;
-											TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, backgroundColor: "#4B788C" });
-											TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, borderBottomColor: '#5eabd9', borderWidth: '4px' });
-											TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, bottom: '0', ease: Power4.easeInOut });
+											TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "#4B788C" });
+											TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', borderBottomColor: '#5eabd9', borderWidth: '4px' });
+											TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, rotate: '0.01deg', bottom: '0', ease: Power4.easeInOut });
 											TweenLite.to($('#close'), .3, { opacity: 1 });
 
 											if ($('#addfolder-done p').hasClass('inactive')) ;else TweenLite.to($('#addfolder-done p'), .3, { paddingTop: '24px', color: "#FFF" });
-											TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,.8)", onComplete: function onComplete() {
+											TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "rgba(0,0,0,.8)", onComplete: function onComplete() {
 													flag = true;
 												} });
 										}
@@ -1768,11 +1768,11 @@ $(document).ready(function () {
 												}
 												if (count <= 10) {
 													for (var i = 0; i < count - 1; i++) {
-														TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * (count - 1) - (count - 2) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, ease: Power4.easeInOut });
+														TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * (count - 1) - (count - 2) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 													}
 												} else {
 													for (var i = 0; i < count - 1; i++) {
-														TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, ease: Power4.easeInOut });
+														TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 													}
 												};
 												$('#' + $next.attr('id') + ' > .appbutton-folder').each(function (index, element) {
@@ -1780,8 +1780,8 @@ $(document).ready(function () {
 													TweenLite.to(this, speed3, { opacity: 1, width: '180px', height: '180px', marginLeft: '-=' + (30 - 58 * k) + 'px', bottom: '-300px', force3D: true });
 												});
 
-												TweenLite.to($current, speed3, { scaleX: .65, scaleY: .65, scaleZ: .65, z: 0.001, force3D: true, x: '-=5px', backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut });
-												TweenLite.to($next, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, zIndex: 2999, ease: Power4.easeInOut, onComplete: function onComplete() {
+												TweenLite.to($current, speed3, { scaleX: .65, scaleY: .65, scaleZ: .65, z: 0.001, force3D: true, rotate: '0.01deg', x: '-=5px', backgroundColor: 'rgba(204,204,204,0.5)', ease: Power4.easeInOut });
+												TweenLite.to($next, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, rotate: '0.01deg', zIndex: 2999, ease: Power4.easeInOut, onComplete: function onComplete() {
 														flag = true;
 													} });
 												//$next.isSelected(1.2);
@@ -1799,7 +1799,7 @@ $(document).ready(function () {
 													} });
 
 												currentposition++;
-												TweenLite.to($('.next, .prev'), .2, { x: '+=160px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+												TweenLite.to($('.next, .prev'), .2, { x: '+=160px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 											}
 										}
 										if (currentposition == count) {
@@ -1830,11 +1830,11 @@ $(document).ready(function () {
 
 											if (count <= 10) {
 												for (var i = 0; i < count; i++) {
-													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * count - (count - 1) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, ease: Power4.easeInOut });
+													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * count - (count - 1) * 10) / 2 + i * (150 + 10) - 150 / 2, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 												}
 											} else {
 												for (var i = 0; i < count - 1; i++) {
-													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, ease: Power4.easeInOut });
+													TweenLite.to($('.appbutton[data-number=' + (i + 1) + ']'), speed3, { marginLeft: (1920 - 150 * 10 - 90) / 2 + i * (150 + 90 / 5), force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 												}
 											};
 											var nextstage = parseInt(stage) - 1;
@@ -1844,13 +1844,13 @@ $(document).ready(function () {
 											$('#' + $next.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 												TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '+=' + (30 - 58 * index) + 'px', bottom: '-80px' });
 											});
-											TweenLite.to($current, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, x: 0, backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut });
-											TweenLite.to($next, speed3, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, force3D: true, zIndex: 1, ease: Power4.easeInOut, onComplete: function onComplete() {
+											TweenLite.to($current, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, force3D: true, rotate: '0.01deg', x: 0, backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut });
+											TweenLite.to($next, speed3, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, force3D: true, rotate: '0.01deg', zIndex: 1, ease: Power4.easeInOut, onComplete: function onComplete() {
 													flag = true;
 												} });
 											//$next.isSelected(1.2);
 											currentposition++;
-											TweenLite.to($('.next, .prev'), speed3, { x: '+=80px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+											TweenLite.to($('.next, .prev'), speed3, { x: '+=80px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 										} else if (rearrangelevel == 2) {
 
 											var $child = $('.appbutton[data-number=' + stage + '][data-type="folder"] > .appbutton-folder');
@@ -1862,12 +1862,12 @@ $(document).ready(function () {
 												var m1 = $current.css('margin-left');
 												var m2 = $('.appbutton-folder[data-number="' + stage + '-' + rearrange_stage + '"]').css('margin-left');
 
-												TweenLite.to($current, speed3, { marginLeft: '+=160px', force3D: true, ease: Power4.easeInOut });
-												TweenLite.to($('.appbutton-folder[data-number="' + stage + '-' + rearrange_stage + '"]'), speed3, { marginLeft: '-=160px', force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
+												TweenLite.to($current, speed3, { marginLeft: '+=160px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
+												TweenLite.to($('.appbutton-folder[data-number="' + stage + '-' + rearrange_stage + '"]'), speed3, { marginLeft: '-=160px', force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, onComplete: function onComplete() {
 														flag = true;
 													} });
 												rearrange_stage++;
-												TweenLite.to($('.next, .prev'), .3, { x: '+=160px', z: 0.001, force3D: true, ease: Power4.easeInOut });
+												TweenLite.to($('.next, .prev'), .3, { x: '+=160px', z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut });
 												if (rearrange_stage == rearrange_count) {
 													$('.next').css('display', 'none');
 												} else if (rearrange_stage == 1) {
@@ -1888,7 +1888,7 @@ $(document).ready(function () {
 												//Move Apps
 												if (position >= 5) {
 													flag = false;
-													TweenLite.to($('.appbutton'), slide_speed, { left: '-=350', force3D: true, ease: Power1.easeInOut, onComplete: function onComplete() {
+													TweenLite.to($('.appbutton'), slide_speed, { left: '-=350', force3D: true, rotate: '0.01deg', ease: Power1.easeInOut, onComplete: function onComplete() {
 															//flag = true;
 														} });
 													position = 4;
@@ -1958,7 +1958,7 @@ $(document).ready(function () {
 										if (delete_stage < 2) {
 											flag = false;
 											$(deletelist[delete_stage - 1]).notSelected_option();
-											TweenLite.to($(deletelist[delete_stage]), speed3, { scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete: function onComplete() {
+											TweenLite.to($(deletelist[delete_stage]), speed3, { scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, force3D: true, rotate: '0.01deg', ease: Power4.easeInOut, perspective: 1000, onComplete: function onComplete() {
 													flag = true;
 												} });
 											delete_stage++;
@@ -1974,12 +1974,12 @@ $(document).ready(function () {
 											if (addfolder_stage == 1) {
 												flag = false;
 												addfolder_stage++;
-												TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, backgroundColor: "rgba(0,0,0,0)" });
-												TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, borderBottomColor: '#fff', borderWidth: '2px' });
-												TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, bottom: '-50%', ease: Power4.easeInOut });
+												TweenLite.to($('#addfolder-name p'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "rgba(0,0,0,0)" });
+												TweenLite.to($('#addfolder-name'), .3, { z: 0.001, force3D: true, rotate: '0.01deg', borderBottomColor: '#fff', borderWidth: '2px' });
+												TweenLite.to($('#keyboard'), .6, { z: 0.001, force3D: true, rotate: '0.01deg', bottom: '-50%', ease: Power4.easeInOut });
 												TweenLite.to($('#close'), .3, { opacity: 0 });
 												if ($('#addfolder-done p').hasClass('inactive')) ;else TweenLite.to($('#addfolder-done p'), .3, { paddingTop: '24px', color: "#000" });
-												TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, backgroundColor: "rgba(255,255,255,1)", onComplete: function onComplete() {
+												TweenLite.to($('#addfolder-done'), .3, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, force3D: true, rotate: '0.01deg', backgroundColor: "rgba(255,255,255,1)", onComplete: function onComplete() {
 														flag = true;
 													} });
 											}
