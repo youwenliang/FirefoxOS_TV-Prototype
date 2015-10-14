@@ -154,6 +154,7 @@ $(document).ready(function () {
 							TweenLite.to($('#dummy'), 1, { opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: .2, onComplete: function onComplete() {
 									flag = true;
 									mode = "dummymode";
+									playWave(false);
 								} });
 						} else flag = true;
 					} else if (level == 3) {
@@ -839,8 +840,10 @@ $(document).ready(function () {
 			}
 		}
 		/********************************************************************************************************************************
-  	KEY EVENTS - ESC
-  	********************************************************************************************************************************/
+  
+  		KEY EVENTS - ESC
+  
+  ********************************************************************************************************************************/
 
 		else if (e.keyCode == 8 || e.keyCode == 27) {
 				if (flag) {
@@ -852,8 +855,10 @@ $(document).ready(function () {
 			}
 
 			/********************************************************************************************************************************
-   	KEY EVENTS - UP
-   	********************************************************************************************************************************/
+   
+   		KEY EVENTS - UP
+   
+   ********************************************************************************************************************************/
 
 			else if (e.keyCode == 38) {
 					console.log("up");
@@ -925,8 +930,10 @@ $(document).ready(function () {
 				}
 
 				/********************************************************************************************************************************
-    	KEY EVENTS - DOWN
-    	********************************************************************************************************************************/
+    
+    		KEY EVENTS - DOWN
+    
+    ********************************************************************************************************************************/
 				else if (e.keyCode == 40) {
 						console.log("down");
 
@@ -1026,8 +1033,10 @@ $(document).ready(function () {
 					}
 
 					/********************************************************************************************************************************
-     	KEY EVENTS - LEFT
-     	********************************************************************************************************************************/
+     
+     		KEY EVENTS - LEFT
+     
+     ********************************************************************************************************************************/
 					else if (e.keyCode == 37) {
 							console.log("left");
 
@@ -1929,6 +1938,7 @@ function playWave(b) {
 		TweenLite.to(this, trans_speed - 1, { opacity: 0, perspective: 1000, force3D: true, ease: Power4.easeIn, onComplete: function onComplete() {
 				if (m == "optionmode") {
 					TweenLite.to($('#option'), .001, { zIndex: -1, ease: Power4.easeInOut });
+					mode = "navigation";
 					if (option_stage == 3 && $('#remove').hasClass('pressed')) ;else {
 						$('.appbutton[data-number=' + parseInt(stage) + ']').isSelected();
 						if ($('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-type') == "folder") {
@@ -1936,20 +1946,22 @@ function playWave(b) {
 						}
 						$('.selectedOption').notSelected_option();
 					}
-					mode = "navigation";
 					option_stage = 1;
 				} else if (m == "dummymode") {
-					$('.appbutton[data-number=' + parseInt(stage) + ']').isSelected();
 					mode = "navigation";
+					TweenMax.delayedCall(.2, function () {
+						$('.appbutton[data-number=' + parseInt(stage) + ']').isSelected();
+					});
 				} else if (m == "rearrange") {
 					mode = "rearrange";
 					option_stage = 1;
 				} else if (m == "addfolder") {
-					$('.appbutton[data-number=' + parseInt(stage) + ']').isSelected();
+
 					if ($('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-type') == "folder") {
 						TweenLite.to($('#' + $('.appbutton[data-number=' + parseInt(stage) + ']').attr('id') + ' > .appbutton-folder'), speed3, { opacity: 1 });
 					}
 					mode = "navigation";
+					$('.appbutton[data-number=' + parseInt(stage) + ']').isSelected();
 					level = 1;
 					setting_stage = 1;
 					applistposition = 1;

@@ -346,6 +346,8 @@ body {
   /*@include transition-all("margin-left", 300ms);*/
   opacity: 0;
   overflow: hidden;
+  z-index: 0;
+  
 
   & p{
     color: #FFF;
@@ -1005,3 +1007,32 @@ body {
     font-style: normal;
 
 }
+
+/* animations */
+/*.selected {
+  -moz-transform: translate3d(0,-100px,0) scale3d(1.6,1.6,1.6) !important;
+  -moz-transition-duration: 300ms !important;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  z-index: 10;
+  border: 6px #FFF solid;
+}
+
+.focus {
+  opacity: 1;
+  
+  -moz-transform: translate3d(0,-100px,0);
+  -moz-transition-duration: 800ms;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+
+  -webkit-transform: translate3d(0,-100px,0);
+  -webkit-transition-duration: 800ms;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+
+  transform: translate3d(0,-100px,0);
+  transition-duration: 800ms;
+  backface-visibility: hidden;
+  perspective: 1000;
+}*/
