@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../app/scripts/bootstrap.js"],"names":[],"mappings":"AAAA,YAAY,CAAC;;AAEb,MAAM,CAAC,IAAI,GAAG,IAAI,IAAI,EAAE,CAAC;AACzB,MAAM,CAAC,IAAI,CAAC,IAAI,EAAE,CAAC","file":"bootstrap.js","sourcesContent":["'use strict';\n/* global Home */\nwindow.home = new Home();\nwindow.home.init();\n"]}

@@ -1,605 +1,80 @@
+
+/**************** Parameters ****************/
+
+var mode = "navigation";
+var position = 0;
+var position_move = 0;
+
+//navigation mode
+var stage = 1;
+var level = 1;
+
+//addfolder mode
+var folder_level = 1;
+var total_level = 2;
+var applistposition = 1;
+var appselected = 0;
+var apptotal = 0;
+var addfolder_stage = 2;
+
+var $backup;
+var filter_mode = "all";
+var filtering = false;
+var waveReset = [true,true,true,true];
+var waveReseting = true;
+
+//rearrange mode
+var currentposition = 0;
+var filter_stage = 1;
+
+var rearrangelevel = 1;
+var rearrange_stage = 1;
+var rearrange_nav_stage = 1;
+
+//delete mode
+var deletelist = ["#cancel", "#confirm"];
+var delete_stage = 1;
+
+var colors = {"app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04":"#56575c", "app05":"rgb(204,204,204)", "app06":"rgb(204,204,204)", "app07":"rgb(204,204,204)", "app08":"rgb(204,204,204)"};
+var pressed = "#5eabd9";
+
+var setting = ["#search", "#setting", "#folder"];
+var setting_stage = 1;
+
+var optionlist = ["#rearrange", "#rename", "#remove"];
+var option_stage = 1;
+
+//All checking flag
+var flag = false;
+
+// Speeds
+var scale_speed = .3;
+var slide_speed = .3;
+var trans_speed = 1.8;
+var speed3 = .4;
+var filter_duration = 300;
+
+var count = $('#app > .appbutton').length;
+var total = count;
+
+var arrow_next = 524 + (8-count)*0.5*(150+10);
+var arrow_prev = 239 + (8-count)*0.5*(150+10);
+
+var isSelected_cardsize = '300px';
+var notSelected_cardsize = '120px';
+var origin_cardsize = '300px';
+var cardoffset = 92;
+var cardoffset1 = 30;
+
+// Animation Loops
+var tl1 = new TimelineMax({repeat:-1});
+var tl2 = new TimelineMax({repeat:-1});
+var wave = new TimelineMax({repeat:-1});
+
 $(document).ready(function(){
-
-	//Web page fade in
-	//TweenLite.to($('body'), .3, {opacity: 1, ease: Power1.easeInOut});
-
-	/**************** Parameters ****************/
-
-	var position = 0;
-	var position_move = 0;
-
-	var mode = "navigation";
-
-	//navigation mode
-	var stage = 1;
-	var level = 1;
-
-	//addfolder mode
-	var folder_level = 1;
-	var total_level = 2;
-	var applistposition = 1;
-	var appselected = 0;
-	var apptotal = 0;
-
-	var $backup;
-	var filter_mode = "all";
-	var filtering = false;
-
-	//rearrange mode
-	var currentposition = 0;
-	var filter_stage = 1;
-
-	var setting = ["#search", "#setting", "#folder"];
-	var setting_stage = 1;
-
-	var optionlist = ["#rearrange", "#rename", "#remove"];
-	var option_stage = 1;
-
-	var rearrangelevel = 1;
-	var rearrange_stage = 1;
-	var rearrange_nav_stage = 1;
-
-	var addfolder_stage = 2;
-
-	var deletelist = ["#cancel", "#confirm"];
-	var delete_stage = 1;
-
-	var colors = {"app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04":"#56575c", "app05":"rgb(204,204,204)", "app06":"rgb(204,204,204)", "app07":"rgb(204,204,204)", "app08":"rgb(204,204,204)"};
-	var pressed = "#5eabd9";
-
-	//All checking flag
-	var flag = false;
-
-	var checkcolorchange = true;
-	var checkrearrange = true;
-	var starttv = false;
-
-	// Speeds
-	var scale_speed = .3;
-	var slide_speed = .3;
-	var trans_speed = 1.8;
-	var speed3 = .4;
-	var filter_duration = 300;
-
-	var count = $('#app > .appbutton').length;
-  	var total = count;
-
-	var arrow_next = 524 + (8-count)*0.5*(150+10);
-	var arrow_prev = 239 + (8-count)*0.5*(150+10);
-
-	var isSelected_cardsize = '300px';
-	var notSelected_cardsize = '120px';
-	var origin_cardsize = '300px';
-	var cardoffset = 92;
-	var cardoffset1 = 30;
-
-
-	/**************** Display Time ****************/
-
-	var d = new Date();
-	var h = ("0"+d.getHours()).slice(-2);
-	var m = ("0"+d.getMinutes()).slice(-2);
-	if(parseInt(h) >= 12) $('.ampm').text("PM");
-	else $('.ampm').text("AM");
-
-	// if(parseInt(h) > 12) {
-	// 	h = d.getHours() - 12;
-	// 	h = ("0"+h).slice(-2);
-	// } else if(parseInt(h) == 0) h = 12;
-
-	var time = h+":"+m;
-	$('#time').text(time);
-	$('.ampm').css('right', $('#time').width()+20);
-
-	setInterval(function() {
-		var d = new Date();
-		var h = ("0"+d.getHours()).slice(-2);
-		var m = ("0"+d.getMinutes()).slice(-2);
-
-
-		// if(parseInt(h) > 12) {
-		// 	h = d.getHours() - 12;
-		// 	h = ("0"+h).slice(-2);
-		// } else if(parseInt(h) == 0) h = 12;
-
-		var time = h+":"+m;
-		$('#time').text(time);
-		$('.ampm').css('right', $('#time').width()+20);
-	}, 1 * 1000); // 60 * 1000 milsec
-
-	// Animation Loops
-	var tl1 = new TimelineMax({repeat:-1});
-	var tl2 = new TimelineMax({repeat:-1});
-	var wave = new TimelineMax({repeat:-1});
-
-	/**************** Assign Color to Apps + Align Apps & Folder Cards ****************/
-
-	for (var i = 0; i < Object.keys(colors).length; i++){
-		var $getapp = $('.appbutton[data-number='+(i+1)+']');
-		$getapp.css('background-color',colors['app0'+(i+1)]);
-	}
-
-	if(count <= 5) {
-		for ( var i = 0; i < count; i++ ) {
-			var $getapp = $('.appbutton[data-number='+(i+1)+']');
-	    $getapp.css('margin-left',(1920-300*count)/2+i*(300+100/count)-40);
-		}
-	} else {
-		for ( var i = 0; i < count; i++ ) {
-	    var $getapp = $('.appbutton[data-number='+(i+1)+']');
-			$getapp.css('margin-left',(1920-300*5)/2+i*(300+100/5)-40);
-		}
-	}
-
-	// $('.appbutton-folder').each(function(){
-	// 	var appfolderid = $(this).attr('data-number').split('-')[1];
-	// 	$(this).css('margin-left', 92*(appfolderid-1) + '!important');
-	// });
-
-
-	/**************** Initial Settings ****************/
-
-	(function( $ ){
-		$.fn.opening = function(){
-			var time = 100;
-			$(this).each(function(index, element){
-				TweenMax.delayedCall(time/1000,
-					function(){
-					//console.log(element);
-						TweenLite.to(element, .8, {opacity:1, y:'-=100', z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
-					});
-				time+=140;
-			});
-			if(level == 2) flag = true;
-			return this;
-		};
-	})( jQuery );
-
-	(function( $ ){
-		$.fn.closing = function(){
-			var time = 100;
-			$(this).each(function(index, element){
-				TweenMax.delayedCall(time/1000,
-				function(){
-					//console.log(element);
-					TweenLite.to(element, .8, {opacity:0, y:'+=100', z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
-				});
-				time+=80;
-			});
-			if(position_move>0){
-				TweenLite.to($('.appbutton'),slide_speed,{left: '+='+(350*position_move), ease: Power1.easeInOut, perspective: 1000, force3D: true,   onComplete: function(){
-					$backup = $('#app > .appbutton').clone();
-					TweenLite.to($backup, .001, {opacity:0, y:0, z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
-				}});
-				position = 0;
-				position_move = 0;
-				stage = 1;
-			}
-			else if(filter_mode == "all"){
-				$backup = $('#app > .appbutton').clone();
-				TweenLite.to($backup, .001, {opacity:0, y:0, z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
-			}
-			return this;
-		};
-	})( jQuery );
-
-	//1. Transition In
-	var $app = $('.appbutton');
-	$app.opening();
-
-	var margink = 0;
-	$('.filter-section li').each(function(index, element){
-
-		$(this).css('margin-left', parseInt(index+1)*50 + parseInt(margink));
-		margink += $(this).width();
-
-	})
-
-	//2. Highlight App01
-	// $(window).on("blur focus", function(e) {
-	//     var prevType = $(this).data("prevType");
-	// 		var $getapp = $('.appbutton[data-number='+stage+']');
-	//     if (prevType != e.type) {   //  reduce double fire issues
-	//         switch (e.type) {
-	//             case "blur":
-	//             	if(option){
-	//                 	$(optionlist[option_stage-1]).notSelected_option();
-	//                 }
-	//                 else if(mode == "navigation"){
-	// 	            	if(level == 1){
-	// 	                	$getapp.notSelected();
-	// 	                }
-	// 	                else if(level == 0){
-	// 	                	$(setting[setting_stage-1]).notSelected_setting();
-	// 	                }
-	// 	                else {
-	// 	                	$('#filter').notSelected_setting();
-	// 	                }
-	// 	            }
-	//
-	//                 break;
-	//             case "focus":
-	//                 // do work
-	//                 if(option){
-	//                 	$(optionlist[option_stage-1]).isSelected_option();
-	//                 }
-	//                 else if(mode == "navigation"){
-	// 	                if(level == 1){
-	// 	                	$getapp.isSelected();
-	// 	                }
-	// 	                else if(level == 0){
-	// 	                	$(setting[setting_stage-1]).isSelected_setting();
-	// 	                }
-	// 	                else {
-	// 	                	$('#filter').isSelected_setting();
-	// 	                }
-	// 	            }
-	//                 break;
-	//         }
-	//     }
-	//     $(this).data("prevType", e.type);
-	// });
-	TweenLite.to($('#app01'), scale_speed, {scaleX:1.6, scaleY:1.6, scaleZ: 1.6, z:0.001, zIndex: 10, border: '6px #FFF solid', ease: Power4.easeInOut, delay: (count*160)/1000, perspective: 1000, force3D: true, perspective: 1000,   onComplete: function(){
-		// Finish Loading
-		flag = true;
-
-		// Animate Waves
-		// wave[0] = new TimelineMax({repeat:-1});
-		// wave[1] = new TimelineMax({repeat:-1});
-
-		// wave[0].fromTo($('.wave01a'), 3, {x:'0px'},{x:'-600px', ease: Linear.easeNone});
-		// wave[1].fromTo($('.wave01b'), 3.1, {x:'-100px'},{x:'-700px', ease: Linear.easeNone});
-
-		$('#app01').addClass('selected');
-	}});
-
-	//3. Set Colors
-	var $currentID = ($('.appbutton[data-number='+stage+']').attr('id'));
-	TweenLite.to($('.transition'), .001, {backgroundColor: colors[$currentID]});
-	TweenLite.to($('#dummy'), .001, {backgroundColor: colors[$currentID]});
-
-
-	/********************************************************************************************************************************
-
-		FUNCTIONS
-
-	********************************************************************************************************************************/
-
-	/*todolist:
-
-	1. group all isSelected && notSeleted + combine with pressed & release?
-	2. modularize transition opening + closing without anything else x 2
-	3. modularize option circles showing in & leaving out x 2
-	4. make sure every timing is the same for the same type of transition. (cleanup all the settimeout)
-	5. function for add folder page showing & leaving //addfoldermode
-	6. function for delete confirm page showing & leaving  //deletemode
-	7. function for entering & leaving rearrange mode
-	8. cleanup all the checking situations
-
-	think about what would be useful to continue using this prototype & modifiying this prototype
-	(think of all the interaction as components, what can be used again and again?)
-
-	*/
-
-	(function( $ ){
-   		$.fn.isSelected = function(s) {
-   			s = s || 1.6;
-
-    		if(this.hasClass('cardselected')){
-    			//this.css({border: '4px #FFF solid'});
-    			TweenLite.to(this, scale_speed, { border: '6px #FFF solid',borderTop: '6px #FFF solid',borderBottom: '6px #FFF solid',borderLeft: '6px #FFF solid',borderRight: '6px #FFF solid',  scaleX:1.6, scaleY:1.6, scaleZ:1.6, z: 0.001, zIndex: 10, perspective: 1000, force3D: true,   ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
-    				flag = true;
-    			}});
-    		}
-    		else {
-    			TweenLite.to(this, scale_speed, { scaleX:s, scaleY:s, scaleZ:s, z: 0.001, zIndex: 10,  border: '6px #FFF solid', ease: Power4.easeInOut, perspective: 1000, force3D: true,   perspective: 1000, onComplete:function(){
-    				flag = true;
-    			}});
-    		}
-    		this.addClass('selected');
-
-    		if(mode == "navigation"){
-
-
-				var id = $(this).attr('id');
-				TweenLite.to($("#"+id+" > .appbutton-folder"), speed3, {opacity: 1});
-
-    			// var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
-    			// var appid = $current.attr('id').split('0')[1];
-
-	      		// if(wave[appid*2-2]!=null && !filteringwave1) {
-	      		// 	wave[appid*2-2].resume();
-	      		// 	console.log("resume?"+appid+"----"+wave[appid*2-2]);
-	      		// }
-	      		// else {
-	      		// 	filteringwave1 = false;
-	      		// 	console.log("else1");
-	      		// 	wave[appid*2-2] = new TimelineMax({repeat:-1});
-	      		// 	wave[appid*2-2].fromTo($('.wave0'+appid+'a'), 3, {x:'0px'},{x:'-600px', perspective: 1000, force3D: true,   ease: Linear.easeNone});
-	      		// }
-	      		// if(wave[appid*2-1]!=null && !filteringwave2) {
-	      		// 	wave[appid*2-1].resume();
-	      		// 	console.log("resume!");
-	      		// }
-	      		// else {
-	      		// 	filteringwave2 = false;
-	      		// 	console.log("else2");
-	      		// 	wave[appid*2-1] = new TimelineMax({repeat:-1});
-	      		// 	wave[appid*2-1].fromTo($('.wave0'+appid+'b'), 3.1, {x:'-100px'},{x:'-700px', perspective: 1000, force3D: true,   ease: Linear.easeNone});
-	      		// }
-      		}
-    		return this;
-   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.notSelected = function(s) {
-	   		s = s || 1;
-				if(mode == "navigation"){
-					var id = $(this).attr('id');
-					TweenLite.to($("#"+id+" > .appbutton-folder"), speed3, {opacity: 0});
-				}
-				if(this.hasClass('cardselected')){
-					//this.css({border: '0px #FFF solid'});
-	    			TweenLite.to(this, scale_speed, { border: '0px #FFF solid',borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid',  scaleX:1, scaleY:1, scaleZ:1, z: 0.001, zIndex: 1, perspective: 1000, force3D: true,   ease: Power4.easeInOut, onComplete: function(){
-						//flag = true;
-					}});
-	    		}
-	    		else {
-	    			TweenLite.to(this, scale_speed, { scaleX:s, scaleY:s, scaleZ: s, z: 0.001, zIndex: 0, border: '0px #989898 solid', ease: Power4.easeInOut, perspective: 1000, force3D: true,   onComplete: function(){
-						//flag = true;
-					}});
-	    		}
-	    		this.removeClass('selected');
-	    		return this;
-	   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.isSelected_setting = function() {
-   			if(this.attr('id')=="filter"){
-
-   				var $t = this;
-				$t.addClass('selected');
-				$('#filter.navbutton.selected .filtericon01').addClass('important-'+filter_mode);
-
-   				TweenLite.to(this, .3, {scaleX: 1.1, scaleY:1.1, scaleZ:1.1, z: 0.001, backgroundColor: 'rgba(255,255,255,1)', perspective: 1000, force3D: true,   ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
-
-				}});
-				TweenMax.delayedCall(.3, function(){
-					$t.removeClass('selected');
-
-				});
-   				TweenLite.to(this, .3, {scaleX: 1, scaleY:1, scaleZ:1, z: 0.001,  backgroundColor: 'rgba(0,0,0,.5)', delay: .3, perspective: 1000, force3D: true,   ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
-   					TweenLite.to($('.filter-section'), .01, {opacity: 1});
-					TweenLite.to($('.filter-section'), 1, {width: '840px', perspective: 1000, force3D: true,   ease: Power2.easeOut, onComplete: function(){
-						flag = true;
-					}});
-					$('.filter-section li').eq(filter_stage-1).delay(500).animate({  textIndent: 12 }, {
-						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
-
-						      $(this).css('color', '#FFF');
-						    },duration:filter_duration
-						},'linear');
-				}});
-   			}
-				else {
-	      		TweenLite.to(this, .3, {scaleX: 1.1, scaleY:1.1, scaleZ:1.1, z: 0.001,  backgroundColor: 'rgba(255,255,255,1)', perspective: 1000, force3D: true,   ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
-							flag = true;
-						}});
-	      		this.addClass('selected');
-	      		}
-
-	      		return this;
-	   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.notSelected_setting = function() {
-   			var $t = this;
-      		TweenLite.to($t, .2, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001,  zIndex: 1, backgroundColor: 'rgba(0,0,0,.5)', perspective: 1000, force3D: true,   ease: Power2.easeInOut, onComplete: function(){
-				if($t.attr('id')=="filter"){
-					$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
-						    step: function(now,fx) {
-						      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
-
-						      $(this).css('color', '#CCC');
-						    },duration: 200
-						},'linear');
-					TweenLite.to($('.filter-section'), .6, {width: '90px', perspective: 1000, force3D: true,   ease: Power2.easeOut, delay: .2, onComplete: function(){
-						TweenLite.to($('.filter-section'), .1, {opacity: 0});
-						flag = true;
-						filter_stage = 1;
-					}});
-				}
-				}});
-	  		this.removeClass('selected');
-	  		return this;
-   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.isSelected_option = function(t) {
-   			t = t || .4;
-				TweenLite.to(this, t, {backgroundColor:'rgb(255,255,255)',scaleX:1.3, scaleY:1.3, scaleZ:1.3, z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, perspective: 1000, onComplete: function(){
-					flag = true;
-				}});
-				this.addClass('selectedOption');
-
-      	return this;
-   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.notSelected_option = function(t) {
-   			t = t || .4;
-    		TweenLite.to(this, t, {backgroundColor:'rgb(96,96,96)',scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, onComplete: function(){
-					//flag = true;
-				}});
-    		this.removeClass('selectedOption');
-      	return this;
-   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.findNext = function(d) {
-   			var $app = $('#app > .appbutton');
-   			var $current = $('#app > .appbutton[data-number='+stage+']');
-   			var dn1 = stage;
-   			var m1 = $current.css('margin-left');
-   			var mid = 0;
-
-				$app.each(function(index, element){
-				if($current.attr('id')!=element.id){
-					var m2 = $(element).css('margin-left');
-					var diff = parseInt(m2.split('p')[0]-m1.split('p')[0]);
-
-					if(d == 'right'){
-						if(diff > 0 && diff < 180) mid = element.id;
-					} else if(d == 'left'){
-						if(diff*-1 > 0 && diff*-1 < 180) mid = element.id;
-					}
-				}
-				});
-				var $next = $('#'+mid);
-				var dn2 = $next.attr('data-number');
-
-				$current.attr('data-number', dn2);
-				$next.attr('data-number', dn1);
-
-				return $next;
-   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.transition_opening = function(m) {
-
-   	// 		for(var i = 0; i < 6; i++){
-				// 	if(wave[i]!=null) wave[i].pause();
-				// }
-
-    		TweenLite.to(this, trans_speed, {opacity: .8, perspective: 1000, force3D: true,   ease: Power4.easeOut});
-
-				if(m == "optionmode"){
-	    		var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
-	    		$current.notSelected();
-	    		var add = 1600;
-
-	    		if($current.attr('data-type') == "main") {
-	    			$('#rename, #remove').css('display', 'none');
-	    			add = 1600;
-	    		}
-	    		else {
-	    			$('#rename, #remove').css('display', 'inline-block');
-	    			add = 2000;
-	    		}
-			 		TweenLite.to($('#option'), .001, {zIndex:2000, ease: Power4.easeInOut});
-
-
-			 		var $opt = $('#option .optbutton');
-			 		var time = 500;
-					$opt.each(function(index, element){
-						TweenMax.delayedCall(time/1000, function(){
-
-							TweenLite.to(element, .8, {opacity:1, y:'-=100', z:0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, delay:.4});
-
-						});
-						time+=200;
-					});
-
-					//Set initial State
-					TweenMax.delayedCall(add/1000, function(){
-						$('#rearrange').isSelected_option();
-					});
-				}
-				if(m == "addfolder"){
-					TweenLite.to($('#addfolder'), .5, {opacity: 1, zIndex: 3000, delay: .5, perspective: 1000, force3D: true,   onComplete: function(){
-							$(".applist").first().isSelected(1.5);
-							applistposition = 1;
-					}});
-				}
-      	return this;
-   		};
-	})( jQuery );
-	(function( $ ){
-   		$.fn.transition_closing = function(m) {
-				if(m == "optionmode" || m == "rearrange"){
-   				TweenLite.to($('#option .optbutton'), .8, {opacity:0, y:'+=100', z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
-				}
-				else if(m == "dummymode"){
-					TweenLite.to($('#dummy'), .4, {opacity: 0, zIndex: -1, ease: Power4.easeIn});
-				}
-				else if(m == "addfolder"){
-					TweenLite.to($('#addfolder-name p'), .3, {z: 0.001, perspective: 1000, force3D: true,   backgroundColor: "rgba(0,0,0,0)"});
-					TweenLite.to($('#addfolder-name'), .3, {z: 0.001, perspective: 1000, force3D: true,   borderBottomColor: '#fff', borderWidth: '2px'});
-					TweenLite.to($('#keyboard'), .6, {z: 0.001, perspective: 1000, force3D: true,   bottom: '-50%', ease: Power4.easeInOut});
-					TweenLite.to($('#close'), .3, {opacity: 0});
-					TweenLite.to($('#addfolder'), .5, {opacity: 0});
-				}
-
-    		TweenLite.to(this, trans_speed-1, {opacity: 0, perspective: 1000, force3D: true,   ease: Power4.easeIn, onComplete: function(){
-					if(m == "optionmode"){
-						TweenLite.to($('#option'), .001, {zIndex:-1, ease: Power4.easeInOut});
-						if(option_stage == 3 && $('#remove').hasClass('pressed')) ;
-						else {
-							$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
-							if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "folder"){
-								TweenLite.to($('#'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('id')+' > .appbutton-folder'), speed3, {opacity:1});
-							}
-							$('.selectedOption').notSelected_option();
-						}
-						mode = "navigation";
-						option_stage = 1;
-					}
-					else if(m == "dummymode"){
-						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
-						mode = "navigation";
-					}
-					else if(m == "rearrange"){
-						mode = "rearrange";
-						option_stage = 1;
-					}
-					else if(m =="addfolder"){
-						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
-						if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "folder"){
-								TweenLite.to($('#'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('id')+' > .appbutton-folder'), speed3, {opacity:1});
-							}
-						mode = "navigation";
-						level = 1;
-						setting_stage = 1;
-						applistposition = 1;
-						folder_level = 1;
-						appselected = 0;
-						$('#addfolder-number--selected').text(appselected);
-
-						if($('#addfolder-done p').hasClass('inactive')) ;
-						else TweenLite.to($('#addfolder-done p'), .3, { color: "#fff"});
-						TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   backgroundColor:"rgba(0,0,0,.8)", onComplete: function(){
-							flag = true;
-						}});
-						addfolder_stage = 2;
-						$('#addfolder-done p').addClass('inactive').css('color', '#aaa');
-
-					}
-				}});
-      	return this;
-   		};
-	})( jQuery );
-
-	$.fn.moveUp = function() {
-    	$.each(this, function() {
-        	 $(this).after($(this).prev());
-    	});
-	};
-	$.fn.moveDown = function() {
-    	$.each(this, function() {
-        	 $(this).before($(this).next());
-    	});
-	};
-
-	/********************************************************************************************************************************
-
-		KEY EVENTS
-
-	********************************************************************************************************************************/
+	
+	//Initial Settings
+	initSmartHome();
 
 	$(window).keydown(function (e){
     	if (e.altKey) {
@@ -629,7 +104,12 @@ $(this).css('-moz-transform','scale('+now/10+')');
 		e = e || window.event;
 		var timeout = 400;
 
-		//Option Key
+		/********************************************************************************************************************************
+
+		KEY EVENTS - OPTION
+
+		********************************************************************************************************************************/
+
 		if(typeof KeyEvent != "undefined"){
 			if(e.keyCode == KeyEvent.DOM_VK_SUBMENU) {
 				if(flag) {
@@ -652,7 +132,14 @@ $(this).css('-moz-transform','scale('+now/10+')');
 				}
 			}
 		}
-		//Enter Key
+		
+
+		/********************************************************************************************************************************
+
+		KEY EVENTS - ENTER
+
+		********************************************************************************************************************************/
+
 		if(e.keyCode == 13) {
 			if(flag){
 				if(mode == "navigation") {
@@ -751,16 +238,16 @@ $(this).css('-moz-transform','scale('+now/10+')');
 						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 8 }, {
 						    step: function(now,fx) {
 						      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
+							  $(this).css('transform','scale('+now/10+')');
+							  $(this).css('-moz-transform','scale('+now/10+')');
 
 						    },duration:100
 						},'linear');
 						$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 12 }, {
 						    step: function(now,fx) {
 						      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
+							  $(this).css('transform','scale('+now/10+')');
+							  $(this).css('-moz-transform','scale('+now/10+')');
 
 						    },duration:200
 						},'linear');
@@ -841,9 +328,7 @@ $(this).css('-moz-transform','scale('+now/10+')');
 					//rearrange!!!!!!!!!!!!!!!!!!
 					if(option_stage==1){
 
-						// for(var i = 0; i < 6; i++){
-						// 	if(wave[i]!=null) wave[i].pause();
-						// }
+						playWave(false);
 
 						console.log("rearrange");
 
@@ -1419,7 +904,12 @@ $(this).css('-moz-transform','scale('+now/10+')');
 				}
 			}
 		}
-		//Esc Key
+		/********************************************************************************************************************************
+
+		KEY EVENTS - ESC
+
+		********************************************************************************************************************************/
+
 		else if(e.keyCode == 8 || e.keyCode == 27) {
 			if(flag) {
 				if(mode == "optionmode" || mode == "dummymode" || mode == "addfolder") {
@@ -1428,13 +918,18 @@ $(this).css('-moz-transform','scale('+now/10+')');
 				}
 			}
 		}
-		//Arrow Keys UP
+		
+		/********************************************************************************************************************************
+
+		KEY EVENTS - UP
+
+		********************************************************************************************************************************/
+
 		else if(e.keyCode == 38) {
 			console.log("up");
 
-			// for(var i = 0; i < 6; i++){
-			// 	if(wave[i]!=null) wave[i].pause();
-			// }
+			playWave(false);
+
 			if(flag)
 				if(mode == "navigation"){
 					// Apps
@@ -1503,13 +998,17 @@ $(this).css('-moz-transform','scale('+now/10+')');
 					}
 				}
 		}
-		//Arrow Keys DOWN
+
+		/********************************************************************************************************************************
+
+		KEY EVENTS - DOWN
+
+		********************************************************************************************************************************/
 		else if(e.keyCode == 40) {
 			console.log("down");
 
-			// for(var i = 0; i < 6; i++){
-			// 	if(wave[i]!=null) wave[i].pause();
-			// }
+			playWave(false);
+
 			if(flag){
 				if(mode == "navigation"){
 						// Apps
@@ -1608,12 +1107,16 @@ $(this).css('-moz-transform','scale('+now/10+')');
 				}
 			}
 		}
-		//Arrow Keys LEFT
+		
+		/********************************************************************************************************************************
+
+		KEY EVENTS - LEFT
+
+		********************************************************************************************************************************/
 		else if(e.keyCode == 37) {
 			console.log("left");
-			// for(var i = 0; i < 6; i++){
-			// 	if(wave[i]!=null) wave[i].pause();
-			// }
+			
+
 			if(flag){
 				if(mode == "rearrange"){
 					if(currentposition != 1) {
@@ -1756,6 +1259,7 @@ $(this).css('-moz-transform','scale('+now/10+')');
 					// Apps
 					if(level == 1) {
 						if(stage != 1) {
+							playWave(false);
 							flag = false;
 							stage--;
 							position--;
@@ -1790,8 +1294,8 @@ $(this).css('-moz-transform','scale('+now/10+')');
 							$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 							    step: function(now,fx) {
 							      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
+								  $(this).css('transform','scale('+now/10+')');
+								  $(this).css('-moz-transform','scale('+now/10+')');
 
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#CCC');
@@ -1801,8 +1305,8 @@ $(this).css('-moz-transform','scale('+now/10+')');
 							$('.filter-section li').eq(filter_stage-2).animate({  textIndent: 12 }, {
 							    step: function(now,fx) {
 							      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
+								  $(this).css('transform','scale('+now/10+')');
+								  $(this).css('-moz-transform','scale('+now/10+')');
 
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#FFF');
@@ -1870,12 +1374,16 @@ $(this).css('-moz-transform','scale('+now/10+')');
 				}
 			}
 		}
-		//Arrow Keys RIGHT
+
+		/********************************************************************************************************************************
+
+		KEY EVENTS - RIGHT
+
+		********************************************************************************************************************************/
+
 		else if(e.keyCode == 39) {
 			console.log("right");
-			// for(var i = 0; i < 6; i++){
-			// 	if(wave[i]!=null) wave[i].pause();
-			// }
+			
 			if(flag){
 				if(mode == "rearrange"){
 					if(currentposition != count) {
@@ -2015,6 +1523,7 @@ $(this).css('-moz-transform','scale('+now/10+')');
 					// Apps
 					if(level == 1) {
 						if(stage != count) {
+							playWave(false);
 							flag = false;
 							stage++;
 							position++;
@@ -2049,8 +1558,8 @@ $(this).css('-moz-transform','scale('+now/10+')');
 							$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
 							    step: function(now,fx) {
 							      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
+								  $(this).css('transform','scale('+now/10+')');
+								  $(this).css('-moz-transform','scale('+now/10+')');
 
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#CCC');
@@ -2060,8 +1569,8 @@ $(this).css('-moz-transform','scale('+now/10+')');
 							$('.filter-section li').eq(filter_stage).animate({  textIndent: 12 }, {
 							    step: function(now,fx) {
 							      $(this).css('-webkit-transform','scale('+now/10+')');
-$(this).css('transform','scale('+now/10+')');
-$(this).css('-moz-transform','scale('+now/10+')');
+								  $(this).css('transform','scale('+now/10+')');
+								  $(this).css('-moz-transform','scale('+now/10+')');
 
 							      if($(this).hasClass('active'));
 							      else $(this).css('color','#FFF');
@@ -2137,7 +1646,476 @@ $(this).css('-moz-transform','scale('+now/10+')');
 	}
 });
 
-function pad (str, max) {
-  str = str.toString();
-  return str.length < max ? pad("0" + str, max) : str;
+
+/********************************************************************************************************************************
+
+	INITIAL FUNCTIONS
+
+********************************************************************************************************************************/
+
+function initSmartHome(){
+	updateClock();
+	initColor();
+	initPosition();
+	
+	// Animate Waves
+	wave[0] = new TimelineMax({repeat:-1});
+	wave[1] = new TimelineMax({repeat:-1});
+	wave[0].fromTo($('.wave01a'), 3, {x:'0px'},{x:'-600px', ease: Linear.easeNone});
+	wave[1].fromTo($('.wave01b'), 3.1, {x:'-100px'},{x:'-700px', ease: Linear.easeNone});
+	playWave(false);
 }
+
+function pad (str, max) {
+	str = str.toString();
+	return str.length < max ? pad("0" + str, max) : str;
+}
+
+function initColor(){
+	for (var i = 0; i < Object.keys(colors).length; i++){
+		var $ID = "app0"+(i+1);
+		var $getapp = $("#"+$ID);
+		$getapp.css('background-color',colors[$ID]);
+	}
+	var $currentID = ($('.appbutton[data-number='+stage+']').attr('id'));
+	TweenLite.to($('.transition'), .001, {backgroundColor: colors[$currentID]});
+	TweenLite.to($('#dummy'), .001, {backgroundColor: colors[$currentID]});
+}
+
+function initPosition(){
+	if(count <= 5) {
+		for ( var i = 0; i < count; i++ ) {
+			var $getapp = $('.appbutton[data-number='+(i+1)+']');
+	    	$getapp.css('margin-left',(1920-300*count)/2+i*(300+100/count)-40);
+		}
+	} else {
+		for ( var i = 0; i < count; i++ ) {
+	    var $getapp = $('.appbutton[data-number='+(i+1)+']');
+			$getapp.css('margin-left',(1920-300*5)/2+i*(300+100/5)-40);
+		}
+	}
+	var margink = 0;
+	$('.filter-section li').each(function(index, element){
+		$(this).css('margin-left', parseInt(index+1)*50 + parseInt(margink));
+		margink += $(this).width();
+	});
+
+	var $app = $('.appbutton');
+	$app.opening();
+	TweenMax.delayedCall(1.4,
+		function(){
+			$('#app01').isSelected();
+		}
+	);
+}
+
+function updateClock () {
+	//Get Time Info
+	var d = new Date();
+	var h = ("0"+d.getHours()).slice(-2);
+	var m = ("0"+d.getMinutes()).slice(-2);
+	var time = h+":"+m;
+	$('#time').text(time);
+	$('.ampm').css('right', $('#time').width()+20);
+
+	//Update Every Second
+	setInterval(function() {
+		var d = new Date();
+		var h = ("0"+d.getHours()).slice(-2);
+		var m = ("0"+d.getMinutes()).slice(-2);
+		var time = h+":"+m;
+		$('#time').text(time);
+		$('.ampm').css('right', $('#time').width()+20);
+  	}, 1 * 1000);
+	return true;
+}
+
+function playWave (b) {
+	if(b){
+		var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
+		var appid = $current.attr('id').split('0')[1];
+
+		if(filtering && waveReseting){
+			console.log("go");
+			waveReset = [true, true, true, true];
+			waveReseting = false;
+		}
+		if(filter_mode == "all" && !waveReseting){
+			console.log("back");
+			waveReset = [true, true, true, true];
+			waveReseting = true;	
+		}
+
+		if(waveReset[appid]){
+			console.log("play");
+			wave[appid*2-2] = new TimelineMax({repeat:-1});
+			wave[appid*2-1] = new TimelineMax({repeat:-1});
+	  		wave[appid*2-2].fromTo($('.wave0'+appid+'a'), 3, {x:'0px'},{x:'-600px', perspective: 1000, force3D: true,   ease: Linear.easeNone});
+  			wave[appid*2-1].fromTo($('.wave0'+appid+'b'), 3.1, {x:'-100px'},{x:'-700px', perspective: 1000, force3D: true,   ease: Linear.easeNone});	  		
+  			waveReset[appid] = false;
+		}
+		else {
+			console.log("resume");
+			if(wave[appid*2-2]!=null) wave[appid*2-2].resume();
+			if(wave[appid*2-1]!=null) wave[appid*2-1].resume();
+		}
+	} else{
+		for(var i = 0; i < 6; i++){
+			if(wave[i]!=null) wave[i].pause();
+		}
+	}
+}
+
+/********************************************************************************************************************************
+
+	MODULE FUNCTIONS
+
+********************************************************************************************************************************/
+
+	/*todolist:
+
+	1. group all isSelected && notSeleted + combine with pressed & release?
+	2. modularize transition opening + closing without anything else x 2
+	3. modularize option circles showing in & leaving out x 2
+	4. make sure every timing is the same for the same type of transition. (cleanup all the settimeout)
+	5. function for add folder page showing & leaving //addfoldermode
+	6. function for delete confirm page showing & leaving  //deletemode
+	7. function for entering & leaving rearrange mode
+	8. cleanup all the checking situations
+
+	think about what would be useful to continue using this prototype & modifiying this prototype
+	(think of all the interaction as components, what can be used again and again?)
+
+	*/
+
+(function( $ ){
+	$.fn.opening = function(){
+		var time = 100;
+		$(this).each(function(index, element){
+			TweenMax.delayedCall(time/1000,
+				function(){
+				//console.log(element);
+					TweenLite.to(element, .8, {opacity:1, y:'-=100', z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
+				});
+			time+=140;
+		});
+		if(level == 2) flag = true;
+		return this;
+	};
+})( jQuery );
+
+(function( $ ){
+	$.fn.closing = function(){
+		var time = 100;
+		$(this).each(function(index, element){
+			TweenMax.delayedCall(time/1000,
+			function(){
+				//console.log(element);
+				TweenLite.to(element, .8, {opacity:0, y:'+=100', z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
+			});
+			time+=80;
+		});
+		if(position_move>0){
+			TweenLite.to($('.appbutton'),slide_speed,{left: '+='+(350*position_move), ease: Power1.easeInOut, perspective: 1000, force3D: true,   onComplete: function(){
+				$backup = $('#app > .appbutton').clone();
+				TweenLite.to($backup, .001, {opacity:0, y:0, z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
+			}});
+			position = 0;
+			position_move = 0;
+			stage = 1;
+		}
+		else if(filter_mode == "all"){
+			$backup = $('#app > .appbutton').clone();
+			TweenLite.to($backup, .001, {opacity:0, y:0, z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, });
+		}
+		return this;
+	};
+})( jQuery );
+
+(function( $ ){
+		$.fn.isSelected = function(s) {
+			s = s || 1.6;
+
+		if(this.hasClass('cardselected')){
+			//this.css({border: '4px #FFF solid'});
+			TweenLite.to(this, scale_speed, { border: '6px #FFF solid',borderTop: '6px #FFF solid',borderBottom: '6px #FFF solid',borderLeft: '6px #FFF solid',borderRight: '6px #FFF solid',  scaleX:1.6, scaleY:1.6, scaleZ:1.6, z: 0.001, zIndex: 10, perspective: 1000, force3D: true,   ease: Power4.easeInOut, perspective: 1000, onComplete:function(){
+				flag = true;
+			}});
+		}
+		else {
+			TweenLite.to(this, scale_speed, { scaleX:s, scaleY:s, scaleZ:s, z: 0.001, zIndex: 10,  border: '6px #FFF solid', ease: Power4.easeInOut, perspective: 1000, force3D: true,   perspective: 1000, onComplete:function(){
+				flag = true;
+			}});
+		}
+		this.addClass('selected');
+
+		if(mode == "navigation"){
+			var id = $(this).attr('id');
+			TweenLite.to($("#"+id+" > .appbutton-folder"), speed3, {opacity: 1});
+			playWave(true);
+  		}
+		return this;
+		};
+})( jQuery );
+(function( $ ){
+		$.fn.notSelected = function(s) {
+   		s = s || 1;
+			if(mode == "navigation"){
+				var id = $(this).attr('id');
+				TweenLite.to($("#"+id+" > .appbutton-folder"), speed3, {opacity: 0});
+			}
+			if(this.hasClass('cardselected')){
+				//this.css({border: '0px #FFF solid'});
+    			TweenLite.to(this, scale_speed, { border: '0px #FFF solid',borderTop: '0px #FFF solid', borderBottom: '0px #FFF solid', borderLeft: '0px #FFF solid', borderRight: '0px #FFF solid',  scaleX:1, scaleY:1, scaleZ:1, z: 0.001, zIndex: 1, perspective: 1000, force3D: true,   ease: Power4.easeInOut, onComplete: function(){
+					//flag = true;
+				}});
+    		}
+    		else {
+    			TweenLite.to(this, scale_speed, { scaleX:s, scaleY:s, scaleZ: s, z: 0.001, zIndex: 0, border: '0px #989898 solid', ease: Power4.easeInOut, perspective: 1000, force3D: true,   onComplete: function(){
+					//flag = true;
+				}});
+    		}
+    		this.removeClass('selected');
+    		return this;
+   		};
+})( jQuery );
+(function( $ ){
+		$.fn.isSelected_setting = function() {
+			if(this.attr('id')=="filter"){
+
+				var $t = this;
+			$t.addClass('selected');
+			$('#filter.navbutton.selected .filtericon01').addClass('important-'+filter_mode);
+
+				TweenLite.to(this, .3, {scaleX: 1.1, scaleY:1.1, scaleZ:1.1, z: 0.001, backgroundColor: 'rgba(255,255,255,1)', perspective: 1000, force3D: true,   ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
+
+			}});
+			TweenMax.delayedCall(.3, function(){
+				$t.removeClass('selected');
+
+			});
+				TweenLite.to(this, .3, {scaleX: 1, scaleY:1, scaleZ:1, z: 0.001,  backgroundColor: 'rgba(0,0,0,.5)', delay: .3, perspective: 1000, force3D: true,   ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
+					TweenLite.to($('.filter-section'), .01, {opacity: 1});
+				TweenLite.to($('.filter-section'), 1, {width: '840px', perspective: 1000, force3D: true,   ease: Power2.easeOut, onComplete: function(){
+					flag = true;
+				}});
+				$('.filter-section li').eq(filter_stage-1).delay(500).animate({  textIndent: 12 }, {
+					    step: function(now,fx) {
+					      $(this).css('-webkit-transform','scale('+now/10+')');
+						  $(this).css('transform','scale('+now/10+')');
+						  $(this).css('-moz-transform','scale('+now/10+')');
+
+					      $(this).css('color', '#FFF');
+					    },duration:filter_duration
+					},'linear');
+			}});
+			}
+			else {
+      		TweenLite.to(this, .3, {scaleX: 1.1, scaleY:1.1, scaleZ:1.1, z: 0.001,  backgroundColor: 'rgba(255,255,255,1)', perspective: 1000, force3D: true,   ease: Power2.easeInOut, perspective: 1000, onComplete: function(){
+						flag = true;
+					}});
+      		this.addClass('selected');
+      		}
+
+      		return this;
+   		};
+})( jQuery );
+(function( $ ){
+		$.fn.notSelected_setting = function() {
+			var $t = this;
+  		TweenLite.to($t, .2, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001,  zIndex: 1, backgroundColor: 'rgba(0,0,0,.5)', perspective: 1000, force3D: true,   ease: Power2.easeInOut, onComplete: function(){
+			if($t.attr('id')=="filter"){
+				$('.filter-section li').eq(filter_stage-1).animate({  textIndent: 10 }, {
+					    step: function(now,fx) {
+					      $(this).css('-webkit-transform','scale('+now/10+')');
+						  $(this).css('transform','scale('+now/10+')');
+						  $(this).css('-moz-transform','scale('+now/10+')');
+
+					      $(this).css('color', '#CCC');
+					    },duration: 200
+					},'linear');
+				TweenLite.to($('.filter-section'), .6, {width: '90px', perspective: 1000, force3D: true,   ease: Power2.easeOut, delay: .2, onComplete: function(){
+					TweenLite.to($('.filter-section'), .1, {opacity: 0});
+					flag = true;
+					filter_stage = 1;
+				}});
+			}
+			}});
+  		this.removeClass('selected');
+  		return this;
+		};
+})( jQuery );
+(function( $ ){
+		$.fn.isSelected_option = function(t) {
+			t = t || .4;
+			TweenLite.to(this, t, {backgroundColor:'rgb(255,255,255)',scaleX:1.3, scaleY:1.3, scaleZ:1.3, z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, perspective: 1000, onComplete: function(){
+				flag = true;
+			}});
+			this.addClass('selectedOption');
+
+  	return this;
+		};
+})( jQuery );
+(function( $ ){
+		$.fn.notSelected_option = function(t) {
+			t = t || .4;
+		TweenLite.to(this, t, {backgroundColor:'rgb(96,96,96)',scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, onComplete: function(){
+				//flag = true;
+			}});
+		this.removeClass('selectedOption');
+  	return this;
+		};
+})( jQuery );
+(function( $ ){
+		$.fn.findNext = function(d) {
+			var $app = $('#app > .appbutton');
+			var $current = $('#app > .appbutton[data-number='+stage+']');
+			var dn1 = stage;
+			var m1 = $current.css('margin-left');
+			var mid = 0;
+
+			$app.each(function(index, element){
+			if($current.attr('id')!=element.id){
+				var m2 = $(element).css('margin-left');
+				var diff = parseInt(m2.split('p')[0]-m1.split('p')[0]);
+
+				if(d == 'right'){
+					if(diff > 0 && diff < 180) mid = element.id;
+				} else if(d == 'left'){
+					if(diff*-1 > 0 && diff*-1 < 180) mid = element.id;
+				}
+			}
+			});
+			var $next = $('#'+mid);
+			var dn2 = $next.attr('data-number');
+
+			$current.attr('data-number', dn2);
+			$next.attr('data-number', dn1);
+
+			return $next;
+		};
+})( jQuery );
+(function( $ ){
+		$.fn.transition_opening = function(m) {
+
+		playWave(false);
+
+		TweenLite.to(this, trans_speed, {opacity: .8, perspective: 1000, force3D: true,   ease: Power4.easeOut});
+
+			if(m == "optionmode"){
+    		var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
+    		$current.notSelected();
+    		var add = 1600;
+
+    		if($current.attr('data-type') == "main") {
+    			$('#rename, #remove').css('display', 'none');
+    			add = 1600;
+    		}
+    		else {
+    			$('#rename, #remove').css('display', 'inline-block');
+    			add = 2000;
+    		}
+		 		TweenLite.to($('#option'), .001, {zIndex:2000, ease: Power4.easeInOut});
+
+
+		 		var $opt = $('#option .optbutton');
+		 		var time = 500;
+				$opt.each(function(index, element){
+					TweenMax.delayedCall(time/1000, function(){
+
+						TweenLite.to(element, .8, {opacity:1, y:'-=100', z:0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, delay:.4});
+
+					});
+					time+=200;
+				});
+
+				//Set initial State
+				TweenMax.delayedCall(add/1000, function(){
+					$('#rearrange').isSelected_option();
+				});
+			}
+			if(m == "addfolder"){
+				TweenLite.to($('#addfolder'), .5, {opacity: 1, zIndex: 3000, delay: .5, perspective: 1000, force3D: true,   onComplete: function(){
+						$(".applist").first().isSelected(1.5);
+						applistposition = 1;
+				}});
+			}
+  	return this;
+		};
+})( jQuery );
+(function( $ ){
+		$.fn.transition_closing = function(m) {
+			if(m == "optionmode" || m == "rearrange"){
+				TweenLite.to($('#option .optbutton'), .8, {opacity:0, y:'+=100', z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
+			}
+			else if(m == "dummymode"){
+				TweenLite.to($('#dummy'), .4, {opacity: 0, zIndex: -1, ease: Power4.easeIn});
+			}
+			else if(m == "addfolder"){
+				TweenLite.to($('#addfolder-name p'), .3, {z: 0.001, perspective: 1000, force3D: true,   backgroundColor: "rgba(0,0,0,0)"});
+				TweenLite.to($('#addfolder-name'), .3, {z: 0.001, perspective: 1000, force3D: true,   borderBottomColor: '#fff', borderWidth: '2px'});
+				TweenLite.to($('#keyboard'), .6, {z: 0.001, perspective: 1000, force3D: true,   bottom: '-50%', ease: Power4.easeInOut});
+				TweenLite.to($('#close'), .3, {opacity: 0});
+				TweenLite.to($('#addfolder'), .5, {opacity: 0});
+			}
+
+		TweenLite.to(this, trans_speed-1, {opacity: 0, perspective: 1000, force3D: true,   ease: Power4.easeIn, onComplete: function(){
+				if(m == "optionmode"){
+					TweenLite.to($('#option'), .001, {zIndex:-1, ease: Power4.easeInOut});
+					if(option_stage == 3 && $('#remove').hasClass('pressed')) ;
+					else {
+						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
+						if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "folder"){
+							TweenLite.to($('#'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('id')+' > .appbutton-folder'), speed3, {opacity:1});
+						}
+						$('.selectedOption').notSelected_option();
+					}
+					mode = "navigation";
+					option_stage = 1;
+				}
+				else if(m == "dummymode"){
+					$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
+					mode = "navigation";
+				}
+				else if(m == "rearrange"){
+					mode = "rearrange";
+					option_stage = 1;
+				}
+				else if(m =="addfolder"){
+					$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
+					if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "folder"){
+							TweenLite.to($('#'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('id')+' > .appbutton-folder'), speed3, {opacity:1});
+						}
+					mode = "navigation";
+					level = 1;
+					setting_stage = 1;
+					applistposition = 1;
+					folder_level = 1;
+					appselected = 0;
+					$('#addfolder-number--selected').text(appselected);
+
+					if($('#addfolder-done p').hasClass('inactive')) ;
+					else TweenLite.to($('#addfolder-done p'), .3, { color: "#fff"});
+					TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   backgroundColor:"rgba(0,0,0,.8)", onComplete: function(){
+						flag = true;
+					}});
+					addfolder_stage = 2;
+					$('#addfolder-done p').addClass('inactive').css('color', '#aaa');
+
+				}
+			}});
+  	return this;
+		};
+})( jQuery );
+
+$.fn.moveUp = function() {
+	$.each(this, function() {
+    	 $(this).after($(this).prev());
+	});
+};
+$.fn.moveDown = function() {
+	$.each(this, function() {
+    	 $(this).before($(this).next());
+	});
+};
+

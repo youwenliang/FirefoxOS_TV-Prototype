@@ -4,17 +4,80 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
     <meta charset="utf-8">
     <title>Smart Home - TV Prototype</title>
+    
+    <!-- build:css styles/vendor.css -->
+    <!-- building blocks -->
+    <link rel="stylesheet" type="text/css" href="bower_components/smart-icons/smart-icons.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/smart-button/style.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/smart-dialog/style.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/smart-bubbles/style.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/smart-modal-dialog/style.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/menu-group/style.css">
+    <link rel="stylesheet" type="text/css" href="shared/style/smart-screen/animations.css">
+    <!-- endbuild -->
 
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
 
-    <!--Building Blocks -->
-    <link rel="stylesheet" href="styles/home.css">
-    <link rel="stylesheet" href="styles/info-bar.css">
+    <!--home -->
+    <link rel="stylesheet" type="text/css" href="styles/header.css">
+    <link rel="stylesheet" type="text/css" href="styles/home.css">
+    <link rel="stylesheet" type="text/css" href="styles/deck.css">
+    <link rel="stylesheet" type="text/css" href="styles/edit.css">
+    <link rel="stylesheet" type="text/css" href="shared/style/smart-screen/navigation.css">
+    <link rel="stylesheet" type="text/css" href="styles/info-bar.css">
+    <link rel="stylesheet" type="text/css" href="styles/search-bar.css">
     <!-- endbuild -->
 
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  
+    <!-- build:js scripts/shared/helper.js -->
+    <!-- Helper libraries -->
+    <script defer src="bower_components/evt/index.js"></script>
+    <script defer src="shared/js/smart-screen/shared_utils.js"></script>
+    <script defer src="shared/js/smart-screen/clock.js"></script>
+    <script defer src="shared/js/smart-screen/piped_promise.js"></script>
+    <script defer src="shared/js/smart-screen/card_store.js"></script>
+    <script defer src="shared/js/smart-screen/cards/card.js"></script>
+    <script defer src="shared/js/smart-screen/cards/application.js"></script>
+    <script defer src="shared/js/smart-screen/cards/deck.js"></script>
+    <script defer src="shared/js/smart-screen/cards/folder.js"></script>
+    <script defer src="shared/js/smart-screen/card_manager.js"></script>
+    <script defer src="shared/js/smart-screen/animations.js"></script>
+    <script defer src="shared/js/smart-screen/simple_key_navigation.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/smart-button/script.js"></script>
+    <script src="bower_components/menu-group/script.js"></script>
+    <script src="bower_components/smart-bubbles/script.js"></script>
+    <script src="bower_components/smart-dialog/script.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/shared/navigator.js -->
+    <!-- Shared TV library for keyboard-based navigating -->
+    <script defer src="shared/js/smart-screen/scrollable.js"></script>
+    <script defer src="shared/js/smart-screen/spatial_navigator.js"></script>
+    <script defer src="shared/js/smart-screen/key_navigation_adapter.js"></script>
+    <script defer src="shared/js/smart-screen/connection_manager.js"></script>
+    <!-- endbuild -->
+
+
+    <!-- L10n properties -->
+    <meta name="defaultLanguage" content="en-US">
+    <meta name="availableLanguages" content="en-US">
+    <link rel="localization" href="locales/home.{locale}.properties"/>
+    <link rel="localization" href="shared/locales/date/date.{locale}.properties"/>
+
+    <!-- build:js scripts/main.js -->
+    <script defer src="scripts/main.js"></script>
+    <script defer src="scripts/home.js"></script>
+    <script defer src="scripts/bootstrap.js"></script>
     <!-- endbuild -->
 
     <!-- Greensock -->
@@ -24,10 +87,6 @@
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.blue-orange.min.css" /> -->
-
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -128,22 +187,5 @@
         </ul>
       </div>
     </article>
-
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <script src="/bower_components/evt/index.js"></script>
-    <script src="/bower_components/smart-button/script.js"></script>
-    <script src="/bower_components/menu-group/script.js"></script>
-    <script src="/bower_components/smart-bubbles/script.js"></script>
-    <script src="/bower_components/smart-dialog/script.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
-
   </body>
 </html>
