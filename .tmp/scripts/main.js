@@ -387,96 +387,108 @@ $(document).ready(function () {
 					else if (option_stage == 2) {
 							console.log("rename");
 							$("#rename").addClass('pressed');
-							TweenLite.to($('#rename'), .2, { backgroundColor: pressed, scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, perspective: 1000, force3D: true });
+							// TweenLite.to($('#rename'), .2, {backgroundColor: pressed, scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true, });
 							TweenMax.delayedCall(timeout / 1000, function () {
 								$("#rename").removeClass('pressed');
-								TweenLite.to($('#rename'), .2, { backgroundColor: '#FFF', scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, perspective: 1000, force3D: true, onComplete: function onComplete() {
-										flag = true;
-									} });
+								// TweenLite.to($('#rename'), .2, {backgroundColor: '#FFF', scaleX:1.3, scaleY:1.3, scaleZ:1.3, z: 0.001, perspective: 1000, force3D: true,   onComplete: function(){
+								TweenMax.delayedCall(.2, function () {
+									flag = true;
+								});
+								// }});
 							});
 						}
 						//remove!!!!!!!!!!!!!!!!!!
 						else if (option_stage == 3) {
 								console.log("remove");
 								$("#remove").addClass('pressed');
-								TweenLite.to($('#remove'), .2, { backgroundColor: pressed, scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, perspective: 1000, force3D: true });
+								// TweenLite.to($('#remove'), .2, {backgroundColor: pressed, scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true, });
 
 								var $current = $('.appbutton[data-number=' + parseInt(stage) + ']');
 								if ($current.attr('data-type') == "folder") {
 									mode = "delete";
 									console.log("Folder");
-									TweenLite.to($('#option .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, perspective: 1000, force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
-											TweenLite.to($('#option'), .001, { zIndex: -1, ease: Power4.easeInOut });
-											TweenLite.to($('#delete .message'), .4, { opacity: 1, ease: Power4.easeInOut });
-											TweenLite.to($('#delete'), .001, { zIndex: 2000, ease: Power4.easeInOut });
+									// TweenLite.to($('#option .optbutton'), .8, {opacity:0, y:'+=100', z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, onComplete: function(){
+									var $opt = $('#option .optbutton');
+									$('.selectedOption').removeClass('selectedOption');
+									TweenMax.delayedCall(.3, function () {
+										$opt.removeClass('up');
+									});
 
-											var $opt = $('#delete .optbutton');
-											var time = 0;
-											$opt.each(function (index, element) {
-												TweenMax.delayedCall(time / 1000, function () {
-													TweenLite.to(element, .8, { opacity: 1, y: '-=100', z: 0.001, perspective: 1000, force3D: true, ease: Power4.easeInOut });
-												});
-												time += 200;
-											});
+									TweenMax.delayedCall(.6, function () {
+										TweenLite.to($('#option'), .001, { zIndex: -1, ease: Power4.easeInOut });
+										TweenLite.to($('#delete .message'), .4, { opacity: 1, ease: Power4.easeInOut });
+										TweenLite.to($('#delete'), .001, { zIndex: 2000, ease: Power4.easeInOut });
 
-											TweenMax.delayedCall(1, function () {
-												$('#cancel').isSelected_option();
-												TweenMax.delayedCall(.4, function () {
-													$("#remove").removeClass('pressed');
-												});
+										var $opt = $('#delete .optbutton');
+										var time = 0;
+										$opt.each(function (index, element) {
+											TweenMax.delayedCall(time / 1000, function () {
+												$(element).addClass('up');
 											});
-										} });
+											time += 200;
+										});
+
+										TweenMax.delayedCall(.8, function () {
+											$('#cancel').isSelected_option();
+											TweenMax.delayedCall(.4, function () {
+												$("#remove").removeClass('pressed');
+											});
+										});
+									});
 								} else {
 									$('.transition').transition_closing("optionmode");
 									var $current = $('.appbutton[data-number=' + parseInt(stage) + ']');
-									TweenLite.to($current, .4, { y: '+=200', z: 0.001, opacity: 0, perspective: 1000, force3D: true, ease: Power2.easeInOut, delay: 1, onComplete: function onComplete() {
+									//TweenLite.to($current, .4, {y:'+=200', z: 0.001, opacity: 0, perspective: 1000, force3D: true,   ease: Power2.easeInOut, delay: .5, onComplete:function(){
 
-											for (var i = parseInt(stage) + 1; i <= count; i++) {
-												var $follow = $('.appbutton[data-number=' + parseInt(i) + ']');
-												$follow.attr('data-number', i - 1);
+									TweenMax.delayedCall(.7, function () {
+										$current.removeClass('up');
+										for (var i = parseInt(stage) + 1; i <= count; i++) {
+											var $follow = $('.appbutton[data-number=' + parseInt(i) + ']');
+											$follow.attr('data-number', i - 1);
 
-												if (count <= 5) {
-													if (stage == 1) {
-														TweenLite.to($follow, .4, { marginLeft: '-=162px', perspective: 1000, force3D: true, ease: Power4.easeInOut });
-														//TweenLite.to($('.next, .prev'), .4, {left:'-=162px', ease: Power4.easeInOut});
-													} else {
-															TweenLite.to($follow, .4, { marginLeft: '-=478px', perspective: 1000, force3D: true, ease: Power4.easeInOut });
-															//TweenLite.to($('.next, .prev'), .4, {left:'-=478px', ease: Power4.easeInOut});
-														}
+											if (count <= 5) {
+												if (stage == 1) {
+													TweenLite.to($follow, .3, { marginLeft: '-=162px', perspective: 1000, force3D: true, ease: Power4.easeInOut });
+													//TweenLite.to($('.next, .prev'), .4, {left:'-=162px', ease: Power4.easeInOut});
 												} else {
-														TweenLite.to($follow, .4, { marginLeft: '-=320px', perspective: 1000, force3D: true, ease: Power4.easeInOut, delay: .2 });
-														//TweenLite.to($('.next, .prev'), .4, {left:'-=320px', ease: Power4.easeInOut});
+														TweenLite.to($follow, .3, { marginLeft: '-=478px', perspective: 1000, force3D: true, ease: Power4.easeInOut });
+														//TweenLite.to($('.next, .prev'), .4, {left:'-=478px', ease: Power4.easeInOut});
 													}
-											}
+											} else {
+													TweenLite.to($follow, .3, { marginLeft: '-=320px', perspective: 1000, force3D: true, ease: Power4.easeInOut, delay: .2 });
+													//TweenLite.to($('.next, .prev'), .4, {left:'-=320px', ease: Power4.easeInOut});
+												}
+										}
 
-											TweenMax.delayedCall(.2, function () {
-												if (stage != 1) {
-													$('.appbutton[data-number=' + parseInt(stage - 1) + ']').isSelected();
-													stage = stage - 1;
-													if (position_move == 0) {
-														position--;
-														if (count <= 5) {
-															TweenLite.to($('#app'), slide_speed, { marginLeft: '+=' + 158, perspective: 1000, force3D: true, ease: Power1.easeInOut });
-														}
-													} else if (position_move == count - 5) {
+										TweenMax.delayedCall(.4, function () {
+											if (stage != 1) {
+												$('.appbutton[data-number=' + parseInt(stage - 1) + ']').isSelected();
+												$("#remove").removeClass('pressed');
+												stage = stage - 1;
+												if (position_move == 0) {
+													position--;
+													if (count <= 5) {
+														TweenLite.to($('#app'), slide_speed, { marginLeft: '+=' + 158, perspective: 1000, force3D: true, ease: Power1.easeInOut });
+													}
+												} else if (position_move == count - 5) {
+													position_move--;
+													TweenLite.to($('#app'), slide_speed, { left: '+=' + 350, perspective: 1000, force3D: true, ease: Power1.easeInOut });
+												} else {
+													if (position != 0) position--;else {
 														position_move--;
 														TweenLite.to($('#app'), slide_speed, { left: '+=' + 350, perspective: 1000, force3D: true, ease: Power1.easeInOut });
-													} else {
-														if (position != 0) position--;else {
-															position_move--;
-															TweenLite.to($('#app'), slide_speed, { left: '+=' + 350, perspective: 1000, force3D: true, ease: Power1.easeInOut });
-														}
 													}
-												} else {
-													$('.appbutton[data-number=' + parseInt(stage) + ']').isSelected();
-													$("#remove").removeClass('pressed');
 												}
-												$current.remove();
-												count -= 1;
-												arrow_next = 524 + (8 - count) * 0.5 * (150 + 10);
-												arrow_prev = 239 + (8 - count) * 0.5 * (150 + 10);
-											});
-										} });
+											} else {
+												$('.appbutton[data-number=' + parseInt(stage) + ']').isSelected();
+												$("#remove").removeClass('pressed');
+											}
+											$current.remove();
+											count -= 1;
+											arrow_next = 524 + (8 - count) * 0.5 * (150 + 10);
+											arrow_prev = 239 + (8 - count) * 0.5 * (150 + 10);
+										});
+									});
 								}
 							}
 				} else if (mode == "rearrange") {
@@ -1839,20 +1851,21 @@ function playWave(b) {
 (function ($) {
 	$.fn.isSelected_option = function (t) {
 		t = t || .4;
-		TweenLite.to(this, t, { backgroundColor: 'rgb(255,255,255)', scaleX: 1.3, scaleY: 1.3, scaleZ: 1.3, z: 0.001, perspective: 1000, force3D: true, ease: Power4.easeInOut, perspective: 1000, onComplete: function onComplete() {
-				flag = true;
-			} });
+		//TweenLite.to(this, t, {backgroundColor:'rgb(255,255,255)',scaleX:1.3, scaleY:1.3, scaleZ:1.3, z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, perspective: 1000, onComplete: function(){
+		TweenMax.delayedCall(.4, function () {
+			flag = true;
+		});
+		//}});
 		this.addClass('selectedOption');
-
 		return this;
 	};
 })(jQuery);
 (function ($) {
 	$.fn.notSelected_option = function (t) {
 		t = t || .4;
-		TweenLite.to(this, t, { backgroundColor: 'rgb(96,96,96)', scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, perspective: 1000, force3D: true, ease: Power4.easeInOut, onComplete: function onComplete() {
-				//flag = true;
-			} });
+		// TweenLite.to(this, t, {backgroundColor:'rgb(96,96,96)',scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, onComplete: function(){
+		// 	//flag = true;
+		// }});
 		this.removeClass('selectedOption');
 		return this;
 	};
@@ -1896,14 +1909,14 @@ function playWave(b) {
 		if (m == "optionmode") {
 			var $current = $('.appbutton[data-number=' + parseInt(stage) + ']');
 			$current.notSelected();
-			var add = 1600;
+			var add = 1000;
 
 			if ($current.attr('data-type') == "main") {
 				$('#rename, #remove').css('display', 'none');
-				add = 1600;
+				add = 1000;
 			} else {
 				$('#rename, #remove').css('display', 'inline-block');
-				add = 2000;
+				add = 1200;
 			}
 			TweenLite.to($('#option'), .001, { zIndex: 2000, ease: Power4.easeInOut });
 
@@ -1912,9 +1925,10 @@ function playWave(b) {
 			$opt.each(function (index, element) {
 				TweenMax.delayedCall(time / 1000, function () {
 
-					TweenLite.to(element, .8, { opacity: 1, y: '-=100', z: 0.001, perspective: 1000, force3D: true, ease: Power4.easeInOut, delay: .4 });
+					// TweenLite.to(element, .8, {opacity:1, y:'-=100', z:0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut, delay:.4});
+					$(element).addClass('up');
 				});
-				time += 200;
+				time += 120;
 			});
 
 			//Set initial State
@@ -1934,7 +1948,12 @@ function playWave(b) {
 (function ($) {
 	$.fn.transition_closing = function (m) {
 		if (m == "optionmode" || m == "rearrange") {
-			TweenLite.to($('#option .optbutton'), .8, { opacity: 0, y: '+=100', z: 0.001, perspective: 1000, force3D: true, ease: Power4.easeInOut });
+			//TweenLite.to($('#option .optbutton'), .8, {opacity:0, y:'+=100', z: 0.001, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
+			var $opt = $('#option .optbutton');
+			$('.selectedOption').removeClass('selectedOption');
+			TweenMax.delayedCall(.3, function () {
+				$opt.removeClass('up');
+			});
 		} else if (m == "dummymode") {
 			TweenLite.to($('#dummy'), .4, { opacity: 0, zIndex: -1, ease: Power4.easeIn });
 		} else if (m == "addfolder") {
