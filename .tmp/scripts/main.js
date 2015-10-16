@@ -498,6 +498,8 @@ $(document).ready(function () {
 						}
 					});
 
+					$('.appbutton-folder').css('bottom', '-250px');
+
 					TweenLite.to($('.next, .prev'), .001, { opacity: 0, x: 0, z: 0.001, perspective: 1000, force3D: true });
 					for (var i = 0; i < 3; i++) {
 						tl1[i].kill();
@@ -1142,7 +1144,7 @@ $(document).ready(function () {
 										TweenLite.to($('#' + $next.attr('id') + " .icon_folder"), speed3, { 'backgroundSize': '40% 40%' });
 										$('#' + $next.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 											var k = $(this).attr('data-number').split('-')[1] - 1;
-											TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '-=' + (-30 + 60 * k) + 'px', bottom: '-80px', perspective: 1000, force3D: true });
+											TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '-=' + (-30 + 60 * k) + 'px', bottom: '-300px', perspective: 1000, force3D: true });
 										});
 
 										TweenLite.to($current, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, perspective: 1000, force3D: true, x: 0, backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut });
@@ -1389,7 +1391,7 @@ $(document).ready(function () {
 											TweenLite.to($('#' + $next.attr('id') + " .icon_folder"), speed3, { 'backgroundSize': '40% 40%' });
 											$('#' + $next.attr('id') + ' > .appbutton-folder').each(function (index, element) {
 												var k = $(this).attr('data-number').split('-')[1] - 1;
-												TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '-=' + (-30 + 60 * k) + 'px', bottom: '-80px' });
+												TweenLite.to(this, speed3, { opacity: 0, width: notSelected_cardsize, height: notSelected_cardsize, marginLeft: '-=' + (-30 + 60 * k) + 'px', bottom: '-300px' });
 											});
 											TweenLite.to($current, speed3, { scaleX: .9, scaleY: .9, scaleZ: .9, z: 0.001, perspective: 1000, force3D: true, x: 0, backgroundColor: 'rgba(204,204,204,1)', ease: Power4.easeInOut });
 											TweenLite.to($next, speed3, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, perspective: 1000, force3D: true, zIndex: 1, ease: Power4.easeInOut, onComplete: function onComplete() {
