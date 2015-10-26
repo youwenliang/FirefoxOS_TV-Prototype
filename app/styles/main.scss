@@ -459,6 +459,37 @@ body {
   background-repeat: no-repeat;
   background-size:cover;
 }
+#app05{
+  background-image: none, url('../images/video_284.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+#app06{
+  background-image: none, url('../images/gallery_284.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+#app07{
+  background-image: none, url('../images/hdmi_284.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+#app08{
+  background-image: none, url('../images/hbo_284.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+#app09{
+  background-image: none, url('../images/national_284.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
 
 
 #option{
@@ -873,7 +904,7 @@ body {
     right: 0;
     top: 320px;
     bottom: -80px;
-    background: #ccc;
+    /*background: #ccc;*/
     display: inline-block;
     border-radius: 50%;
     width: 150px;
