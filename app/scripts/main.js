@@ -817,7 +817,7 @@ $(document).ready(function(){
 				}
 
 				else if(mode == "rearrange-folder"){
-					var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
+					var $current = $('.appbutton[data-number='+(parseInt(stage))+'][data-type="folder"]');
 					TweenLite.to($('#'+$current.attr('id')+' > .appbutton-folder'), speed3, {opacity: 0});
 
 					TweenLite.to($('#'+$current.attr('id')+" p"), speed3, {'opacity': 1});
@@ -851,7 +851,7 @@ $(document).ready(function(){
 
 
 						$clone.css({'border': '0px'});
-
+						console.log($current.attr('id'));
 /***********************/
 						$('#'+$current.attr('id')+' > .appbutton-folder').each(function(index, element){
 							var k = $(this).attr('data-number').split('-')[1]-1;
@@ -908,7 +908,7 @@ $(document).ready(function(){
 						else position_move = 0;
 						TweenMax.delayedCall(.7, function(){
 							mode = "navigation";
-							$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
+							$('.appbutton[data-number='+(parseInt(stage))+'][data-type="folder"]').isSelected();
 						});
 					});
 				}
