@@ -37,7 +37,7 @@ var rearrange_nav_stage = 1;
 var deletelist = ["#cancel", "#confirm"];
 var delete_stage = 1;
 
-var colors = { "app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04": "#56575c", "app05": "rgb(204,204,204)", "app06": "rgb(204,204,204)", "app07": "rgb(204,204,204)", "app08": "rgb(204,204,204)" };
+var colors = { "app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04": "#56575c", "app05": "#8D1C9B", "app06": "#01C7F1", "app07": "#4A82EA", "app08": "#ED0E86", "app09": "#ED0E86" };
 var pressed = "#5eabd9";
 
 var setting = ["#search", "#setting", "#folder"];
