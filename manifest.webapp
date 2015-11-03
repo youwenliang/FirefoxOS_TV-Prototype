@@ -1,7 +1,7 @@
 {
-  "name": "Smart Home Prototype",
+  "name": "FxOS TV Prototype",
   "description": "TV Prototype for user testing",
-  "launch_path": "/dist/index.html",
+  "launch_path": “/dist/index.html",
   "icons": {
     "60": "/icon/icon-60.png",
     "128": "/icon/icon-128.png"

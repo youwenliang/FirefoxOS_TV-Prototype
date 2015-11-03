@@ -2,21 +2,14 @@
   "name": "tvprototype",
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "~3.3.5",
-    "keymaster": "~1.6.3",
-    "modernizr": "~2.8.3"
-  },
-  "overrides": {
-    "bootstrap-sass": {
-      "main": [
-        "assets/stylesheets/_bootstrap.scss",
-        "assets/fonts/bootstrap/*",
-        "assets/javascripts/bootstrap.js"
-      ]
-    }
-  },
-  "devDependencies": {
-    "chai": "~3.3.0",
-    "mocha": "~2.3.2"
+    "modernizr": "~2.8.3",
+    "evt": "gaia-components/evt#~0.4.0",
+    "smart-button": "gaia-components/smart-button",
+    "menu-group": "gaia-components/menu-group",
+    "smart-icons": "smart-components/smart-icons#~0.0.2",
+    "smart-bubbles": "smart-components/smart-bubbles",
+    "smart-dialog": "smart-components/smart-dialog",
+    "smart-modal-dialog": "smart-components/smart-modal-dialog",
+    "jquery": "~2.1.4"
   }
 }
