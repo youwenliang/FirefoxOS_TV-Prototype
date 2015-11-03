@@ -99,6 +99,7 @@ $(document).ready(function(){
     	}
     	if (e.keyCode == 65) {
     		console.log("stage="+stage+" currentposition="+currentposition+" rearrangestage="+rearrange_stage);
+    		console.log(waveReset);
     	}
 	});
 
@@ -276,6 +277,8 @@ $(document).ready(function(){
 							}});
 
 						}
+
+						waveReset = [true, true, true, true];
 
 						TweenMax.delayedCall(.1, function(){
 							$('.active').css('color', '#ccc');
@@ -751,11 +754,19 @@ $(document).ready(function(){
 
 									var folder_amount = $('.appbutton[data-type="folder"]').length;
 									folder_amount++;
-									var $current = $('.appbutton[data-number='+(stage-1)+']');
-
-									$current.after('<div class="appbutton" id="app'+pad(total,2)+'" data-type="folder" data-number="'+stage+'" data-content="My Folder'+folder_amount+'"><p>My Folder '+folder_amount+'</p>');
+									
+									if(stage == 1) {
+										var $current = $('.appbutton[data-number='+(stage+1)+']');
+										console.log($current); console.log("???");
+										$current.before('<div class="appbutton" id="app'+pad(total,2)+'" data-type="folder" data-number="'+stage+'" data-content="My Folder'+folder_amount+'"><p>My Folder '+folder_amount+'</p>');
+									}
+									else {
+										var $current = $('.appbutton[data-number='+(stage-1)+']');
+										console.log($current); console.log("???");
+										$current.after('<div class="appbutton" id="app'+pad(total,2)+'" data-type="folder" data-number="'+stage+'" data-content="My Folder'+folder_amount+'"><p>My Folder '+folder_amount+'</p>');
+									}
 									var $current = $('.appbutton[data-number='+stage+']');
-
+									console.log($current);
 
 
 									for(var i = 0; i < folder_card.length; i++){
