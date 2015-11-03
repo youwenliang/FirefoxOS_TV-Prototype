@@ -860,7 +860,7 @@ $(document).ready(function () {
 						flag = false;
 						$('.transition').transition_closing(mode);
 					}
-					if (mode == "navigation") location.reload();
+					if (mode == "navigation" && level == 1) location.reload();
 				}
 			}
 
