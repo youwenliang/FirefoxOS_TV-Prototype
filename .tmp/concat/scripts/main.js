@@ -35,7 +35,7 @@ var rearrange_nav_stage = 1;
 var deletelist = ["#cancel", "#confirm"];
 var delete_stage = 1;
 
-var colors = {"app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04":"#56575c", "app05":"#8D1C9B", "app06":"#01C7F1", "app07":"#4A82EA", "app08":"#ED0E86", "app09":"#ED0E86"};
+var colors = {"app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04":"#56575c", "app05":"#ED0E86", "app06":"#ED0E86", "app07":"#4A82EA", "app08":"#8D1C9B", "app09":"#01C7F1"};
 var pressed = "#5eabd9";
 
 var setting = ["#search", "#setting", "#folder"];
@@ -868,6 +868,7 @@ $(document).ready(function(){
 							var k = $(this).attr('data-number').split('-')[1]-1;
 							console.log(k);
 							TweenLite.to(this, .001, {width: notSelected_cardsize, height: notSelected_cardsize, 'margin-left': 92+130*k, 'left':0, bottom: '-250px', perspective: 1000, force3D: true,   delay: .3});
+							console.log($(this).css('margin-left'));
 						});
 /***********************/
 
