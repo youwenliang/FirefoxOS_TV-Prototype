@@ -804,14 +804,6 @@ $(document).ready(function () {
 
 					$clone.css({ 'border': '0px' });
 					console.log($current.attr('id'));
-					/***********************/
-					$('#' + $current.attr('id') + ' > .appbutton-folder').each(function (index, element) {
-						var k = $(this).attr('data-number').split('-')[1] - 1;
-						console.log(k);
-						TweenLite.to(this, .001, { width: notSelected_cardsize, height: notSelected_cardsize, 'margin-left': 92 + 130 * k, 'left': 0, bottom: '-250px', perspective: 1000, force3D: true, delay: .3 });
-						console.log($(this).css('margin-left'));
-					});
-					/***********************/
 
 					if (rearrangelevel == 1) {
 						TweenLite.to($select, .8, { opacity: 0, ease: Power4.easeInOut, delay: .3, onComplete: function onComplete() {
@@ -839,6 +831,13 @@ $(document).ready(function () {
 					});
 
 					TweenMax.delayedCall(.3, function () {
+						/***********************/
+						$('#' + $current.attr('id') + ' > .appbutton-folder').each(function (index, element) {
+							var k = $(this).attr('data-number').split('-')[1] - 1;
+							console.log(k);
+							$(this).css({ width: notSelected_cardsize, height: notSelected_cardsize, 'margin-left': 92 + 130 * k, 'left': 0, bottom: '-250px' });
+						});
+						/***********************/
 
 						$('.appbutton-folder').each(function () {
 							console.log($(this).css('margin-left') + "!1");
