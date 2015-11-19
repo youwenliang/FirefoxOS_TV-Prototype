@@ -454,10 +454,11 @@ body {
 }
 
 #app04{
-  background-image: none, url('../images/ic_browser.png');
+  background-image: none, url('../images/browser_284.png');
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size:cover;
+  background-color: rgba(0,0,0,0) !important;
 }
 #app08{
   background-image: none, url('../images/video_284.png');
@@ -689,6 +690,18 @@ body {
     position: absolute;
     bottom: 0;
   }
+}
+
+.dummycontent{
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  top:0;
+  background-image: url('../images/tv-dummy.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #000;
+  opacity: 1;
 }
 
 #black{

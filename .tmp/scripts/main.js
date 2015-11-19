@@ -154,7 +154,15 @@ $(document).ready(function () {
 
 							TweenLite.to($('.transition'), trans_speed, { opacity: 1, perspective: 1000, force3D: true, ease: Power4.easeOut, delay: .3 });
 							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, perspective: 1000, force3D: true, zIndex: 1, border: '0px #989898 solid', ease: Power1.easeIn, delay: 1.5 });
-							$('#dummy p').text($('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-content'));
+
+							if ($('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-type') == "main") {
+								$('.dummycontent').css('background-image', 'url(\'../images/' + $('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-filter') + '-dummy.jpg\')');
+								$('#dummy p').text('');
+							} else {
+								$('.dummycontent').css('background', 'rgba(0,0,0,0)');
+								$('#dummy p').text($('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-content'));
+							}
+
 							TweenLite.to($('#dummy'), 1, { opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: .2, onComplete: function onComplete() {
 									flag = true;
 									mode = "dummymode";
