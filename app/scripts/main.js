@@ -602,9 +602,9 @@ $(document).ready(function(){
 
 							if(delete_stage == 1){
 								TweenMax.delayedCall(.6,function(){
+									mode = "navigation";
 									$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
 									TweenMax.delayedCall(scale_speed, function(){
-										mode = "navigation";
 										$("#cancel").removeClass('pressed');
 									});
 								});
@@ -696,6 +696,7 @@ $(document).ready(function(){
 						TweenLite.to($('.transition'), trans_speed-1, {opacity: 0, perspective: 1000, force3D: true,   ease: Power4.easeIn, delay: .2, onComplete: function(){
 							TweenLite.to($('#delete'), .001, {zIndex:-1, ease: Power4.easeInOut});
 						}});
+						circle_transition_r();
 
 				}
 				else if(mode == "addfolder") {
@@ -2022,7 +2023,6 @@ function circle_transition_r() {
 			}});
 		}
 		this.addClass('selected');
-
 		if(mode == "navigation"){
 			var id = $(this).attr('id');
 			TweenLite.to($("#"+id+" > .appbutton-folder"), speed3, {opacity: 1});
