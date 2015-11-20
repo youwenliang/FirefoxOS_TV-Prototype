@@ -10,6 +10,7 @@
     "smart-bubbles": "smart-components/smart-bubbles",
     "smart-dialog": "smart-components/smart-dialog",
     "smart-modal-dialog": "smart-components/smart-modal-dialog",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4"
   }
 }

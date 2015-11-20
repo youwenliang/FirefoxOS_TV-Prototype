@@ -157,7 +157,10 @@ $(document).ready(function(){
 							TweenLite.to($('.appbutton[data-number='+(parseInt(stage))+']'), scale_speed/2, {scaleX:1.3, scaleY:1.3, scaleZ:1.3, z: 0.001, perspective: 1000, force3D: true,   ease: Power1.easeInOut});
 							TweenLite.to($('.appbutton[data-number='+(parseInt(stage))+']'), scale_speed, {scaleX:1.6, scaleY:1.6, scaleZ:1.6, z: 0.001, perspective: 1000, force3D: true,   ease: Power1.easeInOut, delay: .08});
 
-							TweenLite.to($('.transition'), trans_speed, {opacity: 1, perspective: 1000, force3D: true,   ease: Power4.easeOut, delay:.3});
+							//TweenLite.to($('.transition'), trans_speed, {opacity: 1, perspective: 1000, force3D: true,   ease: Power4.easeOut, delay:.3});
+							
+	  						if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-content')=="Browser") circle_transition("#000", true);
+							else circle_transition($('.appbutton[data-number='+(parseInt(stage))+']').css('background-color'), true);
 							TweenLite.to($('.appbutton[data-number='+(parseInt(stage))+']'), scale_speed, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   zIndex: 1, border: '0px #989898 solid', ease: Power1.easeIn, delay: 1.5});
 							
 							if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "main"){
@@ -169,7 +172,7 @@ $(document).ready(function(){
 								$('#dummy p').text($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-content'));
 							}
 
-							TweenLite.to($('#dummy'), 1, {opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: .2, onComplete: function(){
+							TweenLite.to($('#dummy'), 1, {opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: 0, onComplete: function(){
 								flag = true;
 								mode = "dummymode";
 								playWave(false);
@@ -706,6 +709,7 @@ $(document).ready(function(){
 							$('#addfolder-done p').addClass('pressed').css('color', '#FFF');
 							TweenLite.to($('#addfolder-done'), .3, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   background: '#5eabd9', onComplete: function(){
 								TweenLite.to($('.transition'), trans_speed, {opacity: 0, perspective: 1000, force3D: true,   ease: Power4.easeOut, delay: .3});
+								circle_transition_r();
 
 								//Step 1
 								var folder_card = [];
@@ -1832,6 +1836,110 @@ function playWave (b) {
 	}
 }
 
+function circle_transition(c, b) {
+	var background = $('#tv');
+	var width = 0;
+	var height = 0;
+	var r = 0;
+	setSize();
+
+	function setSize() {
+	  width = 1920;
+		height = 1080;
+	  r = Math.sqrt(width/2 * width/2 + height * height);
+	}
+	$(window).resize(setSize);
+
+	//$(window).click(function(e) {
+	  //btn.removeClass('current');
+	  //$(this).addClass('current');
+	  var circle = $("<div unselectable='on' id='circle'></div>");
+	  var color = c;
+	  background.append(circle);
+	  circle.css({
+	  	'z-index':100,
+	    position: 'absolute',
+	    'background-color': color,
+	    width: 0,
+	    height: 0,
+	    "border-radius": "50%",
+	    left: '960px',
+	    top: $(this).height(),
+	    'margin-left': 0,
+	    'margin-top': 0,
+	    'webkit-user-select': 'none',
+	    '-moz-user-select': 'none',
+	    '-ms-user-select': 'none'
+	  });
+	  circle.animate({
+	    width: (r * 2),
+	    height: (r * 2),
+	   	'margin-left': -r,
+	    'margin-top': -r
+	  }, {
+	    duration: 1000,
+	    easing: "easeOutCirc",
+	    queue: false,
+	    complete: function() {
+	/*     circle.parent().css('background-color',
+	                    $(this).css('background-color'));*/
+	  if(b){
+	  	setTimeout(function(){
+	  		circle.animate({'opacity':0},{duration:300, complete: function(){
+	    	console.log($(this));
+		      circle.detach();
+		    }});
+	  	},0);
+	    }
+	  }
+	  });
+	//});
+}
+
+function circle_transition_r() {
+	var background = $('#tv');
+	var width = 0;
+	var height = 0;
+	var r = 0;
+	setSize();
+
+	function setSize() {
+	  width = $(window).width();
+	  height = $(window).height();
+	  r = Math.sqrt(width * width + height * height);
+	}
+	$(window).resize(setSize);
+
+	//$(window).click(function(e) {
+	  //btn.removeClass('current');
+	  //$(this).addClass('current');
+	  var circle = $('#circle');
+	  
+	  circle.animate({
+	    width: 0,
+	    height: 0,
+	   	'margin-left': 0,
+	    'margin-top': 0
+	  }, {
+	    duration: 900,
+	    easing: "easeInCirc",
+	    queue: false,
+	    complete: function() {
+	/*     circle.parent().css('background-color',
+	                    $(this).css('background-color'));*/
+	  
+	  	setTimeout(function(){
+	  		circle.animate({'opacity':0},{duration:300, complete: function(){
+	    	console.log($(this));
+		      circle.detach();
+		    }});
+	  	},0);
+	  
+	  }
+	  });
+	//});
+}
+
 /********************************************************************************************************************************
 
 	MODULE FUNCTIONS
@@ -2065,27 +2173,27 @@ function playWave (b) {
 		$.fn.transition_opening = function(m) {
 
 		playWave(false);
-
-		TweenLite.to(this, trans_speed, {opacity: .8, perspective: 1000, force3D: true,   ease: Power4.easeOut});
+		circle_transition('rgba(0,0,0,.8)', false);
+		//TweenLite.to(this, trans_speed, {opacity: .8, perspective: 1000, force3D: true,   ease: Power4.easeOut});
 
 			if(m == "optionmode"){
     		var $current = $('.appbutton[data-number='+(parseInt(stage))+']');
     		$current.notSelected();
-    		var add = 1600;
+    		var add = 1100;
 
     		if($current.attr('data-type') == "main") {
     			$('#rename, #remove').css('display', 'none');
-    			add = 1600;
+    			add = 1100;
     		}
     		else {
     			$('#rename, #remove').css('display', 'inline-block');
-    			add = 2000;
+    			add = 1500;
     		}
 		 		TweenLite.to($('#option'), .001, {zIndex:2000, ease: Power4.easeInOut});
 
 
 		 		var $opt = $('#option .optbutton');
-		 		var time = 500;
+		 		var time = 0;
 				$opt.each(function(index, element){
 					TweenMax.delayedCall(time/1000, function(){
 
@@ -2124,7 +2232,7 @@ function playWave (b) {
 				TweenLite.to($('#close'), .3, {opacity: 0});
 				TweenLite.to($('#addfolder'), .5, {opacity: 0});
 			}
-
+		circle_transition_r();
 		TweenLite.to(this, trans_speed-1, {opacity: 0, perspective: 1000, force3D: true,   ease: Power4.easeIn, onComplete: function(){
 				if(m == "optionmode"){
 					TweenLite.to($('#option'), .001, {zIndex:-1, ease: Power4.easeInOut});
@@ -2187,4 +2295,6 @@ $.fn.moveDown = function() {
     	 $(this).before($(this).next());
 	});
 };
+
+
 
