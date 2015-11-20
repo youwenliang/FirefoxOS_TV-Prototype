@@ -1751,7 +1751,7 @@ function circle_transition(c, b) {
 		height: 0,
 		"border-radius": "50%",
 		left: '960px',
-		top: $(this).height(),
+		top: '1080px',
 		'margin-left': 0,
 		'margin-top': 0,
 		'webkit-user-select': 'none',
