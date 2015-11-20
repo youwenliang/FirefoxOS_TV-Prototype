@@ -2233,23 +2233,25 @@ function circle_transition_r() {
 				TweenLite.to($('#addfolder'), .5, {opacity: 0});
 			}
 		circle_transition_r();
-		TweenLite.to(this, trans_speed-1, {opacity: 0, perspective: 1000, force3D: true,   ease: Power4.easeIn, onComplete: function(){
+		TweenLite.to(this, .5, {opacity: 0, perspective: 1000, force3D: true,   ease: Power4.easeIn, onComplete: function(){
 				if(m == "optionmode"){
 					TweenLite.to($('#option'), .001, {zIndex:-1, ease: Power4.easeInOut});
 					mode = "navigation";
 					if(option_stage == 3 && $('#remove').hasClass('pressed')) ;
 					else {
+						TweenMax.delayedCall(.5, function(){
 						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();
 						if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "folder"){
 							TweenLite.to($('#'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('id')+' > .appbutton-folder'), speed3, {opacity:1});
 						}
 						$('.selectedOption').notSelected_option();
+						});
 					}
 					option_stage = 1;
 				}
 				else if(m == "dummymode"){					
 					mode = "navigation";
-					TweenMax.delayedCall(.2, function(){
+					TweenMax.delayedCall(0, function(){
 						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();	
 					});
 				}
