@@ -153,13 +153,14 @@ $(document).ready(function () {
 							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed, { scaleX: 1.6, scaleY: 1.6, scaleZ: 1.6, z: 0.001, perspective: 1000, force3D: true, ease: Power1.easeInOut, delay: .08 });
 
 							//TweenLite.to($('.transition'), trans_speed, {opacity: 1, perspective: 1000, force3D: true,   ease: Power4.easeOut, delay:.3});
+							$('.dummycontent').css('background-image', 'url(\'../images/' + $('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-content') + '-dummy.jpg\')');
+							$('#dummy p').text('');
 
 							if ($('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-content') == "Browser") circle_transition("#000", true);else circle_transition($('.appbutton[data-number=' + parseInt(stage) + ']').css('background-color'), true);
 							TweenLite.to($('.appbutton[data-number=' + parseInt(stage) + ']'), scale_speed, { scaleX: 1, scaleY: 1, scaleZ: 1, z: 0.001, perspective: 1000, force3D: true, zIndex: 1, border: '0px #989898 solid', ease: Power1.easeIn, delay: 1.5 });
 
 							//if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "main"){
-							$('.dummycontent').css('background-image', 'url(\'../images/' + $('.appbutton[data-number=' + parseInt(stage) + ']').attr('data-content') + '-dummy.jpg\')');
-							$('#dummy p').text('');
+
 							// }
 							// else {
 							// 	$('.dummycontent').css('background', 'rgba(0,0,0,0)');
