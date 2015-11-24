@@ -163,14 +163,14 @@ $(document).ready(function(){
 							else circle_transition($('.appbutton[data-number='+(parseInt(stage))+']').css('background-color'), true);
 							TweenLite.to($('.appbutton[data-number='+(parseInt(stage))+']'), scale_speed, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   zIndex: 1, border: '0px #989898 solid', ease: Power1.easeIn, delay: 1.5});
 							
-							if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "main"){
-								$('.dummycontent').css('background-image', 'url(\'../images/'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('data-filter')+'-dummy.jpg\')');
+							//if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-type') == "main"){
+								$('.dummycontent').css('background-image', 'url(\'../images/'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('data-content')+'-dummy.jpg\')');
 								$('#dummy p').text('');
-							}
-							else {
-								$('.dummycontent').css('background', 'rgba(0,0,0,0)');
-								$('#dummy p').text($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-content'));
-							}
+							// }
+							// else {
+							// 	$('.dummycontent').css('background', 'rgba(0,0,0,0)');
+							// 	$('#dummy p').text($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-content'));
+							// }
 
 							TweenLite.to($('#dummy'), 1, {opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: 0, onComplete: function(){
 								flag = true;
