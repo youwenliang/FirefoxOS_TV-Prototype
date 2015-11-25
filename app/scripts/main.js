@@ -35,7 +35,19 @@ var rearrange_nav_stage = 1;
 var deletelist = ["#cancel", "#confirm"];
 var delete_stage = 1;
 
-var colors = {"app01": "#d90070", "app02": "#00cbb0", "app03": "#0071d7", "app04":"#56575c", "app05":"#ED0E86", "app06":"#ED0E86", "app07":"#4A82EA", "app08":"#8D1C9B", "app09":"#01C7F1"};
+var colors = {"app01": "#d90070", 
+			  "app02": "#00cbb0", 
+			  "app03": "#0071d7", 
+			  "app04": "#56575c", 
+			  "app05": "#ED0E86", 
+			  "app06": "#ED0E86", 
+			  "app07": "#4A82EA", 
+			  "app08": "#8D1C9B", 
+			  "app09": "#01C7F1",
+			  "app10": "#ED0E86",
+			  "app11": "#ED0E86",
+			  "app12": "#ED0E86", 
+			};
 var pressed = "#5eabd9";
 
 var setting = ["#search", "#setting", "#folder"];
@@ -186,7 +198,7 @@ $(document).ready(function(){
 							$('.dummycontent').css('background-image', 'url(\'../images/'+$('.appbutton[data-number='+(parseInt(stage))+']').attr('data-content')+'-dummy.jpg\')');
 							$('#dummy p').text('');
 
-	  						if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-content')=="Browser") circle_transition("#000", true);
+	  						if($('.appbutton[data-number='+(parseInt(stage))+']').attr('data-filter')=="web") circle_transition("#000", true);
 							else circle_transition($('.appbutton[data-number='+(parseInt(stage))+']').css('background-color'), true);
 							TweenLite.to($('.appbutton[data-number='+(parseInt(stage))+']'), scale_speed, {scaleX:1, scaleY:1, scaleZ:1, z: 0.001, perspective: 1000, force3D: true,   zIndex: 1, border: '0px #989898 solid', ease: Power1.easeIn, delay: 1.5});
 							
@@ -401,7 +413,7 @@ $(document).ready(function(){
 						}
 
 						TweenMax.delayedCall(.5, function(){
-							if(count <= 10) {
+							if(count <= 15) {
 								for ( var i = 0; i < count; i++ ) {
 									TweenLite.to($('.appbutton[data-number='+(i+1)+']'), .8, {marginLeft:(1920-150*count-(count-1)*10)/2+i*(150+10)-150/2, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
 								}
@@ -785,7 +797,7 @@ $(document).ready(function(){
 									arrow_prev = 239 + (8-count)*0.5*(150+10);
 
 									if(position >= 5){
-										TweenLite.to($('.appbutton'),slide_speed,{left: '-=350', perspective: 1000, force3D: true,   ease: Power1.easeInOut, onComplete: function(){
+										TweenLite.to($('.appbutton'),slide_speed,{left: '-=319', perspective: 1000, force3D: true,   ease: Power1.easeInOut, onComplete: function(){
 											//flag = true;
 										}});
 										position = 4;
@@ -1229,7 +1241,7 @@ $(document).ready(function(){
 								var $follow = $('.appbutton[data-number='+(parseInt(i))+']');
 								$follow.attr('data-number', parseInt(i)-1);
 							}
-							if(count <= 10) {
+							if(count <= 15) {
 								for ( var i = 0; i < count-1; i++ ) {
 									TweenLite.to($('.appbutton[data-number='+(i+1)+']'), speed3, {marginLeft:(1920-150*(count-1)-(count-2)*10)/2+i*(150+10)-150/2, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
 								}
@@ -1292,7 +1304,7 @@ $(document).ready(function(){
 						}
 						$('.selected').attr('data-number', stage);
 
-						if(count <= 10) {
+						if(count <= 15) {
 							for ( var i = 0; i < count; i++ ) {
 								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), speed3, {marginLeft:(1920-150*(count)-(count-1)*10)/2+i*(150+10)-150/2, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
 							}
@@ -1360,7 +1372,7 @@ $(document).ready(function(){
 							//Move Apps
 							if(position < 0){
 								flag = false;
-								TweenLite.to($('.appbutton'),slide_speed,{left: '+=350', perspective: 1000, force3D: true,   ease: Power1.easeInOut, onComplete: function(){
+								TweenLite.to($('.appbutton'),slide_speed,{left: '+=319', perspective: 1000, force3D: true,   ease: Power1.easeInOut, onComplete: function(){
 									//flag = true;
 								}});
 								position = 0;
@@ -1496,7 +1508,7 @@ $(document).ready(function(){
 								var $follow = $('.appbutton[data-number='+(parseInt(i))+']');
 								$follow.attr('data-number', parseInt(i)-1);
 							}
-							if(count <= 10) {
+							if(count <= 15) {
 								for ( var i = 0; i < count-1; i++ ) {
 									TweenLite.to($('.appbutton[data-number='+(i+1)+']'), speed3, {marginLeft:(1920-150*(count-1)-(count-2)*10)/2+i*(150+10)-150/2, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
 								}
@@ -1561,7 +1573,7 @@ $(document).ready(function(){
 						stage++;
 						$('.selected').attr('data-number', stage);
 
-						if(count <= 10) {
+						if(count <= 15) {
 							for ( var i = 0; i < count; i++ ) {
 								TweenLite.to($('.appbutton[data-number='+(i+1)+']'), speed3, {marginLeft:(1920-150*(count)-(count-1)*10)/2+i*(150+10)-150/2, perspective: 1000, force3D: true,   ease: Power4.easeInOut});
 							}
@@ -1627,7 +1639,7 @@ $(document).ready(function(){
 							//Move Apps
 							if(position >= 5){
 								flag = false;
-								TweenLite.to($('.appbutton'),slide_speed,{left: '-=350', perspective: 1000, force3D: true,   ease: Power1.easeInOut, onComplete: function(){
+								TweenLite.to($('.appbutton'),slide_speed,{left: '-=319', perspective: 1000, force3D: true,   ease: Power1.easeInOut, onComplete: function(){
 									//flag = true;
 								}});
 								position = 4;
