@@ -114,6 +114,27 @@ $(document).ready(function () {
 			console.log("stage=" + stage + " currentposition=" + currentposition + " rearrangestage=" + rearrange_stage);
 			console.log(waveReset);
 		}
+		if (e.keyCode == 48) {
+			if ($('.hint').css('opacity') == 1) $('.hint').css('opacity', 0);else $('.hint').css('opacity', 1);
+		}
+		if (e.keyCode == 49) {
+			$('.hint1').css('opacity', 1);
+			$('.hint2').css('opacity', 0);
+			$('.hint3').css('opacity', 0);
+			$('.hintImg').css('opacity', 0);
+		}
+		if (e.keyCode == 50) {
+			$('.hint1').css('opacity', 0);
+			$('.hint2').css('opacity', 1);
+			$('.hint3').css('opacity', 0);
+			$('.hintImg').css('opacity', 1);
+		}
+		if (e.keyCode == 51) {
+			$('.hint1').css('opacity', 0);
+			$('.hint2').css('opacity', 0);
+			$('.hint3').css('opacity', 1);
+			$('.hintImg').css('opacity', 1);
+		}
 	});
 
 	document.onkeydown = checkKey;
