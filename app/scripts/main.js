@@ -143,6 +143,24 @@ $(document).ready(function(){
 				if($('.hint').css('opacity') == 1) $('.hint').css('opacity',0);
 				else $('.hint').css('opacity',1);
 			}
+			if(e.keyCode == KeyEvent.DOM_VK_1) {
+				$('.hint1').css('opacity',1);
+				$('.hint2').css('opacity',0);
+				$('.hint3').css('opacity',0);
+				$('.hintImg').css('opacity',0);
+			}
+			if(e.keyCode == KeyEvent.DOM_VK_2) {
+				$('.hint1').css('opacity',0);
+				$('.hint2').css('opacity',1);
+				$('.hint3').css('opacity',0);
+				$('.hintImg').css('opacity',1);
+			}
+			if(e.keyCode == KeyEvent.DOM_VK_3) {
+				$('.hint1').css('opacity',0);
+				$('.hint2').css('opacity',0);
+				$('.hint3').css('opacity',1);
+				$('.hintImg').css('opacity',1);
+			}
 		}
 
 		/********************************************************************************************************************************
