@@ -114,27 +114,6 @@ $(document).ready(function () {
 			console.log("stage=" + stage + " currentposition=" + currentposition + " rearrangestage=" + rearrange_stage);
 			console.log(waveReset);
 		}
-		if (e.keyCode == 48) {
-			if ($('.hint').css('opacity') == 1) $('.hint').css('opacity', 0);else $('.hint').css('opacity', 1);
-		}
-		if (e.keyCode == 49) {
-			$('.hint1').css('opacity', 1);
-			$('.hint2').css('opacity', 0);
-			$('.hint3').css('opacity', 0);
-			$('.hintImg').css('opacity', 0);
-		}
-		if (e.keyCode == 50) {
-			$('.hint1').css('opacity', 0);
-			$('.hint2').css('opacity', 1);
-			$('.hint3').css('opacity', 0);
-			$('.hintImg').css('opacity', 1);
-		}
-		if (e.keyCode == 51) {
-			$('.hint1').css('opacity', 0);
-			$('.hint2').css('opacity', 0);
-			$('.hint3').css('opacity', 1);
-			$('.hintImg').css('opacity', 1);
-		}
 	});
 
 	document.onkeydown = checkKey;
@@ -190,6 +169,32 @@ $(document).ready(function () {
 				$('.hint3').css('opacity', 1);
 				$('.hintImg').css('opacity', 1);
 			}
+		} else {
+			//$(window).keydown(function (e){
+
+			if (e.keyCode == 48) {
+				if ($('.hint').css('opacity') == 1) $('.hint').css('opacity', 0);else $('.hint').css('opacity', 1);
+			}
+			if (e.keyCode == 49) {
+				$('.hint1').css('opacity', 1);
+				$('.hint2').css('opacity', 0);
+				$('.hint3').css('opacity', 0);
+				$('.hintImg').css('opacity', 0);
+			}
+			if (e.keyCode == 50) {
+				$('.hint1').css('opacity', 0);
+				$('.hint2').css('opacity', 1);
+				$('.hint3').css('opacity', 0);
+				$('.hintImg').css('opacity', 1);
+			}
+			if (e.keyCode == 51) {
+				$('.hint1').css('opacity', 0);
+				$('.hint2').css('opacity', 0);
+				$('.hint3').css('opacity', 1);
+				$('.hintImg').css('opacity', 1);
+			}
+
+			//});
 		}
 
 		/********************************************************************************************************************************
@@ -411,7 +416,7 @@ $(document).ready(function () {
 						TweenLite.to($app, .8, { scaleX: .5, scaleY: .5, scaleZ: .5, z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true, delay: .5 });
 
 						if (position_move > 0) {
-							TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350 * position_move, perspective: 1000, force3D: true, ease: Power1.easeInOut, delay: .5 });
+							TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 319 * position_move, perspective: 1000, force3D: true, ease: Power1.easeInOut, delay: .5 });
 						}
 
 						TweenMax.delayedCall(.5, function () {
@@ -531,11 +536,11 @@ $(document).ready(function () {
 														}
 													} else if (position_move == count - 5) {
 														position_move--;
-														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, perspective: 1000, force3D: true, ease: Power1.easeInOut });
+														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 319, perspective: 1000, force3D: true, ease: Power1.easeInOut });
 													} else {
 														if (position != 0) position--;else {
 															position_move--;
-															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, perspective: 1000, force3D: true, ease: Power1.easeInOut });
+															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 319, perspective: 1000, force3D: true, ease: Power1.easeInOut });
 														}
 													}
 												} else {
@@ -600,7 +605,7 @@ $(document).ready(function () {
 						if (position > 4) position = 4;else position = stage - 1;
 
 						if (stage > 5) {
-							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 350 * (stage - 5), perspective: 1000, force3D: true, ease: Power1.easeInOut, delay: .5 });
+							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 319 * (stage - 5), perspective: 1000, force3D: true, ease: Power1.easeInOut, delay: .5 });
 							position = 4;
 							position_move = stage - 5;
 						} else position_move = 0;
@@ -641,7 +646,7 @@ $(document).ready(function () {
 									var $home = $child.clone();
 									$home.each(function (index, element) {
 										$(this).removeClass('appbutton-folder').addClass('appbutton').attr({ 'data-number': parseInt(count) + parseInt(index) + 1, 'data-type': 'card' });
-										$(this).css({ 'margin-left': (1920 - 300 * 5) / 2 + (parseInt(count) + parseInt(index)) * (300 + 100 / 5) - 40, 'left': -350 * position_move, 'opacity': 1 });
+										$(this).css({ 'margin-left': (1920 - 300 * 5) / 2 + (parseInt(count) + parseInt(index)) * (300 + 100 / 5) - 40, 'left': -319 * position_move, 'opacity': 1 });
 
 										TweenLite.to($('#' + $(this).attr('id') + ' > p'), .3, { fontSize: '19pt', bottom: '50px', ease: Power2.easeInOut });
 
@@ -682,11 +687,11 @@ $(document).ready(function () {
 														}
 													} else if (position_move == count - 5) {
 														position_move--;
-														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, perspective: 1000, force3D: true, ease: Power1.easeInOut });
+														TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 319, perspective: 1000, force3D: true, ease: Power1.easeInOut });
 													} else {
 														if (position != 0) position--;else {
 															position_move--;
-															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350, perspective: 1000, force3D: true, ease: Power1.easeInOut });
+															TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 319, perspective: 1000, force3D: true, ease: Power1.easeInOut });
 														}
 													}
 												} else {
@@ -740,7 +745,7 @@ $(document).ready(function () {
 										$(this).attr('data-number', parseInt(index) + 1);
 										for (var i = 0; i < count; i++) {
 											var $getapp = $('#app > .appbutton[data-number=' + (i + 1) + ']');
-											$getapp.css({ 'margin-left': (1920 - 300 * 5) / 2 + i * (300 + 100 / 5) - 40, 'left': -350 * position_move });
+											$getapp.css({ 'margin-left': (1920 - 300 * 5) / 2 + i * (300 + 100 / 5) - 40, 'left': -319 * position_move });
 										}
 									});
 
@@ -796,7 +801,7 @@ $(document).ready(function () {
 											}
 
 											$current.css('background-color', '#5a5a5a');
-											$current.css({ 'margin-left': (1920 - 300 * 5) / 2 + (stage - 1) * (300 + 100 / 5) - 40, 'left': -350 * position_move });
+											$current.css({ 'margin-left': (1920 - 300 * 5) / 2 + (stage - 1) * (300 + 100 / 5) - 40, 'left': -319 * position_move });
 											$current.css('z-index', 1);
 											$current.prepend('<span class="icon_folder"></span>');
 
@@ -931,7 +936,7 @@ $(document).ready(function () {
 						if (position > 4) position = 4;else position = stage - 1;
 
 						if (stage > 5) {
-							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 350 * (stage - 5), perspective: 1000, force3D: true, ease: Power1.easeInOut, delay: .5 });
+							TweenLite.to($('.appbutton'), slide_speed, { left: '-=' + 319 * (stage - 5), perspective: 1000, force3D: true, ease: Power1.easeInOut, delay: .5 });
 							position = 4;
 							position_move = stage - 5;
 						} else position_move = 0;
@@ -1931,7 +1936,7 @@ function circle_transition_r() {
 			time += 80;
 		});
 		if (position_move > 0) {
-			TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 350 * position_move, ease: Power1.easeInOut, perspective: 1000, force3D: true, onComplete: function onComplete() {
+			TweenLite.to($('.appbutton'), slide_speed, { left: '+=' + 319 * position_move, ease: Power1.easeInOut, perspective: 1000, force3D: true, onComplete: function onComplete() {
 					$backup = $('#app > .appbutton').clone();
 					TweenLite.to($backup, .001, { opacity: 0, y: 0, z: 0.001, ease: Power4.easeInOut, perspective: 1000, force3D: true });
 				} });
