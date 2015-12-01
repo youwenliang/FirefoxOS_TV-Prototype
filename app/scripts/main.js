@@ -279,6 +279,7 @@ $(document).ready(function(){
 								TweenLite.to($('#setting'), .2, {backgroundColor: '#FFF', scaleX:1.1, scaleY:1.1, scaleZ:1.1, z: 0.001, onComplete: function(){
 									circle_transition("rgba(0,0,0,0)", true);
 									$('.dummycontent').css('background-image', 'url(\'../images/Setting.png\')');
+									$('.dummycontent').css('background-color', 'rgba(0,0,0,0)');
 									$('#dummy p').text('');
 									$('#dummy').css('background-color', 'rgba(0,0,0,0)');
 									TweenLite.to($('#dummy'), .4, {opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: 0, onComplete: function(){
