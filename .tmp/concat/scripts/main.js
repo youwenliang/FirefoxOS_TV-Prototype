@@ -257,7 +257,15 @@ $(document).ready(function(){
 							TweenMax.delayedCall( timeout/1000, function(){
 								$("#search").removeClass('pressed');
 								TweenLite.to($('#search'), .2, {backgroundColor: '#FFF', scaleX:1.1, scaleY:1.1, scaleZ:1.1, z: 0.001, onComplete: function(){
-									flag = true;
+									circle_transition("#000", true);
+									$('.dummycontent').css('background-image', 'url(\'../images/Search.jpg\')');
+									$('#dummy p').text('');
+									TweenLite.to($('#dummy'), 1, {opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: 0, onComplete: function(){
+										flag = true;
+										mode = "dummymode";
+										playWave(false);
+										$("#search").notSelected_setting();
+									}});
 								}});
 							});
 						}
@@ -269,7 +277,16 @@ $(document).ready(function(){
 							TweenMax.delayedCall(timeout/1000, function(){
 								$("#setting").removeClass('pressed');
 								TweenLite.to($('#setting'), .2, {backgroundColor: '#FFF', scaleX:1.1, scaleY:1.1, scaleZ:1.1, z: 0.001, onComplete: function(){
-									flag = true;
+									circle_transition("rgba(0,0,0,0)", true);
+									$('.dummycontent').css('background-image', 'url(\'../images/Setting.png\')');
+									$('#dummy p').text('');
+									$('#dummy').css('background-color', 'rgba(0,0,0,0)');
+									TweenLite.to($('#dummy'), .4, {opacity: 1, zIndex: 100, ease: Power4.easeIn, delay: 0, onComplete: function(){
+										flag = true;
+										mode = "dummymode";
+										playWave(false);
+										$("#setting").notSelected_setting();
+									}});
 								}});
 							});
 						}
@@ -1907,6 +1924,7 @@ function circle_transition(c, b) {
 	var width = 0;
 	var height = 0;
 	var r = 0;
+	var d = 1000;
 	setSize();
 
 	function setSize() {
@@ -1921,6 +1939,9 @@ function circle_transition(c, b) {
 	  //$(this).addClass('current');
 	  var circle = $("<div unselectable='on' id='circle'></div>");
 	  var color = c;
+	  if(color == "rgba(0,0,0,0)") d = 200;
+	  else d = 1000;
+
 	  background.append(circle);
 	  circle.css({
 	  	'z-index':100,
@@ -1943,7 +1964,7 @@ function circle_transition(c, b) {
 	   	'margin-left': -r,
 	    'margin-top': -r
 	  }, {
-	    duration: 1000,
+	    duration: d,
 	    easing: "easeOutCirc",
 	    queue: false,
 	    complete: function() {
@@ -2317,6 +2338,8 @@ function circle_transition_r() {
 				else if(m == "dummymode"){					
 					mode = "navigation";
 					TweenMax.delayedCall(0, function(){
+						level = 1;
+						setting_stage = 1;
 						$('.appbutton[data-number='+(parseInt(stage))+']').isSelected();	
 					});
 				}
