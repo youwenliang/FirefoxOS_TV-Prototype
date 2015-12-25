@@ -1,4 +1,7 @@
 # FirefoxOS TV Prototype
+
+![Prototype](http://people.mozilla.org/~mliang/github/tv.jpg)
+
 Step 1: Download ZIP.
 
 Step 2: Open Firefox Browser WebIDE (網頁開發介面)
