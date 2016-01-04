@@ -29,4 +29,4 @@ If you have more questions please follow the steps here:
 
 https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/TVs_connected_devices/How_to_connect_WebIDE_to_TV_%28VIErA%29
 
-Checkout the Browser version: http://people.mozilla.org/~mliang/FireFoxOS_TV-Prototype/
+Checkout the Browser version: http://people.mozilla.org/~mliang/FirefoxOS_TV-Prototype/
